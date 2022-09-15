@@ -1,61 +1,117 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title> Home </title>
-		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+		<!-- CSS파일 -->
+   <link rel="stylesheet" href="${path }/resources/CSS/main/index.css">
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
- <div id="carousel-1" class="carousel slide" data-bs-ride="carousel" style="height: 600px;">
-        <div class="carousel-inner h-100">
-            <div class="carousel-item active h-100"><img class="w-100 d-block position-absolute h-100 fit-cover" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="Slide Image" style="z-index: -1;" />
-                <div class="container d-flex flex-column justify-content-center h-100">
-                    <div class="row">
-                        <div class="col-md-6 col-xl-4 offset-md-2">
-                            <div style="max-width: 350px;">
-                                <h1 class="text-uppercase fw-bold">제목</h1>
-                                <p class="my-3">간단한 설명</p><a class="btn btn-primary btn-lg me-2" role="button" href="#">예매하러 가기</a>
-                            </div>
+ <!-- ======= 슬라이드 사진 ======= -->
+    <header id="header">
+        <div id="headerCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+
+            <!-- Slide Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#headerCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#headerCarousel" data-slide-to="1"></li>
+              <li data-target="#headerCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <div class="carousel-inner" role="listbox">
+              <!-- Slide 1 -->
+            <div class="carousel-item active">
+               <div class="carousel-background">
+                  <img class="w-100 d-block position-absolute h-100 fit-cover" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="">
+               </div>
+               <div class="carousel-container">
+                  <div class="carousel-content">
+                     <h2>
+                        <!-- <span>The Note Book </span>  -->
+                     </h2>
+                     <!-- 
+                     <p>It is a long established fact that a reader will be
+                        distracted by the readable content of a page when looking at its
+                        layout. The point of using Lorem Ipsum is that it has a
+                        more-or-less normal distribution of letters, as opposed to using
+                        ‘Content here, content here’, making it look like readable
+                        English.</p>
+                        <a href="#" class="contactus-btn" data-toggle="modal"
+                        data-target="#videoModal"
+                        data-theVideo="https://www.youtube.com/embed/loFtozxZG0s">VIDEO</a>
+                     
+                      -->
+                      <a href="${path }/movieUser/openMovieList"" class="contactus-btn">상세정보</a>
+
+
+                  </div>
+                           </div>
+                           
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item h-100"><img class="w-100 d-block position-absolute h-100 fit-cover" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="Slide Image" style="z-index: -1;" />
-                <div class="container d-flex flex-column justify-content-center h-100">
-                    <div class="row">
-                        <div class="col-md-6 col-xl-4 offset-md-2">
-                            <div style="max-width: 350px;">
-                                <h1 class="text-uppercase fw-bold">1<br />fringi dictum, augue purus</h1>
-                                <p class="my-3">Tincidunt laoreet leo, adipiscing taciti tempor. Primis senectus sapien, risus donec ad fusce augue interdum.</p><a class="btn btn-primary btn-lg me-2" role="button" href="#">Button</a><a class="btn btn-outline-primary btn-lg" role="button" href="#">Button</a>
-                            </div>
+
+                        <!-- Slide 2 -->
+                        <div class="carousel-item">
+                           <div class="carousel-background">
+                              <img class="w-100 d-block position-absolute h-100 fit-cover" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="">
+                           </div>
+                           <div class="carousel-container">
+                              <div class="carousel-content">
+                                 <!-- 
+                                 <h2>Where does it come from</h2>
+                                 <p>It is a long established fact that a reader will be
+                                    distracted by the readable content of a page when looking at
+                                    its layout. The point of using Lorem Ipsum is that it has a
+                                    more-or-less normal distribution of letters, as opposed to
+                                    using ‘Content here, content here’, making it look like
+                                    readable English.</p>
+                                 
+                                  -->
+                                  <a href="${path }/movieUser/openMovieList"" class="contactus-btn">상세정보</a>
+                              </div>
+                           </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item h-100"><img class="w-100 d-block position-absolute h-100 fit-cover" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="Slide Image" style="z-index: -1;" />
-                <div class="container d-flex flex-column justify-content-center h-100">
-                    <div class="row">
-                        <div class="col-md-6 col-xl-4 offset-md-2">
-                            <div style="max-width: 350px;">
-                                <h1 class="text-uppercase fw-bold">2<br />fringi dictum, augue purus</h1>
-                                <p class="my-3">Tincidunt laoreet leo, adipiscing taciti tempor. Primis senectus sapien, risus donec ad fusce augue interdum.</p><a class="btn btn-primary btn-lg me-2" role="button" href="#">Button</a><a class="btn btn-outline-primary btn-lg" role="button" href="#">Button</a>
-                            </div>
+
+                        <!-- Slide 3 -->
+                        <div class="carousel-item">
+                           <div class="carousel-background">
+                              <img class="w-100 d-block position-absolute h-100 fit-cover" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="">
+                           </div>
+                           <div class="carousel-container">
+                              <div class="carousel-content">
+                              <!-- 
+                                 <h2>Why do we use it</h2>
+                                 <p>There are many variations of passages of Lorem Ipsum
+                                    available, but the majority have suffered alteration in some
+                                    form, by injected humour, or randomised words which don’t
+                                    look even slightly believable. If you are going to use a
+                                    passage of Lorem Ipsum, you need to be sure there isn’t
+                                    anything embarrassing hidden in the middle of text.</p>
+                                 <a href="#" class="contactus-btn">상세정보</a>
+                              -->
+                              <a href="${path }/movieUser/openMovieList"" class="contactus-btn">상세정보</a>
+                              </div>
+                           </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                     </div>
+
+                     <!-- Carousel pre and next arrow -->
+            <a class="carousel-control-prev" href="#headerCarousel" role="button" data-slide="prev">
+          
+            </a>
+
+            <a class="carousel-control-next" href="#headerCarousel" role="button" data-slide="next">
+         
+            </a>
         </div>
-        <div><a class="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a>
-             <a class="carousel-control-next" href="#carousel-1" role="button" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></a></div>
-        <ol class="carousel-indicators">
-            <li class="active" data-bs-target="#carousel-1" data-bs-slide-to="0"></li>
-            <li data-bs-target="#carousel-1" data-bs-slide-to="1"></li>
-            <li data-bs-target="#carousel-1" data-bs-slide-to="2"></li>
-        </ol>
-    </div>
+    </header>
     <div class="container py-4 py-xl-5">
         <div class="row mb-5" style="background: linear-gradient(120deg, #dda4cd, #afc3f5);">
             <div class="col-md-8 col-xl-6 text-center mx-auto">
@@ -149,7 +205,7 @@
                             <div class="text-white p-4 p-md-5" style="background: linear-gradient(120deg, #dda4cd, #afc3f5);">
                                 <h2 class="fw-bold text-white mb-3">이벤트 페이지</h2>
                                 <p class="mb-4">이벤트 관련 내용</p>
-                                <div class="my-3"><a class="btn btn-primary btn-lg me-2" role="button" href="${pageContext.request.contextPath}/notice/detail">이벤트 바로가기</a></div>
+                                <div class="my-3"><a class="btn btn-primary btn-lg me-2" role="button" href="${pageContext.request.contextPath}/ticketway/event_detail">이벤트 바로가기</a></div>
                             </div>
                         </div>
                         <div class="col-md-6 order-first order-md-last" style="min-height: 250px;"><img class="w-100 h-100 fit-cover" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" /></div>
