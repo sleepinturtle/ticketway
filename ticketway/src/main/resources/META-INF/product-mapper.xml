@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ProductMapper">
+
+	<select id="favoriteCount" parameterType="kr.co.ticketway.product.ProductFavoriteDTO" resultType="int">
+	select count(mno) cnt from product_favorite
+	where mno = #{mno}
+	and prdt_no = #{prdt_no}
+	</select>
+
+	<delete id="favoriteDelete" parameterType="kr.co.ticketway.product.ProductFavoriteDTO">
+	delete from product_favorite
+	where mno = #{mno}
+	and prdt_no = #{prdt_no}
+	</delete>
+
+	<insert id="favoriteInsert" parameterType="kr.co.ticketway.product.ProductFavoriteDTO">
+	insert into product_favorite (mno, prdt_no)
+	values (#{mno}, #{prdt_no})
+	</insert>
+
+	<select id="productReplyList" parameterType="java.lang.String"
+			resultType="kr.co.ticketway.product.ProductReplyDTO">
+	select pr.reply_no, pr.prdt_no, pr.mno, m.mid
+			, pr.reply_class, coco.code_name as reply_class_name
+			, pr.contents, pr.reply_date
+	from product_reply pr, member m, common_code coco
+	where pr.prdt_no = #{prdt_no}
+	and pr.mno = m.mno
+	and coco.code_class = 'product_reply_class'
+	and coco.code_no = pr.reply_class
+	</select>
+
+	<insert id="replyInsert" parameterType="kr.co.ticketway.product.ProductReplyDTO">
+	insert into product_reply(prdt_no, mno, reply_class, contents, reply_date)
+	values (#{prdt_no}, #{mno}, #{reply_class}, #{contents}, now());
+	</insert>
+
+	<update id="fileDelete" parameterType="kr.co.ticketway.product.ProductDTO">
+	update product
+		<if test="thumbnail_name != null and thumbnail_name != ''">
+			set thumbnail_name = ''
+			, thumbnail_path = ''
+		</if>
+		<if test="prdt_img_name != null and prdt_img_name != ''">
+			set prdt_img_name = ''
+			, prdt_img_path = ''
+		</if>
+		<if test="desc_img_name != null and desc_img_name != ''">
+			set desc_img_name = ''
+			, desc_img_path = ''
+		</if>
+		<if test="add_file_name != null and add_file_name != ''">
+			set add_file_name = ''
+			, add_file_path = ''
+		</if>
+	where prdt_no = #{prdt_no}
+	and mno = #{mno}
+	</update>
+
+	<update id="update" parameterType="kr.co.ticketway.product.ProductDTO">
+	update product
+	set prdt_name = #{prdt_name}
+		, qty = #{qty}
+		, price = #{price}
+		, discount = #{discount}
+		, description = #{description}
+		<if test="thumbnail_name != null and thumbnail_name != ''">
+			, thumbnail_name = #{thumbnail_name}
+			, thumbnail_path = #{thumbnail_path}
+		</if>
+		<if test="prdt_img_name != null and prdt_img_name != ''">
+			, prdt_img_name = #{prdt_img_name}
+			, prdt_img_path = #{prdt_img_path}
+		</if>
+		<if test="desc_img_name != null and desc_img_name != ''">
+			, desc_img_name = #{desc_img_name}
+			, desc_img_path = #{desc_img_path}
+		</if>
+		<if test="add_file_name != null and add_file_name != ''">
+			, add_file_name = #{add_file_name}
+			, add_file_path = #{add_file_path}
+		</if>
+	where prdt_no = #{prdt_no}
+	and mno = #{mno}
+	</update>
+
+	<update id="delete" parameterType="kr.co.ticketway.product.ProductDTO">
+	update product
+	set del_yn = 1
+	, del_date = now()
+	where prdt_no = #{prdt_no}
+	and mno = #{mno}
+	</update>
+
+	<select id="detail" parameterType="java.lang.String" resultType="kr.co.ticketway.product.ProductDTO">
+	select p.prdt_no, p.prdt_name, p.mno, m.mid, p.qty, p.price, p.discount
+	, p.price - (p.price / 100 * p.discount) sale_price
+	, p.description, p.view_cnt, p.reg_date
+	, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
+	, p.desc_img_name, p.desc_img_path, p.add_file_name, p.add_file_path
+   	from product p, member m
+	where p.prdt_no = #{prdt_no}
+	and p.del_yn = 0
+	and p.mno = m.mno
+	</select>
+
+	<update id="incrementViewCnt" parameterType="java.lang.String">
+	update product
+	set view_cnt = view_cnt + 1
+	where prdt_no = #{prdt_no}
+	</update>
+
+	<select id="selectList" parameterType="kr.co.ticketway.util.dto.SearchDTO"
+			resultType="kr.co.ticketway.product.ProductDTO">
+		select p.prdt_no, p.prdt_name, p.mno, m.mid, p.qty, p.price, p.discount
+		, p.price - (p.price / 100 * p.discount) sale_price
+		, p.description, p.view_cnt, p.reg_date
+		, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
+		, p.desc_img_name, p.desc_img_path, p.add_file_name, p.add_file_path
+    	from product p, member m
+		where p.del_yn = 0
+		<if test="searchOption != null and searchOption != ''
+					and searchWord != null and searchWord !=''">
+			<choose>
+				<when test="searchOption == 'prdt_name'">
+					and p.prdt_name like concat('%', #{searchWord}, '%')
+				</when>
+				<when test="searchOption == 'mid'">
+					and m.mid like concat('%', #{searchWord}, '%')
+				</when>
+			</choose>
+		</if>
+		and p.mno = m.mno
+		order by prdt_no desc
+		limit #{limitNum}, 10
+	</select>
+
+	<select id="searchListCount" parameterType="kr.co.ticketway.util.dto.SearchDTO" resultType="int">
+		select count(p.prdt_no) cnt
+		from product p, member m
+		where p.del_yn = 0
+		<if test="searchOption != null and searchOption != ''
+					and searchWord != null and searchWord !=''">
+			<choose>
+				<when test="searchOption == 'prdt_name'">
+					and p.prdt_name like concat('%', #{searchWord}, '%')
+				</when>
+				<when test="searchOption == 'mid'">
+					and m.mid like concat('%', #{searchWord}, '%')
+				</when>
+			</choose>
+		</if>
+		and p.mno = m.mno
+	</select>
+
+	<insert id="insert" parameterType="kr.co.ticketway.product.ProductDTO">
+	insert into product (prdt_name, mno , qty, price, discount, description, reg_date
+						, thumbnail_name, thumbnail_path, prdt_img_name, prdt_img_path
+						, desc_img_name, desc_img_path, add_file_name, add_file_path)
+	values(#{prdt_name}, #{mno} , #{qty}, #{price}, #{discount}, #{description}, now()
+			, #{thumbnail_name}, #{thumbnail_path}, #{prdt_img_name}, #{prdt_img_path}
+			, #{desc_img_name}, #{desc_img_path}, #{add_file_name}, #{add_file_path})
+	</insert>
+
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="JoinMapper">
+
+	<insert id="join" parameterType="kr.co.ticketway.util.dto.MemberDTO">
+	INSERT INTO member ( mid, mname, mpwd, mtel, email, 
+		mpost, maddr, maddr1 )
+	VALUES ( #{mid},#{mname}, #{mpwd}, #{mtel}, #{email}, #{mpost}, #{maddr}, #{maddr1} )
+	</insert>
+
+	<select id="idCheck" parameterType="java.lang.String" resultType="int">
+	select count(mid) cnt
+	from member
+	where mid = #{mid}
+	</select>
+
+</mapper>

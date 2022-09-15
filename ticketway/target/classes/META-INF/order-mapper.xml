@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="OrderMapper">
+
+	<update id="updateDeliveryAddrUsedDate" parameterType="kr.co.ticketway.order.OrderMainDTO">
+	update delivery_address
+	set used_date = now()
+	where addr_no = #{addr_no}
+	and mno = #{mno}
+	</update>
+
+	<update id="updateCreditCardUsedDate" parameterType="kr.co.ticketway.order.OrderMainDTO">
+	update credit_card
+	set used_date = now()
+	where card_no = #{card_no}
+	and mno = #{mno}
+	</update>
+
+	<delete id="deleteBasketByArray">
+	delete from basket b
+	where b.basket_no in
+		<foreach item="basket_no" collection="array" open="(" close=")" separator=",">
+			#{basket_no}
+		</foreach>
+	</delete>
+
+	<insert id="insertBuyNowOrderDetail" parameterType="kr.co.ticketway.order.OrderMainDTO">
+	insert into order_detail (order_no, prdt_no
+							, detail_qty, detail_price, detail_amt
+	                        , detail_discount, detail_discount_amt
+							, detail_pay_amt)
+	select #{order_no}, p.prdt_no
+			, #{buy_now_qty}, p.price, #{buy_now_qty} * p.price
+			, p.discount, #{buy_now_qty} * p.price / 100 * p.discount
+			, (#{buy_now_qty} * p.price) - (#{buy_now_qty} * p.price / 100 * p.discount)
+	from product p
+	where p.prdt_no = #{buy_now_prdt_no}
+	</insert>
+
+	<insert id="insertOrderDetail" parameterType="kr.co.ticketway.order.OrderMainDTO">
+	insert into order_detail (order_no, prdt_no
+							, detail_qty, detail_price, detail_amt
+	                        , detail_discount, detail_discount_amt
+							, detail_pay_amt)
+	select #{order_no}, p.prdt_no
+			, b.buy_qty, p.price, b.buy_qty * p.price
+			, p.discount, b.buy_qty * p.price / 100 * p.discount
+			, (b.buy_qty * p.price) - (b.buy_qty * p.price / 100 * p.discount)
+	from basket b, product p
+	where b.basket_no in
+		<foreach item="basket_no" collection="arr_basket_no" open="(" close=")" separator=",">
+			#{basket_no}
+		</foreach>
+	and b.prdt_no = p.prdt_no
+	order by b.reg_date
+	</insert>
+
+	<insert id="insertOrderMain" parameterType="kr.co.ticketway.order.OrderMainDTO">
+		insert into order_main (mno, card_no, addr_no, order_product_cnt
+								, order_amt, discount_amt, pay_amt, order_date)
+		values (#{mno}, #{card_no}, #{addr_no}, #{order_product_cnt}
+				, #{order_amt}, #{discount_amt}, #{pay_amt}, now());
+		<selectKey resultType="String" keyProperty="order_no" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<select id="buyNowOrderList" resultType="kr.co.ticketway.product.ProductDTO">
+	select 0 basket_no, #{buy_qty} as buy_qty, now()
+			, p.prdt_no, p.prdt_name, p.mno, m.mid, p.qty, p.price, p.discount
+			, p.price - (p.price / 100 * p.discount) as sale_price
+			, ( p.price - (p.price / 100 * p.discount) ) * #{buy_qty} as total_price
+			, p.description, p.view_cnt, p.reg_date
+			, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
+			, p.desc_img_name, p.desc_img_path, p.add_file_name, p.add_file_path
+	from product p, member m
+	where p.prdt_no = #{prdt_no}
+	and p.mno = m.mno
+	</select>
+
+	<select id="orderList" resultType="kr.co.ticketway.product.ProductDTO">
+	select b.basket_no, b.mno, m.mid, b.prdt_no, b.buy_qty, b.reg_date
+			, p.prdt_no, p.prdt_name, p.mno, m2.mid, p.qty, p.price, p.discount
+			, p.price - (p.price / 100 * p.discount) sale_price
+			, ( p.price - (p.price / 100 * p.discount) ) * b.buy_qty total_price
+			, p.description, p.view_cnt, p.reg_date
+			, p.thumbnail_name, p.thumbnail_path, p.prdt_img_name, p.prdt_img_path
+			, p.desc_img_name, p.desc_img_path, p.add_file_name, p.add_file_path
+	from basket b, member m, product p, member m2
+	where b.basket_no in
+		<foreach item="basket_no" collection="array" open="(" close=")" separator=",">
+			#{basket_no}
+		</foreach>
+	and b.mno = m.mno
+	and b.prdt_no = p.prdt_no
+	and p.mno = m2.mno
+	order by b.reg_date desc
+	</select>
+
+</mapper>

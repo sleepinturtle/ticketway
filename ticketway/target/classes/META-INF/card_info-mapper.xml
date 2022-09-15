@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Card_infoMapper">
+
+	<update id="delete" parameterType="kr.co.ticketway.card_info.Card_infoDTO">
+	update card_info
+	set del_yn = 1, del_date = now()
+	where card_no = #{card_no}
+	and mno = #{mno}
+	</update>
+
+	<insert id="insert" parameterType="kr.co.ticketway.card_info.Card_infoDTO">
+	insert into card_info ( card_name, mno, card_num, exp_date1, exp_date2,
+								cvc_code, card_pwd, used_date, reg_date )
+	values ( #{card_name}, #{mno}, #{card_num}, #{exp_date1}, #{exp_date2},
+				#{cvc_code}, #{card_pwd}, now(), now() )
+	</insert>
+
+	<select id="list"  parameterType="java.lang.String"
+						resultType="kr.co.ticketway.card_info.Card_infoDTO">
+	select cc.card_no, cc.card_name, cc.mno
+			, concat(left(cc.card_num, 5), '****-****', right(cc.card_num, 5)) card_num
+			, cc.exp_date1, cc.exp_date2
+			, cc.cvc_code, cc.card_pwd, cc.used_date, cc.reg_date
+	from card_info cc, member m
+	where cc.mno = #{mno}
+	and cc.del_yn = 0
+	and cc.mno = m.mno
+	order by cc.used_date desc
+	</select>
+
+</mapper>

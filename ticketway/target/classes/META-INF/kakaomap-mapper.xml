@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="KakaoMapMapper">
+
+	<select id="selectAllMember" resultType="kr.co.ticketway.util.dto.MemberDTO">
+	select mno, mid, mpwd, tel, email, mdate
+		, service_agree, info_agree, sms_agree, email_agree
+		, post_code, addr1, addr2
+	from member
+	</select>
+
+</mapper>
