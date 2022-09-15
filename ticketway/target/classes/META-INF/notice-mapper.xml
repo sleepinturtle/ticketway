@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="NoticeMapper">
+
+	<update id="update" parameterType="kr.co.ticketway.notice.NoticeDTO">
+	update news
+	set title = #{title}, cnts = #{cnts}
+	where news_no = #{news_no}
+	and mno = #{mno}
+	</update>
+
+	<delete id="delete" parameterType="kr.co.ticketway.notice.NoticeDTO">
+	delete from news
+	where news_no = #{news_no}
+	and mno = #{mno}
+	</delete>
+
+	<update id="incrementViewCnt" parameterType="java.lang.String">
+	update news
+	set view_cnt = view_cnt + 1
+	where news_no = #{news_no}
+	</update>
+
+	<select id="detail" parameterType="java.lang.String" resultType="kr.co.ticketway.notice.NoticeDTO">
+	select nw.news_no, nw.title, nw.mno, m.mid, nw.cnts, nw.view_cnt, nw.news_date, nw.class_no
+	from news nw, member m
+	where nw.news_no = #{news_no}
+	and nw.mno = m.mno
+	</select>
+
+	<insert id="write" parameterType="kr.co.ticketway.notice.NoticeDTO">
+	insert into news ( title, mno, mid, class_no, cnts, view_cnt, news_date )
+	values ( #{title}, #{mno}, #{mid}, #{class_no}, #{cnts}, 0, now() )
+	</insert>
+
+	<select id="selectList" parameterType="kr.co.ticketway.util.dto.SearchDTO"
+			resultType="kr.co.ticketway.notice.NoticeDTO">
+	select nw.news_no, nw.class_no, nw.title, nw.mno, m.mid, nw.view_cnt, nw.news_date
+	from news nw, member m
+	where nw.mno = m.mno
+		<if test="searchOption != null and searchOption != ''
+					and searchWord != null and searchWord != ''">
+			<choose>
+				<when test="searchOption == 'title'">
+					and nw.title like concat('%', #{searchWord}, '%')
+				</when>
+				<when test="searchOption == 'writer'">
+					and m.mid like concat('%', #{searchWord}, '%')
+				</when>
+			</choose>
+		</if>
+	order by news_no desc
+	limit #{limitNum}, 10
+	</select>
+
+	<select id="searchListCount" parameterType="kr.co.ticketway.util.dto.SearchDTO" resultType="int">
+	select count(nw.news_no) cnt
+	from news nw, member m
+	where nw.mno = m.mno
+		<if test="searchOption != null and searchOption != ''
+					and searchWord != null and searchWord !=''">
+			<choose>
+				<when test="searchOption == 'title'">
+					and nw.title like concat('%', #{searchWord}, '%')
+				</when>
+				<when test="searchOption == 'writer'">
+					and m.mid like concat('%', #{searchWord}, '%')
+				</when>
+			</choose>
+		</if>
+	</select>
+
+</mapper>
