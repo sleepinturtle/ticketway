@@ -5,10 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title> Home </title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+		
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
@@ -152,7 +149,7 @@
                             <div class="text-white p-4 p-md-5" style="background: linear-gradient(120deg, #dda4cd, #afc3f5);">
                                 <h2 class="fw-bold text-white mb-3">이벤트 페이지</h2>
                                 <p class="mb-4">이벤트 관련 내용</p>
-                                <div class="my-3"><a class="btn btn-primary btn-lg me-2" role="button" href="${pageContext.request.contextPath}/ticketway/event_detail">이벤트 바로가기</a></div>
+                                <div class="my-3"><a class="btn btn-primary btn-lg me-2" role="button" href="${pageContext.request.contextPath}/notice/detail">이벤트 바로가기</a></div>
                             </div>
                         </div>
                         <div class="col-md-6 order-first order-md-last" style="min-height: 250px;"><img class="w-100 h-100 fit-cover" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" /></div>
