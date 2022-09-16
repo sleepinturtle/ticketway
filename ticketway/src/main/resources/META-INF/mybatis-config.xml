@@ -7,7 +7,7 @@
 
 	<mappers>
     <!-- <mapper resource="META-INF/batch1-mapper.xml" /> -->
-	<!-- <mapper resource="META-INF/basket-mapper.xml" /> -->
+	<mapper resource="META-INF/basket-mapper.xml" />
 	<!-- <mapper resource="META-INF/ckboard-mapper.xml" /> -->
 		<mapper resource="META-INF/card_info-mapper.xml" /> 
 	<!--	<mapper resource="META-INF/delivery-mapper.xml" /> -->
