@@ -14,7 +14,7 @@
 		    <figure class="snip1527">
 		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트1.png" alt="pr-sample23" /></div>
 		        <figcaption>
-		            <div class="date"><span class="day">28</span><span class="month">Oct</span></div>
+		            <div class="date"><span class="day">~16</span><span class="month">Sep</span></div>
 		            <h3>푸에르자부르타 <br>웨이라 인 서울</h3>
 		            <p>
 		
@@ -25,7 +25,7 @@
 		    <figure class="snip1527">
 		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트3.png" alt="pr-sample24" /></div>
 		        <figcaption>
-		            <div class="date"><span class="day">17</span><span class="month">Nov</span></div>
+		            <div class="date"><span class="day">~13</span><span class="month">Sep</span></div>
 		            <h3>아트<br></h3>
 		            <p>
 		
@@ -36,7 +36,7 @@
 		    <figure class="snip1527">
 		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트10.jpg" alt="pr-sample25" /></div>
 		        <figcaption>
-		            <div class="date"><span class="day">01</span><span class="month">Dec</span></div>
+		            <div class="date"><span class="day">~30</span><span class="month">Sep</span></div>
 		            <h3>대구형 문화소비 할인쿠폰 </h3>
 		            <p>
 		
@@ -47,7 +47,7 @@
 		    <figure class="snip1527">
 		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트4.png" alt="pr-sample25" /></div>
 		        <figcaption>
-		            <div class="date"><span class="day">01</span><span class="month">Dec</span></div>
+		            <div class="date"><span class="day">~30</span><span class="month">Sep</span></div>
 		            <h3>옥탑방 고양이 후기  이벤트<br></h3>
 		            <p>
 		
@@ -58,7 +58,7 @@
 		    <figure class="snip1527">
 		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트5.png" alt="pr-sample25" /></div>
 		        <figcaption>
-		            <div class="date"><span class="day">01</span><span class="month">Dec</span></div>
+		            <div class="date"><span class="day">~30</span><span class="month">Sep</span></div>
 		            <h3>이 구역의 이기적인 X&nbsp;<br> 관람 후기 이벤트</h3>
 		            <p>
 		
@@ -69,7 +69,7 @@
 		    <figure class="snip1527">
 		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트6.png" alt="pr-sample25" /></div>
 		        <figcaption>
-		            <div class="date"><span class="day">01</span><span class="month">Dec</span></div>
+		            <div class="date"><span class="day">~30</span><span class="month">Oct</span></div>
 		            <h3>운빨 로맨스 관람 &nbsp; &nbsp; 후기 이벤트</h3>
 		            <p>
 		
@@ -80,7 +80,7 @@
 		    <figure class="snip1527">
 		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트9.png" alt="pr-sample25" /></div>
 		        <figcaption>
-		            <div class="date"><span class="day">01</span><span class="month">Dec</span></div>
+		            <div class="date"><span class="day">종료</span><span class="month">Sep</span></div>
 		            <h3>일의 기쁨과 슬픔&nbsp;&nbsp;&nbsp;&nbsp; 전 좌석 추석할인</h3>
 		            <p>
 		
@@ -94,12 +94,12 @@
 			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/notice_main">전체</a>
 			<a class="btn btn-light btn-lg class_btn">공지사항</a>
 			<a class="btn btn-light btn-lg class_btn">이벤트</a>
-			<a class="btn btn-light btn-lg class_btn">Q&A</a>
+			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/qna_main">Q&A</a>
 			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/faq">FAQ</a>
 		</div>
 		
 		<div class="container mt-3">
-		<div class="clearfix mb-3">
+		<div class="clearfix mb-3" id="write_area">
 			<a href="${pageContext.request.contextPath}/notice/write_form">
 				<button class="btn btn-primary float-right"> 글 쓰러 가기 </button>
 			</a>
@@ -165,5 +165,14 @@
 		</ul>
 		</div>
 	</body>
-	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			if(${login_info.mgr_yn == 0}){
+				$("#write_area").hide();
+			}
+			if(${login_info.mno == null}){
+				$("#write_area").hide();
+			}
+		});//ready
+	</script>
 </html>

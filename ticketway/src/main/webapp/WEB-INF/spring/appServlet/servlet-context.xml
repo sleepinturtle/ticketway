@@ -38,6 +38,7 @@
 			<mapping path="/order/*"/>
 			<mapping path="/product/*"/>
 			<mapping path="/notice/*"/>
+			<exclude-mapping path="/notice/faq"/>
 			<exclude-mapping path="/notice/notice_main"/>
 			<exclude-mapping path="/notice/notice_detail"/>
 			<exclude-mapping path="/board/ck/list"/>

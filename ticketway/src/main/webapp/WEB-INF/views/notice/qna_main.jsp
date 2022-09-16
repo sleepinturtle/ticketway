@@ -5,9 +5,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>FAQ</title>
+		<title>QnA</title>
 		<%@ include file="/WEB-INF/views/header.jsp" %>
-		
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/yth.css" type="text/css">
 	</head>
 	<body>
@@ -90,7 +89,7 @@
 		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=24"></a>
 		    </figure>
 		</div>
-	
+		
 		<div class="row" style="justify-content : center;">
 			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/notice_main">전체</a>
 			<a class="btn btn-light btn-lg class_btn">공지사항</a>
@@ -98,35 +97,72 @@
 			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/qna_main">Q&A</a>
 			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/faq">FAQ</a>
 		</div>
-		<button class="accordion">Section 1</button>
-		<div class="panel">
-		  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-		</div>
 		
-		<button class="accordion">Section 2</button>
-		<div class="panel">
-		  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		<div class="container mt-3">
+		<div class="clearfix mb-3">
+			<a href="${pageContext.request.contextPath}/notice/qnawrite_form">
+				<button class="btn btn-primary float-right"> 글 쓰러 가기 </button>
+			</a>
 		</div>
-		
-		<button class="accordion">Section 3</button>
-		<div class="panel">
-		  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		<table id="list" class="table table-hover">
+			<thead>
+				<tr>
+					<th> 질문 번호 </th> <th> 제목 </th>	<th> 작성자 </th>	<th> 조회수 </th>	<th> 질문 등록일 </th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="dto" items="${list}">
+					<tr>
+						<td>${dto.qna_no}</td>
+						<td>
+							<a href="${pageContext.request.contextPath}/notice/qnadetail?qna_no=${dto.qna_no}">
+								${dto.title}
+							</a>
+						</td>
+						<td>${dto.mid}</td>
+						<td>${dto.view_cnt}</td>
+						<td>${dto.qna_date}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<hr>
+		<ul class="pagination" style="justify-content : center;">
+			<c:if test="${startPageNum > 10}">
+				<li class="page-item">
+					<a class="page-link"
+						href="${pageContext.request.contextPath}/notice/qna_main?userWantPage=${startPageNum-1}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
+						Previous
+					</a>
+				</li>
+			</c:if>
+			<c:forEach var="page_no" begin="${startPageNum}" end="${endPageNum}">
+				<c:choose>
+					<c:when test="${page_no == userWantPage}">
+						<li class="page-item active">
+							<a class="page-link">${page_no}</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item">
+							<a class="page-link"
+								href="${pageContext.request.contextPath}/notice/qna_main?userWantPage=${page_no}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
+								${page_no}
+							</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${lastPageNum > endPageNum}">
+				<li class="page-item">
+					<a class="page-link"
+						href="${pageContext.request.contextPath}/notice/qna_main?userWantPage=${endPageNum+1}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
+						Next
+					</a>
+				</li>
+			</c:if>
+		</ul>
 		</div>
-		<script type="text/javascript">
-			var acc = document.getElementsByClassName("accordion");
-			var i;
-	
-			for (i = 0; i < acc.length; i++) {
-			  acc[i].addEventListener("click", function() {
-			    this.classList.toggle("active");
-			    var panel = this.nextElementSibling;
-			    if (panel.style.maxHeight) {
-			      panel.style.maxHeight = null;
-			    } else {
-			      panel.style.maxHeight = panel.scrollHeight + "px";
-			    } 
-			  });
-			}
-		</script>
 	</body>
+	
 </html>
