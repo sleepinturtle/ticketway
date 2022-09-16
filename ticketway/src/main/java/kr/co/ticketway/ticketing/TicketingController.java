@@ -8,15 +8,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequestMapping( value = "ticketing" )
 public class TicketingController {
 
 	private static final Logger logger = LoggerFactory.getLogger(TicketingController.class);
 
-	@RequestMapping(value ="/ticketing", method = RequestMethod.GET)
-	public String ticketing(Model model) {
+	@RequestMapping(value ="/list", method = RequestMethod.GET)
+	public String list(Model model) {
+		return"ticketing/list";
 
-		return"/list";
+		
+	}//home
+	
+	@RequestMapping(value ="/ticket", method = RequestMethod.GET)
+	public String ticket(Model model) {
+		return"ticketing/ticket";
 
+		
 	}//home
 
 }//class
