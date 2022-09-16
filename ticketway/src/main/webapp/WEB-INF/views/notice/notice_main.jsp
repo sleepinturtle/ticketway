@@ -66,28 +66,8 @@
 		            </p>
 		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=20"></a>
 		    </figure>
-		    <figure class="snip1527">
-		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트6.png" alt="pr-sample25" /></div>
-		        <figcaption>
-		            <div class="date"><span class="day">~30</span><span class="month">Oct</span></div>
-		            <h3>운빨 로맨스 관람 &nbsp; &nbsp; 후기 이벤트</h3>
-		            <p>
-		
-		                              관람 후기를 작성하시고 상품을 받아가세요.
-		            </p>
-		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=21"></a>
-		    </figure>
-		    <figure class="snip1527">
-		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트9.png" alt="pr-sample25" /></div>
-		        <figcaption>
-		            <div class="date"><span class="day">종료</span><span class="month">Sep</span></div>
-		            <h3>일의 기쁨과 슬픔&nbsp;&nbsp;&nbsp;&nbsp; 전 좌석 추석할인</h3>
-		            <p>
-		
-		                               예매 시 추석 할인을 선택해주세요.	
-		            </p>
-		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=24"></a>
-		    </figure>
+		    
+		    
 		</div>
 		
 		<div class="row" style="justify-content : center;">
