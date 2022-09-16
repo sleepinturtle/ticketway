@@ -7,20 +7,22 @@
 
 	<mappers>
     <!-- <mapper resource="META-INF/batch1-mapper.xml" /> -->
-	<!-- <mapper resource="META-INF/basket-mapper.xml" /> -->
 	<!-- <mapper resource="META-INF/ckboard-mapper.xml" /> -->
-		<mapper resource="META-INF/card_info-mapper.xml" /> 
 	<!--	<mapper resource="META-INF/delivery-mapper.xml" /> -->
 	<!--	<mapper resource="META-INF/dongcode-mapper.xml" /> -->
 	<!--	<mapper resource="META-INF/history-mapper.xml" /> -->
+<!-- 		<mapper resource="META-INF/product-mapper.xml" /> -->
+
+		<mapper resource="META-INF/card_info-mapper.xml" /> 
+		<mapper resource="META-INF/basket-mapper.xml" />
 		<mapper resource="META-INF/freeboard-mapper.xml" />
 		<mapper resource="META-INF/join-mapper.xml" />
 		<mapper resource="META-INF/kakaomap-mapper.xml" />
 		<mapper resource="META-INF/login-mapper.xml" />
 		<mapper resource="META-INF/notice-mapper.xml" />
 		<mapper resource="META-INF/message-mapper.xml" />
+		<mapper resource="META-INF/perform-mapper.xml" />
 		<mapper resource="META-INF/order-mapper.xml" />
-		<mapper resource="META-INF/product-mapper.xml" />
 		<mapper resource="META-INF/mypage-mapper.xml" />
 	</mappers>
 

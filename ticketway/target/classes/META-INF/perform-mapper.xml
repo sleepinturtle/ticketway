@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PerformMapper">
+
+	<select id="plist" resultType="kr.co.ticketway.perform.PerformDTO">
+	select play_no, play_title, genre, play_desc, rated, book_cnt_total, play_thumbnail, seat_price_code from play_info
+	where genre = '연극'
+	</select>
+	
+	<select id="mlist" resultType="kr.co.ticketway.perform.PerformDTO">
+	select play_no, play_title, genre, play_desc, rated, book_cnt_total, play_thumbnail, seat_price_code from play_info
+	where genre = '뮤지컬'
+	</select>
+
+</mapper>

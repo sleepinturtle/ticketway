@@ -67,8 +67,10 @@
 							상품
 						</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="${pageContext.request.contextPath}/">
-								연극 / 뮤지컬</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath}/perform/plist">
+								연극</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath}/perform/mlist">
+								뮤지컬</a>
 						</div>
 					</li>
 
