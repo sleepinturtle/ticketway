@@ -181,6 +181,8 @@ public class NoticeController {
 		out.print(successCount);
 		out.close();
 		
+		
+		
 	}//delete
 
 	@RequestMapping( value = "/detail", method = RequestMethod.GET )

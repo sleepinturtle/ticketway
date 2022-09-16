@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/yth.css" type="text/css">
 	</head>
 	<body>
-		<div class="row">
+		<div class="row" style="justify-content: center;">
 		    <figure class="snip1527">
 		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트1.png" alt="pr-sample23" /></div>
 		        <figcaption>
@@ -26,7 +26,7 @@
 		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트3.png" alt="pr-sample24" /></div>
 		        <figcaption>
 		            <div class="date"><span class="day">17</span><span class="month">Nov</span></div>
-		            <h3>아트</h3>
+		            <h3>아트<br></h3>
 		            <p>
 		
 		               	 연극 아트에 대한 기대평을 남겨주세요. 추첨을 통해 초대권을 드립니다.
@@ -37,12 +37,56 @@
 		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트10.jpg" alt="pr-sample25" /></div>
 		        <figcaption>
 		            <div class="date"><span class="day">01</span><span class="month">Dec</span></div>
-		            <h3>대구형 문화소비 할인쿠폰 <br> 이벤트</h3>
+		            <h3>대구형 문화소비 할인쿠폰 </h3>
 		            <p>
 		
 		                               대구 문화소비 할인 쿠폰을 받으세요.	
 		            </p>
 		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=28"></a>
+		    </figure>
+		    <figure class="snip1527">
+		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트4.png" alt="pr-sample25" /></div>
+		        <figcaption>
+		            <div class="date"><span class="day">01</span><span class="month">Dec</span></div>
+		            <h3>옥탑방 고양이 후기  이벤트<br></h3>
+		            <p>
+		
+		                               관람 후기를 작성하시고 상품을 받아가세요.	
+		            </p>
+		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=19"></a>
+		    </figure>
+		    <figure class="snip1527">
+		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트5.png" alt="pr-sample25" /></div>
+		        <figcaption>
+		            <div class="date"><span class="day">01</span><span class="month">Dec</span></div>
+		            <h3>이 구역의 이기적인 X&nbsp;<br> 관람 후기 이벤트</h3>
+		            <p>
+		
+		                	관람 후기를 작성하시고 상품을 받아가세요.
+		            </p>
+		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=20"></a>
+		    </figure>
+		    <figure class="snip1527">
+		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트6.png" alt="pr-sample25" /></div>
+		        <figcaption>
+		            <div class="date"><span class="day">01</span><span class="month">Dec</span></div>
+		            <h3>운빨 로맨스 관람 &nbsp; &nbsp; 후기 이벤트</h3>
+		            <p>
+		
+		                              관람 후기를 작성하시고 상품을 받아가세요.
+		            </p>
+		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=21"></a>
+		    </figure>
+		    <figure class="snip1527">
+		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트9.png" alt="pr-sample25" /></div>
+		        <figcaption>
+		            <div class="date"><span class="day">01</span><span class="month">Dec</span></div>
+		            <h3>일의 기쁨과 슬픔&nbsp;&nbsp;&nbsp;&nbsp; 전 좌석 추석할인</h3>
+		            <p>
+		
+		                               예매 시 추석 할인을 선택해주세요.	
+		            </p>
+		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=24"></a>
 		    </figure>
 		</div>
 		
