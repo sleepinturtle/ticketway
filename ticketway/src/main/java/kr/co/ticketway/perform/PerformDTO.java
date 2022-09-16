@@ -7,7 +7,7 @@ public class PerformDTO {
 	private String genre;
 	private String play_desc;
 	private String rated;
-	private String book_cnt;
+	private String book_cnt_total;
 	private String play_thumbnail;
 	private String seat_price_code;
 	
@@ -32,7 +32,8 @@ public class PerformDTO {
 	private String close_date;
 	private String play_date;
 	private String play_time;
-	private String book_cnt_sch;
+	private String book_cnt;
+	private String remain_seat;
 	
 	
 	
