@@ -52,7 +52,7 @@
 
 					<!-- Dropdown -->
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+						<a class="nav-link dropdown-toggle" href="${pageContext.request.contextPath}/ticketing/list" id="navbardrop" data-toggle="dropdown">
 							예매
 						</a>
 						<div class="dropdown-menu">
@@ -67,8 +67,10 @@
 							상품
 						</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="${pageContext.request.contextPath}/">
-								연극 / 뮤지컬</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath}/perform/plist">
+								연극</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath}/perform/mlist">
+								뮤지컬</a>
 						</div>
 					</li>
 
@@ -80,9 +82,9 @@
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="${pageContext.request.contextPath}/notice/notice_main">
 							         공지사항</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath}/">
+							<a class="dropdown-item" href="${pageContext.request.contextPath}/notice/notice_main">
 								이벤트</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath}/">
+							<a class="dropdown-item" href="${pageContext.request.contextPath}/notice/notice_main">
 								Q&A</a>
 							
 						</div>
