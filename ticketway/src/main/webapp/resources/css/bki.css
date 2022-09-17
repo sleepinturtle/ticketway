@@ -1,0 +1,203 @@
+@charset "UTF-8";
+
+/*박스오피스*/
+
+.conA{
+	
+	margin-top : 200px;
+	margin-bottom: 300px;
+	
+}
+.box1{
+		width : 100%;
+		text-align : center;
+		
+}
+.container{
+
+	padding: 2%;
+}
+
+.container .row{
+	  padding: 1px 5px;
+
+}
+
+#boxName{
+	font-size: 35px;
+	margin-bottom: 60px;
+
+	
+}
+.movieplus{
+	
+	text-align: right;
+}
+
+.boximg{
+	
+	width : 100%;
+	height : 50%;
+
+}
+
+.boximg .movieImg{
+	
+	float : left;
+	padding: 3% ;
+	
+}
+
+.boximg .movieImg img.btn{
+	margin-top: 5%;
+    display: block;
+	
+}
+
+
+#plus{
+	
+	text-decoration: none;
+	font-size: 20px;
+	color :#B677FF
+;
+	
+}
+#plus:hover{
+	
+	font-size: 20px;
+	color :#8041D9;
+	
+}
+
+
+/*---박스 오피스 사진 호버효과--*/
+
+.boxMovie {
+	position: relative;
+}
+
+.boxMovie img {
+	width: 100%;
+	height: 500px;
+}
+
+.boxMovie .box-content {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: all .5s ease 0s;
+}
+
+.boxMovie:hover .box-content {
+	background-color: rgba(255, 242, 242, .8);
+}
+
+.boxMovie .box-content:after, .boxMovie .box-content:before {
+	content: "";
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	opacity: 0;
+	transform: scale(1.5);
+	transition: all .6s ease .3s;
+}
+
+.boxMovie .box-content:before {
+	border-left: 1px solid #040404;
+	border-top: 1px solid #040404;
+	top: 19px;
+	left: 19px;
+}
+
+.boxMovie .box-content:after {
+	border-bottom: 1px solid #040404;
+	border-right: 1px solid #040404;
+	bottom: 19px;
+	right: 19px;
+}
+
+.boxMovie:hover .box-content:after, .boxMovie:hover .box-content:before {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.boxMovie .title {
+	font-size: 10px;
+	color: #000;
+	margin: 0;
+	position: relative;
+	top: 0;
+	opacity: 0;
+	transition: all 1s ease 10ms;
+}
+
+.boxMovie:hover .title {
+	top: 39%;
+	opacity: 1;
+	transition: all .5s cubic-bezier(1, -.53, .405, 1.425) 10ms;
+}
+
+.boxMovie .title:after {
+	content: "";
+	width: 0;
+	height: 1px;
+	background: #040404;
+	position: absolute;
+	bottom: -8px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	transition: all 1s ease 0s;
+}
+
+.boxMovie:hover .title:after {
+	width: 80%;
+	transition: all 1s ease .8s;
+}
+
+.boxMovie .icon {
+	width: 100%;
+	margin: 0 auto;
+	position: absolute;
+	bottom: 0;
+	opacity: 0;
+	transition-duration: .6s;
+	transition-timing-function: cubic-bezier(1, -.53, .405, 1.425);
+	transition-delay: .1s;
+}
+
+.boxMovie:hover .icon {
+	bottom: 29%;
+	opacity: 1;
+}
+
+.boxMovie .icon li {
+	display: inline-block;
+}
+
+.boxMovie .icon li a {
+	display: block;
+	width: 45px;
+	height: 45px;
+	line-height: 40px;
+	border-radius: 50%;
+	font-size: 18px;
+	color: #000;
+	border: 1px solid #000;
+	margin-right: 5px;
+	transition: all .3s ease-in-out 0s;
+}
+
+.boxMovie .icon li a:hover {
+	background: #000;
+	color: #fff
+}
+
+@media only screen and (max-width:990px) {
+	.boxMovie {
+		margin-bottom: 10px;
+	}
+}

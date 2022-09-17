@@ -45,7 +45,7 @@
 			</div>
 			<nav id="app-navbar" class="navbar navbar-expand-sm bg-dark navbar-dark">
 				<!-- Brand -->
-				<a class="navbar-brand" href="${pageContext.request.contextPath}/">ticketway</a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/">TicketWay</a>
 				
 				<!-- Links -->
 				<ul class="navbar-nav">
@@ -67,8 +67,10 @@
 							상품
 						</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="${pageContext.request.contextPath}/">
-								연극 / 뮤지컬</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath}/perform/plist">
+								연극</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath}/perform/mlist">
+								뮤지컬</a>
 						</div>
 					</li>
 

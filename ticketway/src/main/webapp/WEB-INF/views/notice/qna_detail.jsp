@@ -5,19 +5,19 @@
 	<html>
 	<head>
 		<meta charset="UTF-8">
-		<title>이벤트 상세정보</title>
+		<title>QnA 상세정보</title>
 		<%@ include file="/WEB-INF/views/header.jsp" %>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/yth.css" type="text/css">
 	<body>
 		
 		<div class="container" style="position: relative;">
-		<a href="${pageContext.request.contextPath}/notice/update_form?news_no=${detail_dto.news_no}" class="float-right" id="up_btn"><button id="u-btn" class="btn btn-info">수정하기</button></a>
+		<a href="${pageContext.request.contextPath}/notice/update_form?news_no=${detail_dto.qna_no}" class="float-right" id="up_btn"><button id="u-btn" class="btn btn-info">수정하기</button></a>
 			   <table class="table table-hover">
 			   		<tbody>
 			   			<tr>
 			   				<td>
 			   					<div>
-			   						${detail_dto.class_no}
+			   						${detail_dto.qna_no}
 			   					</div>
 			   				</td>
 			   					
@@ -25,7 +25,7 @@
 			   			<tr>
 			   				<td>
 				   				<div>
-				   					${detail_dto.news_date}
+				   					${detail_dto.qna_date}
 			   					</div>
 			   				</td>
 			   			</tr>
@@ -33,7 +33,7 @@
 			   			<tr><td>${detail_dto.title}</td></tr>
 			   			
 			   			<tr>
-			   				<td>${detail_dto.cnts}</td>
+			   				<td>${detail_dto.qna_cnts}</td>
 			   			</tr>
 			   		</tbody>
 			   </table>
@@ -94,7 +94,7 @@
 			$.get(
 					"${pageContext.request.contextPath}/notice/delete"
 					, {
-						news_no : ${detail_dto.news_no}
+						qna_no : ${detail_dto.qna_no}
 					}
 					, function(data, status) {
 						if( data >= 1 ){

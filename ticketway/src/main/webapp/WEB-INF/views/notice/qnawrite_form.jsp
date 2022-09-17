@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>새 소식 등록</title>
+		<title>질문 등록</title>
 		<%@ include file="/WEB-INF/views/header.jsp" %>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/yth.css" type="text/css">
 	</head>
@@ -20,10 +20,8 @@
 			<input id="writer" type="text" value="${login_info.mid}" disabled="disabled" class="form-control">
 			<hr>
 			<div>
-				<select id="class_no" name="class_no" class="form-control">
-					<option value="공지사항">공지 사항</option>
-					<option value="이벤트">이벤트</option>
-					<option value="QnA">QnA</option>
+				<select id="class_no" name="class_no" class="form-control" disabled="disabled">
+					<option value="QnA" selected="selected">QnA</option>
 				</select>
 			</div>
 			<hr>
@@ -37,16 +35,12 @@
 			<hr>
 			
 			<button id="write_btn" class="btn btn-primary float-right"> 글 작성 완료 </button>
-			<a href="${pageContext.request.contextPath}/notice/notice_main">
+			<a href="${pageContext.request.contextPath}/notice/qna_main">
 				<button class="btn btn-warning"> 글 작성 취소 </button>
 			</a>
 		</div>
 		<script type="text/javascript">
 		$(document).ready(function() {
-			if(${login_info.mgr_yn == 0}){
-				$("#class_no").hide()
-				$("#write_btn").hide()
-			}
 			
 			$("#write_btn").click(function() {
 	
@@ -61,7 +55,7 @@
 				}
 	
 				$.post(
-						"${pageContext.request.contextPath}/notice/write"
+						"${pageContext.request.contextPath}/notice/qna_write"
 						, {
 							title : $("#title").val()
 							, mid : $("#writer").val()
@@ -71,7 +65,7 @@
 						, function(data, status) {
 							if(data >= 1){
 								alert("게시글이 성공적으로 업로드 되었습니다.");
-								location.href="${pageContext.request.contextPath}/notice/notice_main";
+								location.href="${pageContext.request.contextPath}/notice/qna_main";
 							} else if(data <= 0){
 								alert("게시글 작성을 실패 하였습니다.");
 							} else {

@@ -25,11 +25,19 @@ public class NoticeService {
 		return successCount;
 	}//delete
 
-	public NoticeDTO detail( String board_no ) {
-		dao.incrementViewCnt( board_no );
+	public NoticeDTO detail( String news_no ) {
+		dao.incrementViewCnt( news_no );
 
 		NoticeDTO dto = null;
-		dto = dao.detail( board_no );
+		dto = dao.detail( news_no );
+		return dto;
+	}//detail
+	
+	public NoticeDTO qnadetail( String qna_no ) {
+		dao.incrementViewCnt( qna_no );
+
+		NoticeDTO dto = null;
+		dto = dao.qnadetail( qna_no );
 		return dto;
 	}//detail
 
@@ -38,10 +46,22 @@ public class NoticeService {
 		successCount = dao.write( dto );
 		return successCount;
 	}//write
+	
+	public int qnawrite( NoticeDTO dto ) {
+		int successCount = 0;
+		successCount = dao.qnawrite( dto );
+		return successCount;
+	}//write
 
 	public List<NoticeDTO> searchList( SearchDTO dto ) {
 		List<NoticeDTO> list = null;
 		list = dao.searchList( dto );
+		return list;
+	}//searchList
+	
+	public List<NoticeDTO> qnasearchList( SearchDTO dto ) {
+		List<NoticeDTO> list = null;
+		list = dao.qnasearchList( dto );
 		return list;
 	}//searchList
 

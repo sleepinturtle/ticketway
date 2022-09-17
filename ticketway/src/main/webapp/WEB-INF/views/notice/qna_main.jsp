@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>새소식</title>
+		<title>QnA</title>
 		<%@ include file="/WEB-INF/views/header.jsp" %>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/yth.css" type="text/css">
 	</head>
@@ -67,8 +67,6 @@
 		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=20"></a>
 		    </figure>
 		    
-		    
-		</div>
 		
 		<div class="row" style="justify-content : center;">
 			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/notice_main">전체</a>
@@ -79,30 +77,29 @@
 		</div>
 		
 		<div class="container mt-3">
-		<div class="clearfix mb-3" id="write_area">
-			<a href="${pageContext.request.contextPath}/notice/write_form">
+		<div class="clearfix mb-3">
+			<a href="${pageContext.request.contextPath}/notice/qnawrite_form">
 				<button class="btn btn-primary float-right"> 글 쓰러 가기 </button>
 			</a>
 		</div>
 		<table id="list" class="table table-hover">
 			<thead>
 				<tr>
-					<th> 글번호 </th> <th>분류</th> 	<th> 제목 </th>	<th> 작성자 </th>	<th> 조회수 </th>	<th> 작성일 </th>
+					<th> 질문 번호 </th> <th> 제목 </th>	<th> 작성자 </th>	<th> 조회수 </th>	<th> 질문 등록일 </th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="dto" items="${list}">
 					<tr>
-						<td>${dto.news_no}</td>
-						<td>${dto.class_no}</td>
+						<td>${dto.qna_no}</td>
 						<td>
-							<a href="${pageContext.request.contextPath}/notice/detail?news_no=${dto.news_no}">
+							<a href="${pageContext.request.contextPath}/notice/qnadetail?qna_no=${dto.qna_no}">
 								${dto.title}
 							</a>
 						</td>
 						<td>${dto.mid}</td>
 						<td>${dto.view_cnt}</td>
-						<td>${dto.news_date}</td>
+						<td>${dto.qna_date}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -112,7 +109,7 @@
 			<c:if test="${startPageNum > 10}">
 				<li class="page-item">
 					<a class="page-link"
-						href="${pageContext.request.contextPath}/notice/notice_main?userWantPage=${startPageNum-1}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
+						href="${pageContext.request.contextPath}/notice/qna_main?userWantPage=${startPageNum-1}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
 						Previous
 					</a>
 				</li>
@@ -127,7 +124,7 @@
 					<c:otherwise>
 						<li class="page-item">
 							<a class="page-link"
-								href="${pageContext.request.contextPath}/notice/notice_main?userWantPage=${page_no}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
+								href="${pageContext.request.contextPath}/notice/qna_main?userWantPage=${page_no}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
 								${page_no}
 							</a>
 						</li>
@@ -137,7 +134,7 @@
 			<c:if test="${lastPageNum > endPageNum}">
 				<li class="page-item">
 					<a class="page-link"
-						href="${pageContext.request.contextPath}/notice/notice_main?userWantPage=${endPageNum+1}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
+						href="${pageContext.request.contextPath}/notice/qna_main?userWantPage=${endPageNum+1}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
 						Next
 					</a>
 				</li>
@@ -145,14 +142,5 @@
 		</ul>
 		</div>
 	</body>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			if(${login_info.mgr_yn == 0}){
-				$("#write_area").hide();
-			}
-			if(${login_info.mno == null}){
-				$("#write_area").hide();
-			}
-		});//ready
-	</script>
+	
 </html>

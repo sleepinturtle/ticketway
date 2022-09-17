@@ -11,14 +11,15 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/yth.css" type="text/css">
 	</head>
 	<body>
-	
+		
 		<div class="row" style="justify-content : center;">
 			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/notice_main">전체</a>
 			<a class="btn btn-light btn-lg class_btn">공지사항</a>
 			<a class="btn btn-light btn-lg class_btn">이벤트</a>
-			<a class="btn btn-light btn-lg class_btn">Q&A</a>
+			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/qna_main">Q&A</a>
 			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/faq">FAQ</a>
 		</div>
+		<a href="${pageContext.request.contextPath}/message/list" class="btn btn-info float-right">1대1 문의하기</a>
 		<button class="accordion">Section 1</button>
 		<div class="panel">
 		  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>

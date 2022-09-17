@@ -30,10 +30,21 @@
 	where nw.news_no = #{news_no}
 	and nw.mno = m.mno
 	</select>
+	
+	<select id="qnadetail" parameterType="java.lang.String" resultType="kr.co.ticketway.notice.NoticeDTO">
+	select q.qna_no, q.title, q.mno, m.mid, q.qna_cnts, q.view_cnt, q.qna_date
+	from qna q, member m
+	where q.qna_no = #{qna_no}
+	and q.mno = m.mno
+	</select>
 
 	<insert id="write" parameterType="kr.co.ticketway.notice.NoticeDTO">
 	insert into news ( title, mno, mid, class_no, cnts, view_cnt, news_date )
 	values ( #{title}, #{mno}, #{mid}, #{class_no}, #{cnts}, 0, now() )
+	</insert>
+	<insert id="qnawrite" parameterType="kr.co.ticketway.notice.NoticeDTO">
+	insert into qna ( mno, mid, title, qna_cnts, qna_date, view_cnt )
+	values ( #{mno}, #{mid}, #{title}, #{cnts}, now(), 0 )
 	</insert>
 
 	<select id="selectList" parameterType="kr.co.ticketway.util.dto.SearchDTO"
@@ -54,6 +65,12 @@
 		</if>
 	order by news_no desc
 	limit #{limitNum}, 10
+	</select>
+	
+	<select id="qnaselectList" parameterType="kr.co.ticketway.util.dto.SearchDTO"
+			resultType="kr.co.ticketway.notice.NoticeDTO">
+	select qna_no, mid, title, qna_date, view_cnt
+	from qna;
 	</select>
 
 	<select id="searchListCount" parameterType="kr.co.ticketway.util.dto.SearchDTO" resultType="int">

@@ -22,8 +22,8 @@
    <header class="header">
       <nav class="navbar navbar-expand-lg fixed-top ">
          <div class="container">
-            <a href="${pageContext.request.contextPath }/movieAdmin/managementMovie" class="navbar-brand text-uppercase font-weight-bold">KOREA
-               BOX</a>
+            <a href="${pageContext.request.contextPath }/movieAdmin/managementMovie" class="navbar-brand text-uppercase font-weight-bold">TICKET
+               WAY</a>
             <button type="button" data-toggle="collapse"
                data-target="#navbarSupportedContent"
                aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -36,7 +36,7 @@
                <ul class="navbar-nav ml-auto">
 
                   <li class="nav-item active"><a href="${pageContext.request.contextPath }/movieAdmin/managementMovie"
-                     class="nav-link text-uppercase font-weight-bold">영화 관리 <span
+                     class="nav-link text-uppercase font-weight-bold">공연 관리 <span
                         class="sr-only">(current)</span></a></li>
                   <li class="nav-item"><a href="${pageContext.request.contextPath }/reserve/reserveinfo"
                      class="nav-link text-uppercase font-weight-bold">예매관리</a></li>
