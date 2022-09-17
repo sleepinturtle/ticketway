@@ -38,7 +38,7 @@
 			   		</tbody>
 			   </table>
 			   <a href="${pageContext.request.contextPath}/notice/notice_main"><button class="btn btn-warning">목록으로 가기</button></a>
-			   <a href="${pageContext.request.contextPath}/notice/delete" class="float-right" id="del_btn"><button id="d_btn" class="btn btn-danger">삭제하기</button></a>
+			  <button id="d_btn" class="btn btn-danger float-right">삭제하기</button>
 			   <hr>	 
 		</div>
 	</body>
@@ -46,11 +46,21 @@
 	$(document).ready(function() {
 		$("#del_btn").hide();
 		$("#up_btn").hide();
-		if(${login_info.mgr_yn} == 1){
+		if(${login_info.mgr_yn == 1}){
 			$("#del_btn").show();
+			$("#up_btn").show();
+		}
+		if(${login_info == null}){
+			$("#up_btn").hide();
+			$("#del_btn").hide();
 		}
 		if(${login_info.mno == detail_dto.mno}){
 			$("#up_btn").show();
+			$("#del_btn").show();
+		}
+		if(${login_info.mno != detail_dto.mno}){
+			$("#up_btn").hide();
+			$("#del_btn").hide();
 		}
 		
 		
