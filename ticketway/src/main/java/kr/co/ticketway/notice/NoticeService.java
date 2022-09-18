@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.ticketway.product.ProductReplyDTO;
 import kr.co.ticketway.util.dto.SearchDTO;
 
 @Service
@@ -88,6 +89,18 @@ public class NoticeService {
 		totalCount = dao.qnasearchListCount( dto );
 		return totalCount;
 	}//searchListCount
+
+	public int replyInsert( NoticeDTO dto ) {
+		int successCount = 0;
+		successCount = dao.replyInsert( dto );
+		return successCount;
+	}//replyInsert
+	
+	public List<NoticeDTO> qnaReplyList( String cmt_no ) {
+		List<NoticeDTO> list = null;
+		list = dao.qnaReplyList( cmt_no );
+		return list;
+	}//productReplyList
 
 }//class
 

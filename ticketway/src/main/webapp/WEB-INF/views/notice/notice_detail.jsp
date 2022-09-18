@@ -37,22 +37,7 @@
 			   			</tr>
 			   		</tbody>
 			   </table>
-			   <table id="cmt_table" class="table table-hover">
-			   		<thead>
-			   			<tr>
-			   				<th>
-			   					답변
-			   				</th>
-			   			</tr>
-			   		</thead>
-			   		<tbody>
-			   			<tr>
-				   			<td>
-					   			<textarea class="form-control"></textarea>
-				   			</td>
-			   			</tr>
-			   		</tbody>
-			   </table>
+			   
 			   
 			   <a href="${pageContext.request.contextPath}/notice/notice_main"><button class="btn btn-warning">목록으로 가기</button></a>
 			  <button id="d_btn" class="btn btn-danger float-right">삭제하기</button>
@@ -63,16 +48,10 @@
 	$(document).ready(function() {
 		$("#d_btn").hide();
 		$("#up_btn").hide();
-		$("#cmt_table").show();
 		
 		if(${login_info.mgr_yn == 1}){
 			$("#d_btn").show();
 			$("#up_btn").show();
-			$("#cmt_table").show();
-		}
-		if(${login_info.mgr_yn == 0}){
-			
-			$("#cmt_table").hide();
 		}
 		if(${login_info == null}){
 			$("#up_btn").hide();

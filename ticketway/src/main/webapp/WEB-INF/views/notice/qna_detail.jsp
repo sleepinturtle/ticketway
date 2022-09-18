@@ -48,15 +48,38 @@
 			   		<tbody>
 			   			<tr>
 				   			<td>
-					   			<textarea class="form-control"></textarea>
+					   			<textarea id="cnts" class="form-control"></textarea>
+					   			<script type="text/javascript">
+									CKEDITOR.replace('cnts');
+								</script>
 				   			</td>
+				   			<td><a href="${pageContext.request.contextPath}/notice/reply_insert" class="btn btn-primary" id="reply_btn">답변하기</a></td>
 			   			</tr>
 			   		</tbody>
 			   </table>
+			   <hr>
+			   
 			   
 			   <a href="${pageContext.request.contextPath}/notice/qna_main"><button class="btn btn-warning">목록으로 가기</button></a>
 			  <button id="d_btn" class="btn btn-danger float-right">삭제하기</button>
-			   <hr>	 
+			   <hr>	
+			   <table id="rplylist" class="table table-hover">
+					<thead>
+						<tr>
+							<th> 글번호 </th> <th>작성자</th> 	<th> 내용 </th>	<th> 작성일자 </th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="dto" items="${rplylist}">
+							<tr>
+								<td>${dto.cmt_no}</td>
+								<td>${dto.mid}</td>
+								<td>${dto.rply_cnts}</td>
+								<td>${dto.rply_date}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 		</div>
 	</body>
 	<script type="text/javascript">

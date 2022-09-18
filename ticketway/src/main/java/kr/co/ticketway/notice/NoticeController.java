@@ -18,6 +18,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.co.ticketway.product.ProductReplyDTO;
 import kr.co.ticketway.util.dto.MemberDTO;
 import kr.co.ticketway.util.dto.SearchDTO;
 
@@ -539,6 +540,17 @@ public class NoticeController {
 		
 	}//list
 
+	@RequestMapping( value = "/reply_insert", method = RequestMethod.GET )
+	public void replyInsert( NoticeDTO dto, HttpSession session, PrintWriter out ) {
+
+		dto.setMno( ( (MemberDTO) session.getAttribute("login_info") ).getMno() );
+		int successCount = 0;
+		successCount = service.replyInsert( dto );
+
+		out.print(successCount);
+		out.close();
+
+	}//replyInsert
 }//class
 
 /*

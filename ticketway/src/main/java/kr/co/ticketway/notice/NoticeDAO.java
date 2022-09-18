@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.ticketway.product.ProductReplyDTO;
 import kr.co.ticketway.util.dto.SearchDTO;
 
 @Repository
@@ -92,6 +93,18 @@ public class NoticeDAO {
 		totalCount = sqlSession.selectOne("NoticeMapper.qnasearchListCount", dto);
 		return totalCount;
 	}//searchListCount
+
+	public int replyInsert( NoticeDTO dto ) {
+		int successCount = 0;
+		successCount = sqlSession.insert("NoticeMapper.replyInsert", dto);
+		return successCount;
+	}//replyInsert
+	
+	public List<NoticeDTO> qnaReplyList( String cmt_no ) {
+		List<NoticeDTO> list = null;
+		list = sqlSession.selectList("ProductMapper.qnaReplyList", cmt_no);
+		return list;
+	}//productReplyList
 
 }//class
 
