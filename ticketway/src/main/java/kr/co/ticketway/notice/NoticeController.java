@@ -346,8 +346,11 @@ public class NoticeController {
 	@RequestMapping( value = "/qnadetail", method = RequestMethod.GET )
 	public String qnadetail( String qna_no, Model model ) {
 		NoticeDTO dto = null;
+		List<NoticeDTO> list = null;
 		dto = service.qnadetail( qna_no );
+		list = service.qnaReplyList(qna_no);
 		model.addAttribute("detail_dto", dto);
+		model.addAttribute("replylist", list);
 		return "/notice/qna_detail";//jsp file name
 	}//detail
 

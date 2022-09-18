@@ -11,7 +11,7 @@
 	<body>
 		
 		<div class="container" style="position: relative;">
-		<a href="${pageContext.request.contextPath}/notice/qnaupdate_form?qna_no=${detail_dto.qna_no}"><button id="u-btn" class="btn btn-info float-right">수정하기</button></a>
+		<a id="up_btn" href="${pageContext.request.contextPath}/notice/qnaupdate_form?qna_no=${detail_dto.qna_no}"><button id="u-btn" class="btn btn-info float-right">수정하기</button></a>
 			   <table class="table table-hover">
 			   		<tbody>
 			   			<tr>
@@ -53,7 +53,7 @@
 									CKEDITOR.replace('cnts');
 								</script>
 				   			</td>
-				   			<td><a href="${pageContext.request.contextPath}/notice/reply_insert" class="btn btn-primary" id="reply_btn">답변하기</a></td>
+				   			<td><button class="btn btn-primary float-right" id="reply_btn">답변하기</button></td>
 			   			</tr>
 			   		</tbody>
 			   </table>
@@ -63,14 +63,14 @@
 			   <a href="${pageContext.request.contextPath}/notice/qna_main"><button class="btn btn-warning">목록으로 가기</button></a>
 			  <button id="d_btn" class="btn btn-danger float-right">삭제하기</button>
 			   <hr>	
-			   <table id="rplylist" class="table table-hover">
+			   <table id="replylist" class="table table-hover">
 					<thead>
 						<tr>
 							<th> 글번호 </th> <th>작성자</th> 	<th> 내용 </th>	<th> 작성일자 </th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="dto" items="${rplylist}">
+						<c:forEach var="dto" items="${replylist}">
 							<tr>
 								<td>${dto.cmt_no}</td>
 								<td>${dto.mid}</td>
@@ -131,6 +131,29 @@
 					}//call back function
 			);//get
 		});//click
+		
+		$("#reply_btn").click(function() {
+					
+					$.get(
+							"${pageContext.request.contextPath}/notice/reply_insert"
+							, {
+								qna_no : ${detail_dto.qna_no}
+								, mno : ${detail_dto.mno}
+							 	, mid : ${detail_dto.mid}
+								, rply_cnts : CKEDITOR.instances["cnts"].getData()
+							}
+							, function(data, status) {
+								if( data >= 1 ){
+									alert("댓글이 등록 되었습니다.");
+									location.href="${pageContext.request.contextPath}/notice/qna_main";
+								} else if( data <= 0 ) {
+									alert("댓글 등록 실패하였습니다.");
+								} else {
+									alert("잠시 후 다시 시도해 주세요.");
+								}
+							}//call back function
+					);//get
+				});//click
 		
 		
 	});

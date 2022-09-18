@@ -100,9 +100,9 @@ public class NoticeDAO {
 		return successCount;
 	}//replyInsert
 	
-	public List<NoticeDTO> qnaReplyList( String cmt_no ) {
+	public List<NoticeDTO> qnaReplyList( String qna_no ) {
 		List<NoticeDTO> list = null;
-		list = sqlSession.selectList("ProductMapper.qnaReplyList", cmt_no);
+		list = sqlSession.selectList("NoticeMapper.qnaReplyList", qna_no);
 		return list;
 	}//productReplyList
 

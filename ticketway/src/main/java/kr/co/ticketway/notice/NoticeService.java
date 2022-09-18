@@ -96,9 +96,9 @@ public class NoticeService {
 		return successCount;
 	}//replyInsert
 	
-	public List<NoticeDTO> qnaReplyList( String cmt_no ) {
+	public List<NoticeDTO> qnaReplyList( String qna_no ) {
 		List<NoticeDTO> list = null;
-		list = dao.qnaReplyList( cmt_no );
+		list = dao.qnaReplyList( qna_no );
 		return list;
 	}//productReplyList
 

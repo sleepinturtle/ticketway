@@ -22,7 +22,7 @@
 				</tr>
 				<tr>
 					<th> 작 성 자 </th>
-					<td>
+					<td id="mid">
 						${login_info.mid}
 					</td>
 				</tr>
@@ -63,13 +63,15 @@
 					"${pageContext.request.contextPath}/notice/qnaupdate"
 					, {
 						qna_no : ${detail_dto.qna_no}
+					    , mno : ${login_info.mno}
+					    , mid : $("#mid").val()
 						, title : $("#title").val()
-						, qna_cnts : CKEDITOR.instances.cnts.getData()
+						, qna_cnts : CKEDITOR.instances["cnts"].getData()
 					}
 					, function(data, status) {
 						if(data >= 1){
 							alert("게시글을 수정 하였습니다.");
-							location.href="${pageContext.request.contextPath}/notice/qnadetail?qna_no=${detail_dto.qna_no}";
+							location.href="${pageContext.request.contextPath}/notice/qna_main";
 						} else if(data <= 0){
 							alert("게시글 수정을 실패 하였습니다.");
 						} else {
