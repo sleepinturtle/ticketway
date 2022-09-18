@@ -143,6 +143,29 @@
 				</li>
 			</c:if>
 		</ul>
+		<table id="list" class="table table-hover">
+			<thead>
+				<tr>
+					<th> 글번호 </th> <th>분류</th> 	<th> 제목 </th>	<th> 작성자 </th>	<th> 조회수 </th>	<th> 작성일 </th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="dto" items="${list}">
+					<tr>
+						<td>${dto.news_no}</td>
+						<td>${dto.class_no}</td>
+						<td>
+							<a href="${pageContext.request.contextPath}/notice/detail?news_no=${dto.news_no}">
+								${dto.title}
+							</a>
+						</td>
+						<td>${dto.mid}</td>
+						<td>${dto.view_cnt}</td>
+						<td>${dto.news_date}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 		</div>
 	</body>
 	<script type="text/javascript">

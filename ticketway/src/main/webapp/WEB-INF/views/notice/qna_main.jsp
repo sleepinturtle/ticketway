@@ -66,7 +66,7 @@
 		            </p>
 		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=20"></a>
 		    </figure>
-		    
+		    </div>
 		
 		<div class="row" style="justify-content : center;">
 			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/notice_main">전체</a>

@@ -84,7 +84,7 @@
 							         공지사항</a>
 							<a class="dropdown-item" href="${pageContext.request.contextPath}/notice/notice_main">
 								이벤트</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath}/notice/notice_main">
+							<a class="dropdown-item" href="${pageContext.request.contextPath}/notice/qna_main">
 								Q&A</a>
 							
 						</div>

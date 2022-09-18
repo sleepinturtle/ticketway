@@ -101,6 +101,72 @@ public class NoticeController {
 		out.print(successCount);
 		out.close();
 	}//update
+	
+	@RequestMapping( value = "/qnaupdate", method = RequestMethod.POST )
+	public void qnaupdate( NoticeDTO dto, HttpSession session, PrintWriter out ) throws IOException {
+		MemberDTO mDto = (MemberDTO) session.getAttribute("login_info");
+		dto.setMno( mDto.getMno() );
+		
+		
+		//ck file start =====
+				String mid = ( (MemberDTO) session.getAttribute("login_info") ).getMid();
+
+//				File folderForDel = new File("C:/upload/board/" + mid + "/");
+//				File [] fileArr = folderForDel.listFiles();
+//				if(fileArr != null) {
+//					for(int i=0; i<fileArr.length; i++) {
+//						fileArr[i].delete();
+//					}//for
+//				}//if
+
+				if( dto.getQna_cnts().indexOf("src=\"") > 0) {
+
+					String [] filePathArr = dto.getQna_cnts().split("src=\"");
+
+					for(int i=0; i<filePathArr.length; i++) {
+
+						if(filePathArr[i].indexOf("/upload") >= 0) {
+
+							String oldPath = filePathArr[i].substring(	filePathArr[i].indexOf("/upload")
+																		, filePathArr[i].indexOf("\"") );
+							String newPath = oldPath.replace("/upload/tmp/board/", "/upload/board/");
+
+							FileInputStream fis = new FileInputStream("C:" + oldPath);
+							FileOutputStream fos = new FileOutputStream("C:" + newPath);
+							FileCopyUtils.copy(fis, fos);
+							fis.close();
+							fos.close();
+
+							File tmpFile = new File("C:/" + oldPath);
+							tmpFile.delete();
+
+						}//if
+
+					}//for
+
+					File folderForDel = new File("C:/upload/tmp/board/" + mid + "/");
+					File [] fileArr = folderForDel.listFiles();
+					if(fileArr != null) {
+						for(int i=0; i<fileArr.length; i++) {
+							fileArr[i].delete();
+						}//for
+					}//if
+
+					dto.setQna_cnts(
+							dto.getQna_cnts().replaceAll("/upload/tmp/board/", "/upload/board/")
+					);
+
+				}//if
+				//ck file end =====
+		
+		
+		
+		
+		int successCount = 0;
+		successCount = service.qnaupdate( dto );
+		out.print(successCount);
+		out.close();
+	}//update
 
 	@RequestMapping( value = "/update_form", method = RequestMethod.GET )
 	public String updateForm( String news_no, Model model ) throws IOException {
@@ -142,6 +208,47 @@ public class NoticeController {
 		
 		return "/notice/update_form";//jsp file name
 	}//updateForm
+	
+	@RequestMapping( value = "/qnaupdate_form", method = RequestMethod.GET )
+	public String qnaupdateForm( String qna_no, Model model ) throws IOException {
+		NoticeDTO dto = null;
+		dto = service.qnadetail(qna_no);
+		model.addAttribute("detail_dto", dto);
+		
+		
+		//ck file start =====
+				if( dto.getQna_cnts().indexOf("src=\"") > 0) {
+
+					String [] filePathArr = dto.getQna_cnts().split("src=\"");
+
+					for(int i=0; i<filePathArr.length; i++) {
+
+						if(filePathArr[i].indexOf("/upload") >= 0) {
+
+							String oldPath = filePathArr[i].substring(	filePathArr[i].indexOf("/upload")
+																		, filePathArr[i].indexOf("\"") );
+							String newPath = oldPath.replace("/upload/board/", "/upload/tmp/board/");
+
+							FileInputStream fis = new FileInputStream("C:" + oldPath);
+							FileOutputStream fos = new FileOutputStream("C:" + newPath);
+							FileCopyUtils.copy(fis, fos);
+							fis.close();
+							fos.close();
+
+						}//if
+
+					}//for
+
+					dto.setQna_cnts(
+							dto.getQna_cnts().replaceAll("/upload/board/", "/upload/tmp/board/")
+					);
+
+				}//if
+				//ck file end =====
+		
+		
+		return "/notice/qnaupdate_form";//jsp file name
+	}//updateForm
 
 	@RequestMapping( value = "/delete", method = RequestMethod.GET )
 	public void delete( NoticeDTO dto, HttpSession session, PrintWriter out ) {
@@ -178,6 +285,48 @@ public class NoticeController {
 		
 		int successCount = 0;
 		successCount = service.delete( dto );
+		out.print(successCount);
+		out.close();
+		
+		
+		
+	}//delete
+	
+	@RequestMapping( value = "/qnadelete", method = RequestMethod.GET )
+	public void qnadelete( NoticeDTO dto, HttpSession session, PrintWriter out ) {
+		MemberDTO mDto = (MemberDTO) session.getAttribute("login_info");
+		dto.setMno( mDto.getMno() );
+
+		
+		//ck file start =====
+				NoticeDTO ckDTO = service.detail( dto.getNews_no() );
+
+				if( ckDTO.getCnts().indexOf("src=\"") > 0) {
+
+					String [] filePathArr = ckDTO.getCnts().split("src=\"");
+
+					for(int i=0; i<filePathArr.length; i++) {
+
+						if(filePathArr[i].indexOf("/upload") >= 0) {
+
+							String delPath = filePathArr[i].substring(	filePathArr[i].indexOf("/upload")
+									, filePathArr[i].indexOf("\"") );
+
+							File delFile = new File("C:/"+delPath);
+							delFile.delete();
+
+						}//if
+
+					}//for
+
+				}//if
+				//ck file end =====
+		
+		
+		
+		
+		int successCount = 0;
+		successCount = service.qnadelete( dto );
 		out.print(successCount);
 		out.close();
 		
@@ -351,7 +500,7 @@ public class NoticeController {
 	public String qnalist( Model model, String userWantPage, SearchDTO dto ) {
 		if( userWantPage == null || userWantPage.equals("") ) userWantPage = "1";
 		int totalCount = 0, startPageNum = 1, endPageNum = 10, lastPageNum = 1;
-		totalCount = service.searchListCount( dto );
+		totalCount = service.qnasearchListCount( dto );
 
 		if(totalCount > 10) {//201 -> (201 /10) + (201 % 10 > 0 ? 1 : 0) -> 20 + 1
 			lastPageNum = (totalCount / 10) + (totalCount % 10 > 0 ? 1 : 0);

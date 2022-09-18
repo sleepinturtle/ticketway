@@ -11,7 +11,7 @@
 	<body>
 		
 		<div class="container" style="position: relative;">
-		<a href="${pageContext.request.contextPath}/notice/update_form?news_no=${detail_dto.qna_no}" class="float-right" id="up_btn"><button id="u-btn" class="btn btn-info">수정하기</button></a>
+		<a href="${pageContext.request.contextPath}/notice/qnaupdate_form?qna_no=${detail_dto.qna_no}"><button id="u-btn" class="btn btn-info float-right">수정하기</button></a>
 			   <table class="table table-hover">
 			   		<tbody>
 			   			<tr>
@@ -54,7 +54,7 @@
 			   		</tbody>
 			   </table>
 			   
-			   <a href="${pageContext.request.contextPath}/notice/notice_main"><button class="btn btn-warning">목록으로 가기</button></a>
+			   <a href="${pageContext.request.contextPath}/notice/qna_main"><button class="btn btn-warning">목록으로 가기</button></a>
 			  <button id="d_btn" class="btn btn-danger float-right">삭제하기</button>
 			   <hr>	 
 		</div>
@@ -92,14 +92,14 @@
 		$("#d_btn").click(function() {
 			
 			$.get(
-					"${pageContext.request.contextPath}/notice/delete"
+					"${pageContext.request.contextPath}/notice/qnadelete"
 					, {
 						qna_no : ${detail_dto.qna_no}
 					}
 					, function(data, status) {
 						if( data >= 1 ){
 							alert("게시글이 삭제 되었습니다.");
-							location.href="${pageContext.request.contextPath}/notice/notice_main";
+							location.href="${pageContext.request.contextPath}/notice/qna_main";
 						} else if( data <= 0 ) {
 							alert("게시글 삭제를 실패 하였습니다.");
 						} else {
@@ -108,6 +108,8 @@
 					}//call back function
 			);//get
 		});//click
+		
+		
 	});
 	
 	</script>

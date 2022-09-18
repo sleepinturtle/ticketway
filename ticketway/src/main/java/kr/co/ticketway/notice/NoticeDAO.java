@@ -19,15 +19,30 @@ public class NoticeDAO {
 		successCount = sqlSession.update("NoticeMapper.update", dto);
 		return successCount;
 	}//update
+	
+	public int qnaupdate( NoticeDTO dto ) {
+		int successCount = 0;
+		successCount = sqlSession.update("NoticeMapper.qnaupdate", dto);
+		return successCount;
+	}//update
 
 	public int delete( NoticeDTO dto ) {
 		int successCount = 0;
 		successCount = sqlSession.delete("NoticeMapper.delete", dto);
 		return successCount;
 	}//delete
+	public int qnadelete( NoticeDTO dto ) {
+		int successCount = 0;
+		successCount = sqlSession.delete("NoticeMapper.qnadelete", dto);
+		return successCount;
+	}//delete
 
-	public void incrementViewCnt( String board_no ) {
-		sqlSession.update("NoticeMapper.incrementViewCnt", board_no);
+	public void incrementViewCnt( String news_no ) {
+		sqlSession.update("NoticeMapper.incrementViewCnt", news_no);
+	}//incrementViewCnt
+	
+	public void qnaincrementViewCnt( String qna_no ) {
+		sqlSession.update("NoticeMapper.qnaincrementViewCnt", qna_no);
 	}//incrementViewCnt
 
 	public NoticeDTO detail( String news_no ) {
@@ -69,6 +84,12 @@ public class NoticeDAO {
 	public int searchListCount( SearchDTO dto ) {
 		int totalCount = 0;
 		totalCount = sqlSession.selectOne("NoticeMapper.searchListCount", dto);
+		return totalCount;
+	}//searchListCount
+	
+	public int qnasearchListCount( SearchDTO dto ) {
+		int totalCount = 0;
+		totalCount = sqlSession.selectOne("NoticeMapper.qnasearchListCount", dto);
 		return totalCount;
 	}//searchListCount
 

@@ -18,10 +18,22 @@ public class NoticeService {
 		successCount = dao.update( dto );
 		return successCount;
 	}//update
+	
+	public int qnaupdate( NoticeDTO dto ) {
+		int successCount = 0;
+		successCount = dao.qnaupdate( dto );
+		return successCount;
+	}//update
 
 	public int delete( NoticeDTO dto ) {
 		int successCount = 0;
 		successCount = dao.delete( dto );
+		return successCount;
+	}//delete
+	
+	public int qnadelete( NoticeDTO dto ) {
+		int successCount = 0;
+		successCount = dao.qnadelete( dto );
 		return successCount;
 	}//delete
 
@@ -34,7 +46,7 @@ public class NoticeService {
 	}//detail
 	
 	public NoticeDTO qnadetail( String qna_no ) {
-		dao.incrementViewCnt( qna_no );
+		dao.qnaincrementViewCnt( qna_no );
 
 		NoticeDTO dto = null;
 		dto = dao.qnadetail( qna_no );
@@ -68,6 +80,12 @@ public class NoticeService {
 	public int searchListCount( SearchDTO dto ) {
 		int totalCount = 0;
 		totalCount = dao.searchListCount( dto );
+		return totalCount;
+	}//searchListCount
+	
+	public int qnasearchListCount( SearchDTO dto ) {
+		int totalCount = 0;
+		totalCount = dao.qnasearchListCount( dto );
 		return totalCount;
 	}//searchListCount
 
