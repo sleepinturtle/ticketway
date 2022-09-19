@@ -22,7 +22,7 @@
    <header class="header">
       <nav class="navbar navbar-expand-lg fixed-top ">
          <div class="container">
-            <a href="${pageContext.request.contextPath }/movieAdmin/managementMovie" class="navbar-brand text-uppercase font-weight-bold">TICKET
+            <a href="${pageContext.request.contextPath }/theaterAdmin/managementTheater" class="navbar-brand text-uppercase font-weight-bold">TICKET
                WAY</a>
             <button type="button" data-toggle="collapse"
                data-target="#navbarSupportedContent"
@@ -35,16 +35,14 @@
             <div id="navbarSupportedContent" class="collapse navbar-collapse">
                <ul class="navbar-nav ml-auto">
 
-                  <li class="nav-item active"><a href="${pageContext.request.contextPath }/movieAdmin/managementMovie"
+                  <li class="nav-item active"><a href="${pageContext.request.contextPath }/theaterAdmin/managementTheater"
                      class="nav-link text-uppercase font-weight-bold">공연 관리 <span
                         class="sr-only">(current)</span></a></li>
-                  <li class="nav-item"><a href="${pageContext.request.contextPath }/reserve/reserveinfo"
-                     class="nav-link text-uppercase font-weight-bold">예매관리</a></li>
+                  
                   <li class="nav-item"><a href="${pageContext.request.contextPath }/show/showinfo"
                      class="nav-link text-uppercase font-weight-bold">상영스케줄관리</a></li>
-                  <li class="nav-item"><a href="${pageContext.request.contextPath }/screen/screeninfo"
-                     class="nav-link text-uppercase font-weight-bold">상영관 관리</a></li>
-                  <li class="nav-item"><a href="${pageContext.request.contextPath }/admin/managerMemberList"
+                  
+                  <li class="nav-item"><a href="${pageContext.request.contextPath }/theaterAdmin/managerMemberList"
                      class="nav-link text-uppercase font-weight-bold">회원관리</a></li>
                   <!-- 관리자 버튼 자리 -->
                   <button type="button" class="btn btn-secondary btn-sm">관리자</button>

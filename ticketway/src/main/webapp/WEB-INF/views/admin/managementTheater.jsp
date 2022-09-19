@@ -89,16 +89,16 @@
 			<c:otherwise>
 				<c:forEach var="dto" items="${list }">  <%-- request.getAttribute("list") --%>
 					<tr>
-						<td>${dto.mov_regDate }</td>
-						<td>${dto.mov_title }</td>
-						<td>${dto.mov_director }</td>
-						<td>${dto.mov_actors }</td>
-						<td>${dto.mov_genre }</td>
-						<td>${dto.mov_runtime }</td>
-						<td>${dto.mov_openDate }</td>
-						<td>${dto.mov_grade }</td>
-						<td><button class="btn btn-outline-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath }/movieAdmin/updateMovie?mov_num=${dto.mov_num }'">수정</button>
-						<button class="btn btn-outline-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath }/movieAdmin/deleteMovieOk?mov_num=${dto.mov_num }'">삭제</button></td>				
+						<td>${dto.play_no }</td>
+						<td>${dto.play_title }</td>
+<%-- 						<td>${dto.thta_director }</td> --%>
+<%-- 						<td>${dto.thta_actors }</td> --%>
+						<td>${dto.genre }</td>
+<%-- 						<td>${dto.thta_runtime }</td> --%>
+<%-- 						<td>${dto.thta_openDate }</td> --%>
+						<td>${dto.rated }</td>
+						<td><button class="btn btn-outline-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath }/movieAdmin/updateMovie?mov_num=${dto.thta_num }'">수정</button>
+						<button class="btn btn-outline-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath }/movieAdmin/deleteMovieOk?mov_num=${dto.thta_num }'">삭제</button></td>				
 					</tr>
 				</c:forEach>
 			</c:otherwise>

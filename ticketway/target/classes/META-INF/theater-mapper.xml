@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TheaterMapper">
+
+	
+	<select id="plist" resultType="kr.co.ticketway.theater.TheaterAdminDTO">
+      SELECT
+         play_no, play_title, genre, play_desc, rated, book_cnt_total, play_thumbnail, seat_price_code from play_info
+      FROM play_info
+      WHERE genre = '연극'
+   </select>
+	
+</mapper>

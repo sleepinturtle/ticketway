@@ -21,7 +21,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 		//logger.info("호출된 메소드가 실행되기 전에 실행되는 부분이다.");
 		HttpSession session = request.getSession();
 		MemberDTO dto = (MemberDTO) session.getAttribute("login_info");
-		if( dto == null || dto.getMno() == null || dto.getMno().equals("") ) {
+		if( dto == null || dto.getMno() == null || dto.getMno().equals("") || dto.getMgr_yn() !=0 ) {
 			response.sendRedirect( request.getContextPath() + "/login_form" );
 			return false;//계속 진행할 메소드 호출 중지.
 		}
