@@ -71,9 +71,9 @@
 		</div>
 		
 		<div class="row" style="justify-content : center;">
-			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/notice_main">전체</a>
-			<a class="btn btn-light btn-lg class_btn">공지사항</a>
-			<a class="btn btn-light btn-lg class_btn">이벤트</a>
+			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/notice_main" id="all">전체</a>
+			<a class="btn btn-light btn-lg class_btn" id="notice_list" href="${pageContext.request.contextPath}/notice/notice_list">공지사항</a>
+			<a class="btn btn-light btn-lg class_btn" id="event_list" href="${pageContext.request.contextPath}/notice/event_list">이벤트</a>
 			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/qna_main">Q&A</a>
 			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/faq">FAQ</a>
 		</div>
@@ -84,7 +84,8 @@
 				<button class="btn btn-primary float-right"> 글 쓰러 가기 </button>
 			</a>
 		</div>
-		<table id="list" class="table table-hover">
+		<div id="wholelist">
+		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th> 글번호 </th> <th>분류</th> 	<th> 제목 </th>	<th> 작성자 </th>	<th> 조회수 </th>	<th> 작성일 </th>
@@ -144,6 +145,8 @@
 			</c:if>
 		</ul>
 		</div>
+		
+		</div>
 	</body>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -153,6 +156,7 @@
 			if(${login_info.mno == null}){
 				$("#write_area").hide();
 			}
+			
 		});//ready
 	</script>
 </html>
