@@ -33,8 +33,16 @@ public class LoginController {
 		dtoFromDB = service.login( dto );
 		if( dtoFromDB == null ) {
 			out.print(0);//아이디 없는 사용자 또는 패스워드 오류 사용자.
-		} else if( dtoFromDB != null && dtoFromDB.getMno() != null && dtoFromDB.getMno() != "" ) {
-			out.print(1);//아이디, 패스워드 모두 OK
+		} else if( dtoFromDB.getDel_yn() == "1" ) {
+			out.print(3);//아이디, 패스워드 모두 OK
+			session.setAttribute("login_info", dtoFromDB);
+		} else if(dtoFromDB !=null && dtoFromDB.getMno() !=null && dtoFromDB.getMno() !="" && dtoFromDB.getMgr_yn() =="1") {//아이디, 패스워드 모두 ok
+			//아이디, 패스워드 모두 ok
+			out.print(1);
+			session.setAttribute("login_info", dtoFromDB);
+		} else if(dtoFromDB !=null && dtoFromDB.getMno() !=null && dtoFromDB.getMno() !="" && dtoFromDB.getMgr_yn() =="0") {//아이디, 패스워드 모두 ok
+			//아이디, 패스워드 모두 ok
+			out.print(2);
 			session.setAttribute("login_info", dtoFromDB);
 		}
 		out.close();
