@@ -144,6 +144,11 @@
 	</body>
 	<script type="text/javascript">
 		$(document).ready(function() {
+			if(${login_info == null}){
+				$("#qna_write_btn").hide();
+			}
+			
+			
 			if(${login_info.mgr_yn == 1}){
 				$("#qna_write_btn").hide();
 			}
