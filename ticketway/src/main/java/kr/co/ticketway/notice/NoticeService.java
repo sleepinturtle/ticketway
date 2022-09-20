@@ -51,9 +51,6 @@ public class NoticeService {
 	public int qnadelete( NoticeDTO dto ) {
 		int successCount = 0;
 		successCount = dao.cmtdelete(dto);
-		if(successCount < 1) {
-			return successCount;
-		}
 		successCount = dao.qnadelete(dto);
 		if(successCount < 1) {
 			return successCount;
