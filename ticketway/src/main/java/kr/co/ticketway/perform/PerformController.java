@@ -26,18 +26,33 @@ public class PerformController {
 		List<PerformDTO> list = null;
 		list = service.plist();
 		model.addAttribute("list", list);
-		return "/perform/play";//jsp file name
+		return "/perform/play_list";//jsp file name
 		
 	}//list
+	
 	
 	@RequestMapping(value = "/mlist", method = RequestMethod.GET)
 	public String mlist(Model model ) {
 		List<PerformDTO> list = null;
 		list = service.mlist();
 		model.addAttribute("list", list);
-		return "/perform/musical";//jsp file name
+		return "/perform/musical_list";//jsp file name
 		
 	}//list
+	
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String detail(Model model, String play_no) {
+		PerformDTO dto = null;
+		dto = service.detail(play_no);
+		model.addAttribute("play_info", dto);
+		return "/perform/detail";
+	}
+	
+	@RequestMapping(value = "/prototype", method = RequestMethod.GET)
+	public String test() {
+		return "/prototype";
+	}
+	
 	
 	
 }

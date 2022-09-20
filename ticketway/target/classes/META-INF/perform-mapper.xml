@@ -6,13 +6,57 @@
 <mapper namespace="PerformMapper">
 
 	<select id="plist" resultType="kr.co.ticketway.perform.PerformDTO">
-	select play_no, play_title, genre, play_desc, rated, book_cnt_total, play_thumbnail, seat_price_code from play_info
+	select pi.play_no, pi.play_title, pi.genre, pi.play_desc, pi.rated, pi.book_cnt_total, pi.play_thumbnail, pi.seat_price_code 
+	, ps.open_date, ps.close_date
+	from play_info pi, play_schedule ps
 	where genre = '연극'
+	and pi.play_no = ps.play_no
+     GROUP BY pi.play_no
+    having count(*)>1
+    order by book_cnt_total desc;
 	</select>
 	
 	<select id="mlist" resultType="kr.co.ticketway.perform.PerformDTO">
-	select play_no, play_title, genre, play_desc, rated, book_cnt_total, play_thumbnail, seat_price_code from play_info
+	select pi.play_no, pi.play_title, pi.genre, pi.play_desc, pi.rated, pi.book_cnt_total, pi.play_thumbnail, pi.seat_price_code 
+	, ps.open_date, ps.close_date
+	from play_info pi, play_schedule ps
 	where genre = '뮤지컬'
+	and pi.play_no = ps.play_no
+     GROUP BY pi.play_no
+    having count(*)>1
+    order by book_cnt_total desc;
 	</select>
+	
+	
+<!-- 	<select id="detail1" parameterType="java.lang.String" resultType="kr.co.ticketway.perform.PerformDTO"> -->
+<!-- 	select pf.play_no, pf.play_title, pf.genre, pf.play_desc, pf.rated, pf.book_cnt_total, pf.play_thumbnail, pf.seat_price_code -->
+<!-- 	, ps.play_no , ps.open_date, ps.close_date, ps.runtime, ps.tht_no, ps.hall_no, ps.remain_seat -->
+<!-- 	, sd.seat_price_code, sd.seat_price -->
+<!-- 	from play_info pf, play_schedule ps, seat_price_code sd -->
+<!-- 	where pf.play_no = #{play_no}  -->
+<!-- 	and pf.play_no = ps.play_no  -->
+<!-- 	and pf.seat_price_code = sd.seat_price_code -->
+<!-- 	</select> -->
+	
+	<select id="detail" parameterType="java.lang.String" resultType="kr.co.ticketway.perform.PerformDTO">
+	select pf.play_no, pf.play_title, pf.genre, pf.play_desc, pf.rated, pf.book_cnt_total, pf.play_thumbnail, pf.seat_price_code, pf.play_spec
+	, ps.open_date, ps.close_date, ps.runtime, ps.play_date, ps.play_time, ps.tht_no, ps.hall_no, ps.remain_seat
+	, sd.seat_price_code, sd.seat_price
+	, ti.tht_addr, ti.tht_name
+	, h.hall_name
+	from play_info pf, play_schedule ps, seat_price_code sd, tht_info ti, hall h
+	where pf.play_no = #{play_no}
+    and pf.play_no = ps.play_no 
+	and pf.seat_price_code = sd.seat_price_code
+	and h.tht_no = ti.tht_no
+	and h.hall_no = ps.hall_no
+    GROUP BY pf.play_no
+    having count(*)>1;
+	</select>
+	
+<!-- 	<select id="detail" parameterType="java.lang.String" resultType="kr.co.ticketway.perform.PerformDTO"> -->
+<!-- 	select play_no, play_title, genre, play_desc, rated, book_cnt_total, play_thumbnail, seat_price_code from play_info -->
+<!-- 	where play_no = #{play_no} -->
+<!-- 	</select> -->
 
 </mapper>

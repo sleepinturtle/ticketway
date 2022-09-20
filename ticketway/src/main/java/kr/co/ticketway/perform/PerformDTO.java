@@ -10,6 +10,7 @@ public class PerformDTO {
 	private int book_cnt_total;
 	private String play_thumbnail;
 	private int seat_price_code;
+	private String play_spec;
 	
 	private int tht_no;
 	private int sido_code;
@@ -34,6 +35,16 @@ public class PerformDTO {
 	private String play_time;
 	private int book_cnt;
 	private int remain_seat;
+	
+	
+	
+	
+	public String getPlay_spec() {
+		return play_spec;
+	}
+	public void setPlay_spec(String play_spec) {
+		this.play_spec = play_spec;
+	}
 	public int getPlay_no() {
 		return play_no;
 	}
