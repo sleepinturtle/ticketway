@@ -37,16 +37,7 @@
 			<mapping path="/mypage/*"/>
 			<mapping path="/order/*"/>
 			<mapping path="/product/*"/>
-<<<<<<< HEAD
-			<mapping path="/notice/*"/>
-<!-- 			<mapping path="/login/*"/> -->
-			<exclude-mapping path="/notice/faq"/>
-			<exclude-mapping path="/notice/notice_main"/>
-			<exclude-mapping path="/notice/notice_detail"/>
-=======
-			<mapping path="/login/*"/>
-
->>>>>>> branch 'main' of https://github.com/sleepinturtle/ticketway.git
+		
 			<exclude-mapping path="/board/ck/list"/>
 			<exclude-mapping path="/board/member/list"/>
 			<exclude-mapping path="/product/list"/>
