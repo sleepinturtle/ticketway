@@ -14,6 +14,7 @@ public class LoginService {
 	public MemberDTO login( MemberDTO dto ) {
 		MemberDTO dtoFromDB = null;
 		dtoFromDB = dao.login( dto );
+		System.out.println(dtoFromDB.getMno());
 		return dtoFromDB;
 	}//login
 
