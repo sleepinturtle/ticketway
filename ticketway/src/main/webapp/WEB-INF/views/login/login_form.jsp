@@ -60,7 +60,6 @@
 						, mpwd : $("#mpwd").val()
 					}
 					, function(data, status) {
-						alert(data);
 						if(data == 0){
 							alert("아이디와 패스워드가 올바르지 않습니다.");
 						} else if(data == 1){
