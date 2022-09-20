@@ -13,8 +13,8 @@
 	<!--	<mapper resource="META-INF/history-mapper.xml" /> -->
 <!-- 		<mapper resource="META-INF/product-mapper.xml" /> -->
 
-		<mapper resource="META-INF/card_info-mapper.xml" /> 
-		<mapper resource="META-INF/basket-mapper.xml" />
+<!-- 		<mapper resource="META-INF/card_info-mapper.xml" />  -->
+<!-- 		<mapper resource="META-INF/basket-mapper.xml" /> -->
 		<mapper resource="META-INF/freeboard-mapper.xml" />
 		<mapper resource="META-INF/join-mapper.xml" />
 		<mapper resource="META-INF/kakaomap-mapper.xml" />

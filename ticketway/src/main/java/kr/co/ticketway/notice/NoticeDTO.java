@@ -15,6 +15,7 @@ public class NoticeDTO {
 	private String qna_cnts;
 	private String view_cnt;
 	private String cmt_no;
+	private String rply_cnts;
 	private String rply_date;
 	
 
@@ -134,6 +135,16 @@ public class NoticeDTO {
 	public void setThumnail_path(String thumnail_path) {
 		this.thumnail_path = thumnail_path;
 	}
+
+	public String getRply_cnts() {
+		return rply_cnts;
+	}
+
+	public void setRply_cnts(String rply_cnts) {
+		this.rply_cnts = rply_cnts;
+	}
+
+	
 
 	
 

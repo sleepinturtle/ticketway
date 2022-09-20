@@ -12,6 +12,7 @@
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
+		<div class="container" style="justify-content: center;">
 		<hr>
 		<h3> 로그인 </h3>
 		<hr>
@@ -36,6 +37,7 @@
 				</tr>
 			</tbody>
 		</table>
+		</div>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 
 	<script type="text/javascript">

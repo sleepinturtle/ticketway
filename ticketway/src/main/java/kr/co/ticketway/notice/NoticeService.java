@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.ticketway.product.ProductReplyDTO;
 import kr.co.ticketway.util.dto.SearchDTO;
 
 @Service
@@ -13,15 +14,52 @@ public class NoticeService {
 	@Autowired
 	private NoticeDAO dao;
 
+	
+	public List<NoticeDTO> noticesearchList( SearchDTO dto ) {
+		List<NoticeDTO> list = null;
+		list = dao.noticesearchList( dto );
+		return list;
+	}//searchList
+	
+	public List<NoticeDTO> eventsearchList( SearchDTO dto ) {
+		List<NoticeDTO> list = null;
+		list = dao.eventsearchList( dto );
+		return list;
+	}//searchList
+	
+	
+	
+	
 	public int update( NoticeDTO dto ) {
 		int successCount = 0;
 		successCount = dao.update( dto );
+		return successCount;
+	}//update
+	
+	public int qnaupdate( NoticeDTO dto ) {
+		int successCount = 0;
+		successCount = dao.qnaupdate( dto );
 		return successCount;
 	}//update
 
 	public int delete( NoticeDTO dto ) {
 		int successCount = 0;
 		successCount = dao.delete( dto );
+		return successCount;
+	}//delete
+	
+	public int qnadelete( NoticeDTO dto ) {
+		int successCount = 0;
+		successCount = dao.cmtdelete(dto);
+		if(successCount < 1) {
+			return successCount;
+		}
+		successCount = dao.qnadelete(dto);
+		if(successCount < 1) {
+			return successCount;
+		}
+		
+		
 		return successCount;
 	}//delete
 
@@ -34,7 +72,7 @@ public class NoticeService {
 	}//detail
 	
 	public NoticeDTO qnadetail( String qna_no ) {
-		dao.incrementViewCnt( qna_no );
+		dao.qnaincrementViewCnt( qna_no );
 
 		NoticeDTO dto = null;
 		dto = dao.qnadetail( qna_no );
@@ -70,6 +108,36 @@ public class NoticeService {
 		totalCount = dao.searchListCount( dto );
 		return totalCount;
 	}//searchListCount
+	
+	public int qnasearchListCount( SearchDTO dto ) {
+		int totalCount = 0;
+		totalCount = dao.qnasearchListCount( dto );
+		return totalCount;
+	}//searchListCount
+	
+	public int noticesearchListCount( SearchDTO dto ) {
+		int totalCount = 0;
+		totalCount = dao.noticesearchListCount( dto );
+		return totalCount;
+	}//searchListCount
+	
+	public int eventsearchListCount( SearchDTO dto ) {
+		int totalCount = 0;
+		totalCount = dao.eventsearchListCount( dto );
+		return totalCount;
+	}//searchListCount
+
+	public int replyInsert( NoticeDTO dto ) {
+		int successCount = 0;
+		successCount = dao.replyInsert( dto );
+		return successCount;
+	}//replyInsert
+	
+	public List<NoticeDTO> qnaReplyList( String qna_no ) {
+		List<NoticeDTO> list = null;
+		list = dao.qnaReplyList( qna_no );
+		return list;
+	}//productReplyList
 
 }//class
 
