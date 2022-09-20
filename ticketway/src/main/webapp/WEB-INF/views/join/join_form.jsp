@@ -6,10 +6,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title> 회원 가입 </title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+		<%@ include file="/WEB-INF/views/header.jsp" %>
 		<style type="text/css">
 		#service_agree_label, #info_agree_label, #mpwd_label, #rempwd_label, #tel1_label, #email1_label {
 			color : red;
@@ -32,10 +29,11 @@
 		</script>
 	</head>
 	<body>
-	<%@ include file="/WEB-INF/views/header.jsp" %>
+	
 		<hr>
 		<h3> 회원 가입 </h3>
 		<hr>
+		<div class="container">
 		<table class="table table-hover">
 			<tbody>
 			
@@ -124,8 +122,10 @@
 			
 			</tbody>
 		</table>
+		
 		<div class="clearfix">
 			<button id="join_btn" class="btn btn-primary float-right"> 회 원 가 입 </button>
+		</div>
 		</div>
 		<hr>
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
