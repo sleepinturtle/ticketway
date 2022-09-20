@@ -10,6 +10,8 @@
 	select news_no, mid, title, news_date, view_cnt, class_no
 	from news
 	where class_no='공지사항'
+	order by news_no desc
+	limit #{limitNum}, 10
 	</select>
 	
 	<select id="eventsearchList" parameterType="kr.co.ticketway.util.dto.SearchDTO"
@@ -17,6 +19,8 @@
 	select news_no, mid, title, news_date, view_cnt, class_no
 	from news
 	where class_no='이벤트'
+	order by news_no desc
+	limit #{limitNum}, 10
 	</select>
 
 
