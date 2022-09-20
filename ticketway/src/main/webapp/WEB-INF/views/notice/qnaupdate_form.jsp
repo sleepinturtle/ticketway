@@ -63,7 +63,7 @@
 					"${pageContext.request.contextPath}/notice/qnaupdate"
 					, {
 						qna_no : ${detail_dto.qna_no}
-					    , mno : ${login_info.mno}
+					    , mno : ${detail_dto.mno}
 					    , mid : $("#mid").val()
 						, title : $("#title").val()
 						, qna_cnts : CKEDITOR.instances["cnts"].getData()
