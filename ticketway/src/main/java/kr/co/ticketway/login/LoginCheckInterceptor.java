@@ -21,12 +21,9 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 		//logger.info("호출된 메소드가 실행되기 전에 실행되는 부분이다.");
 		HttpSession session = request.getSession();
 		MemberDTO dto = (MemberDTO) session.getAttribute("login_info");
-		if( dto == null || dto.getMno() == null || dto.getMgr_yn() != "1" ) {
+		if( dto != null || dto.getMno() != null || dto.getMgr_yn() != "1" ) {
 			response.sendRedirect( request.getContextPath() + "/theaterAdmin/managementTheater" );
 			return false;//계속 진행할 메소드 호출 중지.
-		}else if(dto.getMgr_yn() =="1"){
-			response.sendRedirect(request.getContextPath() + "/perform/plist");
-			return false; //false를 리턴해야 원래 호출했던 메소드가 실행이 안됨.
 		}
 		return super.preHandle(request, response, handler);//계속 진행할 메소드 호출.
 	}//preHandle
