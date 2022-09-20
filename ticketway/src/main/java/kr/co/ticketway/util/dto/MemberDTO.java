@@ -23,6 +23,14 @@ public class MemberDTO {
 	private String cert2;
 	private String del_yn;
 	private String mgr_yn;
+	
+	public String getMname() {
+		return mname;
+	}
+
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
 
 	public String getMname() {
 		return mname;

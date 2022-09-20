@@ -24,4 +24,12 @@ public class PerformService {
 		return list;
 	}
 
+	public PerformDTO detail(String play_no) {
+		PerformDTO dto = null;
+		dto = dao.detail(play_no);
+		return dto;
+	}
+
+	
+
 }
