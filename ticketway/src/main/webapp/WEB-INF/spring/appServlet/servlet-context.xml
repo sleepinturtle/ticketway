@@ -38,7 +38,7 @@
 			<mapping path="/order/*"/>
 			<mapping path="/product/*"/>
 			<mapping path="/login/*"/>
-			
+
 			<exclude-mapping path="/board/ck/list"/>
 			<exclude-mapping path="/board/member/list"/>
 			<exclude-mapping path="/product/list"/>
