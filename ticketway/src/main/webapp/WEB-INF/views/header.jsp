@@ -16,7 +16,7 @@
 					<c:when test="${login_info != null && login_info.mid != null}">
 					${login_info.mid}
 						<div class="btn-group">
-							<a href="${pageContext.request.contextPath}/mypage/list">
+							<a href="${pageContext.request.contextPath}/mypage/list?mgr_yn=1${login_info.mno}">
 								<button type="button" class="btn btn-link btn-sm">마이페이지</button>
 							</a>
 							<a href="${pageContext.request.contextPath}/">

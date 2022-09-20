@@ -47,7 +47,7 @@
                   <!-- 관리자 버튼 자리 -->
                   <button type="button" class="btn btn-secondary btn-sm">관리자</button>
                   &nbsp;
-                  <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${path}/logOut'">로그아웃</button>
+                  <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath}/logout'">로그아웃</button>
                   &nbsp;
                   <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${path}'">일반사용자시점 페이지</button>
                </ul>
