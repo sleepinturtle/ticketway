@@ -1,6 +1,9 @@
 @charset "UTF-8";
 			
-
+			.notice_menu.active{
+				background: linear-gradient(120deg, #dda4cd, #afc3f5);
+			}
+			
 			.class_btn{
 				width: 20%;
 			}
