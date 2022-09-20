@@ -191,6 +191,7 @@ public class NoticeController {
 	public void qnaupdate( NoticeDTO dto, HttpSession session, PrintWriter out ) throws IOException {
 		MemberDTO mDto = (MemberDTO) session.getAttribute("login_info");
 		dto.setMno( mDto.getMno() );
+		dto.setMid( mDto.getMid() );
 		
 		
 		//ck file start =====
