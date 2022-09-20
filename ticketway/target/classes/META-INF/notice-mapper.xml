@@ -5,11 +5,50 @@
 
 <mapper namespace="NoticeMapper">
 
+	<select id="noticesearchList" parameterType="kr.co.ticketway.util.dto.SearchDTO"
+			resultType="kr.co.ticketway.notice.NoticeDTO">
+	select news_no, mid, title, news_date, view_cnt, class_no
+	from news
+	where class_no='공지사항'
+	</select>
+	
+	<select id="eventsearchList" parameterType="kr.co.ticketway.util.dto.SearchDTO"
+			resultType="kr.co.ticketway.notice.NoticeDTO">
+	select news_no, mid, title, news_date, view_cnt, class_no
+	from news
+	where class_no='이벤트'
+	</select>
+
+
+
+
+	<select id="qnaReplyList" parameterType="java.lang.String" resultType="kr.co.ticketway.notice.NoticeDTO">
+	select cmt_no, qna_no, mid, rply_cnts, rply_date
+	from qna_cmt
+	where qna_no = #{qna_no}
+	</select>
+
+	<insert id="replyInsert" parameterType="kr.co.ticketway.notice.NoticeDTO">
+	insert into qna_cmt(qna_no, mno, mid, rply_cnts, rply_date)
+	values (#{qna_no}, #{mno}, #{mid}, #{rply_cnts}, now())
+	</insert>
+
 	<update id="update" parameterType="kr.co.ticketway.notice.NoticeDTO">
 	update news
 	set title = #{title}, cnts = #{cnts}
 	where news_no = #{news_no}
 	and mno = #{mno}
+	</update>
+	
+	<update id="qnaupdate" parameterType="kr.co.ticketway.notice.NoticeDTO">
+	UPDATE qna
+	SET
+	mno = #{mno}
+	,mid = #{mid}
+	,title = #{title}
+	,qna_date = now()
+    ,qna_cnts = #{qna_cnts}
+	WHERE qna_no = #{qna_no}
 	</update>
 
 	<delete id="delete" parameterType="kr.co.ticketway.notice.NoticeDTO">
@@ -17,7 +56,26 @@
 	where news_no = #{news_no}
 	and mno = #{mno}
 	</delete>
+	
+	<delete id="qnadelete" parameterType="kr.co.ticketway.notice.NoticeDTO">
+	delete from qna
+	where qna_no = #{qna_no}
+	and mno = #{mno}
+	</delete>
+	
+	<delete id="cmtdelete" parameterType="kr.co.ticketway.notice.NoticeDTO">
+	delete from qna_cmt
+	where qna_no = #{qna_no}
+	</delete>
+	
+	
 
+	<update id="qnaincrementViewCnt" parameterType="java.lang.String">
+	update qna
+	set view_cnt = view_cnt + 1
+	where qna_no = #{qna_no}
+	</update>
+	
 	<update id="incrementViewCnt" parameterType="java.lang.String">
 	update news
 	set view_cnt = view_cnt + 1
@@ -67,16 +125,69 @@
 	limit #{limitNum}, 10
 	</select>
 	
-	<select id="qnaselectList" parameterType="kr.co.ticketway.util.dto.SearchDTO"
+	<select id="qnasearchList" parameterType="kr.co.ticketway.util.dto.SearchDTO"
 			resultType="kr.co.ticketway.notice.NoticeDTO">
 	select qna_no, mid, title, qna_date, view_cnt
-	from qna;
+	from qna
 	</select>
 
 	<select id="searchListCount" parameterType="kr.co.ticketway.util.dto.SearchDTO" resultType="int">
 	select count(nw.news_no) cnt
 	from news nw, member m
 	where nw.mno = m.mno
+		<if test="searchOption != null and searchOption != ''
+					and searchWord != null and searchWord !=''">
+			<choose>
+				<when test="searchOption == 'title'">
+					and nw.title like concat('%', #{searchWord}, '%')
+				</when>
+				<when test="searchOption == 'writer'">
+					and m.mid like concat('%', #{searchWord}, '%')
+				</when>
+			</choose>
+		</if>
+	</select>
+	
+	<select id="qnasearchListCount" parameterType="kr.co.ticketway.util.dto.SearchDTO" resultType="int">
+	select count(q.qna_no) cnt
+	from qna q, member m
+	where q.mno = m.mno
+		<if test="searchOption != null and searchOption != ''
+					and searchWord != null and searchWord !=''">
+			<choose>
+				<when test="searchOption == 'title'">
+					and nw.title like concat('%', #{searchWord}, '%')
+				</when>
+				<when test="searchOption == 'writer'">
+					and m.mid like concat('%', #{searchWord}, '%')
+				</when>
+			</choose>
+		</if>
+	</select>
+	
+	<select id="noticesearchListCount" parameterType="kr.co.ticketway.util.dto.SearchDTO" resultType="int">
+	select count(nw.news_no) cnt
+	from news nw, member m
+	where nw.mno = m.mno
+	and class_no = '공지사항'
+		<if test="searchOption != null and searchOption != ''
+					and searchWord != null and searchWord !=''">
+			<choose>
+				<when test="searchOption == 'title'">
+					and nw.title like concat('%', #{searchWord}, '%')
+				</when>
+				<when test="searchOption == 'writer'">
+					and m.mid like concat('%', #{searchWord}, '%')
+				</when>
+			</choose>
+		</if>
+	</select>
+	
+	<select id="eventsearchListCount" parameterType="kr.co.ticketway.util.dto.SearchDTO" resultType="int">
+	select count(nw.news_no) cnt
+	from news nw, member m
+	where nw.mno = m.mno
+	and class_no = '이벤트'
 		<if test="searchOption != null and searchOption != ''
 					and searchWord != null and searchWord !=''">
 			<choose>

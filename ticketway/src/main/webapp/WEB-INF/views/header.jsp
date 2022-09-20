@@ -77,15 +77,15 @@
 					<!-- Dropdown -->
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-							새소식
+							공지사항
 						</a>
 						<div class="dropdown-menu">
 							<a class="dropdown-item" href="${pageContext.request.contextPath}/notice/notice_main">
-							         공지사항</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath}/notice/notice_main">
-								이벤트</a>
-							<a class="dropdown-item" href="${pageContext.request.contextPath}/notice/notice_main">
+							        새소식</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath}/notice/qna_main">
 								Q&A</a>
+							<a class="dropdown-item" href="${pageContext.request.contextPath}/notice/faq">
+								FAQ</a>
 							
 						</div>
 					</li>

@@ -14,7 +14,9 @@ public class TheaterAdminDAO {
 	private SqlSession session;	
 	public List<TheaterAdminDTO> plist() {
 		List<TheaterAdminDTO> list = null;
+		System.out.println("DAO1");
 		list = session.selectList("TheaterMapper.plist");
+		System.out.println("DAO2");
 		return list;
 	}
 

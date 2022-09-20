@@ -13,7 +13,7 @@
 	<!--	<mapper resource="META-INF/history-mapper.xml" /> -->
 <!-- 		<mapper resource="META-INF/product-mapper.xml" /> -->
 
-		<mapper resource="META-INF/card_info-mapper.xml" /> 
+<!-- 		<mapper resource="META-INF/card_info-mapper.xml" />  -->
 		<mapper resource="META-INF/basket-mapper.xml" />
 		<mapper resource="META-INF/freeboard-mapper.xml" />
 		<mapper resource="META-INF/join-mapper.xml" />
@@ -24,6 +24,7 @@
 		<mapper resource="META-INF/perform-mapper.xml" />
 		<mapper resource="META-INF/order-mapper.xml" />
 		<mapper resource="META-INF/mypage-mapper.xml" />
+		<mapper resource="META-INF/theater-mapper.xml" />
 	</mappers>
 
 </configuration>

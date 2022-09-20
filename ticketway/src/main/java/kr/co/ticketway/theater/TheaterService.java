@@ -19,7 +19,9 @@ public class TheaterService {
 	
 	public List<TheaterAdminDTO> plist() {
 		List<TheaterAdminDTO> list = null;
+		System.out.println("서비스1");
 		list = dao.plist();
+		System.out.println("서비스2");
 		return list;
 	}
 	

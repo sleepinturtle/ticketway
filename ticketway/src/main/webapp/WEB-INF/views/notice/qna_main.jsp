@@ -66,19 +66,19 @@
 		            </p>
 		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=20"></a>
 		    </figure>
-		    
+		    </div>
 		
 		<div class="row" style="justify-content : center;">
-			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/notice_main">전체</a>
-			<a class="btn btn-light btn-lg class_btn">공지사항</a>
-			<a class="btn btn-light btn-lg class_btn">이벤트</a>
+			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/notice_main" id="all">전체</a>
+			<a class="btn btn-light btn-lg class_btn" id="notice_list" href="${pageContext.request.contextPath}/notice/notice_list">공지사항</a>
+			<a class="btn btn-light btn-lg class_btn" id="event_list" href="${pageContext.request.contextPath}/notice/event_list">이벤트</a>
 			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/qna_main">Q&A</a>
 			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/faq">FAQ</a>
 		</div>
 		
 		<div class="container mt-3">
 		<div class="clearfix mb-3">
-			<a href="${pageContext.request.contextPath}/notice/qnawrite_form">
+			<a href="${pageContext.request.contextPath}/notice/qnawrite_form" id="qna_write_btn">
 				<button class="btn btn-primary float-right"> 글 쓰러 가기 </button>
 			</a>
 		</div>
@@ -142,5 +142,11 @@
 		</ul>
 		</div>
 	</body>
-	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			if(${login_info.mgr_yn == 1}){
+				$("#qna_write_btn").hide();
+			}
+		});
+	</script>
 </html>
