@@ -40,6 +40,8 @@
 			<mapping path="/notice/*"/>
 			<mapping path="/login/*"/>
 			<exclude-mapping path="/notice/faq"/>
+			<exclude-mapping path="/notice/qna_main"/>
+			<exclude-mapping path="/notice/qnadetail"/>
 			<exclude-mapping path="/notice/notice_main"/>
 			<exclude-mapping path="/notice/notice_detail"/>
 			<exclude-mapping path="/board/ck/list"/>
