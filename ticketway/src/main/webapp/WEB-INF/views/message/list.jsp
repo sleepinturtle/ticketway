@@ -40,6 +40,7 @@
       height:38px;
       }
       </style>
+      <%@ include file="/WEB-INF/views/header.jsp" %>
    </head>
    
    <body class="left-sidebar is-preload">
@@ -49,7 +50,7 @@
             <div id="header">
                   </div>
                </div>
-              <%@ include file="/WEB-INF/views/header.jsp" %>
+              
               
       <br><br><br><br><br><br><br><br><br>
       <h1 style="font-family:Georgia;"> 고 객 센 터   </h1>
