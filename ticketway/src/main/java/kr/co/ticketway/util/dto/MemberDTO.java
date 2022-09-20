@@ -5,13 +5,7 @@ public class MemberDTO {
 	private String mno;
 	private String mid;
 	private String mname;
-	public String getMname() {
-		return mname;
-	}
-
-	public void setMname(String mname) {
-		this.mname = mname;
-	}
+	
 	private String mpwd;
 	private String mtel;
 	private String tel1;
@@ -30,6 +24,15 @@ public class MemberDTO {
 	private String del_yn;
 	private String mgr_yn;
 
+	public String getMname() {
+		return mname;
+	}
+
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
+	
+	
 	public String getMtel() {
 		return mtel;
 	}
