@@ -7,7 +7,7 @@
 
 	<select id="login" parameterType="kr.co.ticketway.util.dto.MemberDTO"
 						resultType="kr.co.ticketway.util.dto.MemberDTO">
-	select mno, mid, mpwd, mtel, email, maddr, mgr_yn
+	select mno, mid, mpwd, mname, mbday, email, mtel, maddr, maddr1, mpost, cert1, cert2, mgr_yn, del_yn
 	from member
 	where mid = #{mid} and mpwd = #{mpwd}
 	</select>

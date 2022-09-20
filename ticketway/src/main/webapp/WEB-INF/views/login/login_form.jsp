@@ -60,10 +60,16 @@
 						, mpwd : $("#mpwd").val()
 					}
 					, function(data, status) {
+						alert(data);
 						if(data == 0){
 							alert("아이디와 패스워드가 올바르지 않습니다.");
 						} else if(data == 1){
-							location.href = "${pageContext.request.contextPath}/";
+							location.href = "${pageContext.request.contextPath}/theaterAdmin/managementTheater";
+						} else if(data == 2){
+							location.href ="${pageContext.request.contextPath}/"
+						} else if(data == 3){
+							alert("탈퇴 처리된 회원입니다. 고객센터에 문의하세요.")
+							location.href ="${pageContext.request.contextPath}/main"
 						} else {
 							alert("잠시 후 다시 시도해 주세요.");
 						}
