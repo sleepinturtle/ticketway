@@ -31,7 +31,7 @@
               <!-- Slide 1 -->
             <div class="carousel-item active">
                <div class="carousel-background">
-                  <img class="w-100 d-block position-absolute h-100 fit-cover" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="">
+                  <img class="w-100 d-block position-absolute h-100 fit-cover" src="${path}/resources/img/BigBanner_PC_미세스다웃파이어.jpg" alt="">
                </div>
                <div class="carousel-container">
                   <div class="carousel-content">
@@ -50,7 +50,7 @@
                         data-theVideo="https://www.youtube.com/embed/loFtozxZG0s">VIDEO</a>
                      
                       -->
-                      <a href="${path }/movieUser/openMovieList"" class="contactus-btn">상세정보</a>
+                      <a href="${path}/perform/detail?play_no=16" class="contactus-btn">상세정보</a>
 
 
                   </div>
@@ -61,7 +61,7 @@
                         <!-- Slide 2 -->
                         <div class="carousel-item">
                            <div class="carousel-background">
-                              <img class="w-100 d-block position-absolute h-100 fit-cover" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="">
+                              <img class="w-100 d-block position-absolute h-100 fit-cover" src="${path}/resources/img/BigBanner_PC_연극아트_인물이미지ver.jpg" alt="">
                            </div>
                            <div class="carousel-container">
                               <div class="carousel-content">
@@ -75,7 +75,7 @@
                                     readable English.</p>
                                  
                                   -->
-                                  <a href="${path }/movieUser/openMovieList"" class="contactus-btn">상세정보</a>
+                                  <a href="${path}/perform/detail?play_no=4" class="contactus-btn">상세정보</a>
                               </div>
                            </div>
                         </div>
@@ -83,7 +83,7 @@
                         <!-- Slide 3 -->
                         <div class="carousel-item">
                            <div class="carousel-background">
-                              <img class="w-100 d-block position-absolute h-100 fit-cover" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="">
+                              <img class="w-100 d-block position-absolute h-100 fit-cover" src="${path}/resources/img/BigBanner_PC_푸에르자.jpg" alt="">
                            </div>
                            <div class="carousel-container">
                               <div class="carousel-content">
@@ -97,7 +97,7 @@
                                     anything embarrassing hidden in the middle of text.</p>
                                  <a href="#" class="contactus-btn">상세정보</a>
                               -->
-                              <a href="${path }/movieUser/openMovieList"" class="contactus-btn">상세정보</a>
+                              <a href="${path}/perform/detail?play_no=27" class="contactus-btn">상세정보</a>
                               </div>
                            </div>
                         </div>
@@ -116,8 +116,8 @@
     <section class="common_section section_list_ranking">
 		<div class="common_inner">
 			<div class="section_heading">
-			<h2 class="section_title">랭킹</h2>
-				<a class="btn_hyperlink" href="#box1">전체보기</a>
+			<h2 class="section_title">뮤지컬 예매 랭킹</h2>
+				<a class="btn_hyperlink" href="${path}/perform/mlist">전체보기</a>
 			</div>
 			<div class="ranking_filter">
 				<div class="common_tab type_capsule">
@@ -125,7 +125,7 @@
 			</div>
 			<div class="product_grid" style="">
 				<ul class="product_grid_list type_col5">
-				 <c:forEach var="dto" items="${list}" end="4" varStatus="status">
+				 <c:forEach var="dto" items="${list1}" end="4" varStatus="status">
 				 <c:set var = "i" value="${i+1}"/>
 					<li class="product_grid_item">
 						<div class="product_grid_unit">
@@ -150,69 +150,73 @@
 			</div>
 		</div>
 	</section>
-    <div class="container py-4 py-xl-5">
-        <div class="row mb-5" style="background: linear-gradient(120deg, #dda4cd, #afc3f5);">
-            <div class="col-md-8 col-xl-6 text-center mx-auto">
-                <h2>뮤지컬 예매 순위</h2>
-                <p class="w-lg-50">본 데이터는 TicketWay 기준입니다.</p>
-            </div>
-        </div>
-        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-            <div class="col">
-                <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
-                    <div class="card-body p-4">
-                        <h4 class="card-title">제목</h4>
-                        <p class="card-text">내용</p>
-                        <div class="d-flex">
-                            <div></div>
-                        </div>
+    <section class="common_section section_list_ranking">
+		<div class="common_inner">
+			<div class="section_heading">
+			<h2 class="section_title">연극 예매 랭킹</h2>
+				<a class="btn_hyperlink" href="${path}/perform/plist">전체보기</a>
+			</div>
+			<div class="ranking_filter">
+				<div class="common_tab type_capsule">
+				</div>
+			</div>
+			<div class="product_grid" style="">
+				<ul class="product_grid_list type_col5">
+				 <c:forEach var="dto" items="${list2}" end="4" varStatus="status">
+				 <c:set var = "r" value="${r+1}"/>
+					<li class="product_grid_item">
+						<div class="product_grid_unit">
+							<a class="product_link" href="${path}/perform/detail?play_no=${dto.play_no}">
+								<div class="product_imgbox">
+									<span class="product_ranking">
+										
+										<span class="product_rank">${r}<span class="blind">위</span></span>
+										
+									</span>
+									<img class="product_img" alt="상품 이미지" src="${dto.play_thumbnail}">
+								</div>
+								<div class="product_info">
+									<span class="product_title">${dto.play_title}</span>
+									<div class="product_sideinfo"><span class="product_period">${dto.open_date}~${dto.close_date}</span></div>
+								</div>
+							</a>
+						</div>
+					</li>
+				</c:forEach>
+				</ul>
+			</div>
+		</div>
+	</section>
+    <section>
+    	
+    		            <div class="container">
+	                	<table class="table table-hover">
+	                		<tr>
+	                			<td><h2>회사명 : (주)티켓웨이</h2></td>
+	                		</tr>
+	                		<tr>
+	                			<td><h2>02-123-4567</h2></td>
+	                		</tr>
+	                		<tr>
+	                			<td><h2>ticketway@gmail.com</h2></td>
+	                		</tr>
+	                		<tr>
+	                			<td><h2>도로명 : 서울 마포구 백범로 23   3층</h2></td>
+	                		</tr>
+	                		<tr>
+	                			<td><h2>지번 : 신수동 63-14 3층 </h2></td>
+	                		</tr>
+	                		<tr>
+	                			<td><h2>우편번호 : 04108 </h2></td>
+	                		</tr>
+	                	</table>  
                     </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
-                    <div class="card-body p-4">
-                        <h4 class="card-title">제목<br /></h4>
-                        <p class="card-text">내용</p>
-                        <div class="d-flex">
-                            <div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
-                    <div class="card-body p-4">
-                        <h4 class="card-title">제목<br /></h4>
-                        <p class="card-text">내용</p>
-                        <div class="d-flex">
-                            <div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <section class="py-4 py-xl-5">
-            <div class="container">
-                <div class="bg-dark border rounded border-0 border-dark overflow-hidden">
-                    <div class="row g-0">
-                        <div class="col-md-6" style="background: linear-gradient(120deg, #dda4cd, #afc3f5);">
-                            <div class="text-white p-4 p-md-5" style="background: linear-gradient(120deg, #dda4cd, #afc3f5);">
-                                <h2 class="fw-bold text-white mb-3">이벤트 페이지</h2>
-                                <p class="mb-4">이벤트 관련 내용</p>
-                                <div class="my-3"><a class="btn btn-primary btn-lg me-2" role="button" href="${pageContext.request.contextPath}/ticketway/event_detail">이벤트 바로가기</a></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 order-first order-md-last" style="min-height: 250px;"><img class="w-100 h-100 fit-cover" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" /></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+                   
+    	
+    </section>   
     <div class="float-start float-md-end mt-5 mt-md-0 search-area"></div>
 
 
-	<%@ include file="/WEB-INF/views/footer.jsp" %>
 	</body>
 </html>
 
