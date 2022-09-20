@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TheaterMapper">
+
+	
+	<select id="plist" resultType="kr.co.ticketway.theater.TheaterAdminDTO">
+      
+      
+      SELECT
+      	play_info.play_no, play_info.play_title, play_info.genre, play_info.rated, play_schedule.runtime
+      FROM play_info
+      INNER JOIN play_schedule ON play_info.play_title=play_schedule.play_title
+   
+   </select>
+	
+</mapper>

@@ -67,42 +67,34 @@
 			<button type="button" class="btn btn-secondary"  id = "movieBtn" onclick="location.href='${pageContext.request.contextPath }/movieAdmin/writeMovie'">공연 등록</button>
 			</div>
 			<br>
-				<table class="table table-hover" id = "listTable" style = "width: 100%">
+				<table class="table table-hover" id = "listTable" style = "width: 1111px">
 					<thead class="thead-dark">
 						<tr>
-							<th scope="col">등록일</th>
+							<th scope="col">공연번호</th>
 							<th scope="col">공연제목</th>
-							<th scope="col">감독</th>
-							<th scope="col">배우</th>
 							<th scope="col">장르</th>
-							<th scope="col">러닝타임</th>
-							<th scope="col">개봉일</th>
 							<th scope="col">공연등급</th>
-							<th scope="col">Actions</th>
+							<th scope="col">러닝타임</th>
+							<th>  수정 / 삭제</th>
 						</tr>
 					</thead>
 					<tbody>
-		<c:choose>
-			<c:when test="${empty list || fn:length(list) == 0 }">
-			</c:when>
+		
 
-			<c:otherwise>
 				<c:forEach var="dto" items="${list }">  <%-- request.getAttribute("list") --%>
 					<tr>
-						<td>${dto.mov_regDate }</td>
-						<td>${dto.mov_title }</td>
-						<td>${dto.mov_director }</td>
-						<td>${dto.mov_actors }</td>
-						<td>${dto.mov_genre }</td>
-						<td>${dto.mov_runtime }</td>
-						<td>${dto.mov_openDate }</td>
-						<td>${dto.mov_grade }</td>
-						<td><button class="btn btn-outline-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath }/movieAdmin/updateMovie?mov_num=${dto.mov_num }'">수정</button>
-						<button class="btn btn-outline-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath }/movieAdmin/deleteMovieOk?mov_num=${dto.mov_num }'">삭제</button></td>				
+						<td>${dto.play_no }</td>
+						<td>${dto.play_title }</td>
+<%-- 						<td>${dto.thta_director }</td> --%>
+<%-- 						<td>${dto.thta_actors }</td> --%>
+						<td>${dto.genre }</td>
+<%-- 						<td>${dto.thta_openDate }</td> --%>
+						<td>${dto.rated }</td>
+						<td>${dto.runtime }</td>
+						<td><button class="btn btn-outline-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath }/theaterAdmin/updateMovie?mov_num=${dto.play_no }'">수정</button>
+						<button class="btn btn-outline-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath }/theaterAdmin/deleteMovieOk?mov_num=${dto.play_no }'">삭제</button></td>				
 					</tr>
 				</c:forEach>
-			</c:otherwise>
-		</c:choose>
 					</tbody>
 				</table>
 			</div>

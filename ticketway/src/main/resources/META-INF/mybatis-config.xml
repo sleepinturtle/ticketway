@@ -24,6 +24,7 @@
 		<mapper resource="META-INF/perform-mapper.xml" />
 		<mapper resource="META-INF/order-mapper.xml" />
 		<mapper resource="META-INF/mypage-mapper.xml" />
+		<mapper resource="META-INF/theater-mapper.xml" />
 	</mappers>
 
 </configuration>
