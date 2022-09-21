@@ -70,12 +70,12 @@
 		    
 		</div>
 		
-		<div class="row notice_tab" style="justify-content : center;">
-			<a class="btn btn-light btn-lg class_btn notice_menu active" href="${pageContext.request.contextPath}/notice/notice_main" id="all">전체</a>
-			<a class="btn btn-light btn-lg class_btn notice_menu active" id="notice_list" href="${pageContext.request.contextPath}/notice/notice_list">공지사항</a>
-			<a class="btn btn-light btn-lg class_btn notice_menu active" id="event_list" href="${pageContext.request.contextPath}/notice/event_list">이벤트</a>
-			<a class="btn btn-light btn-lg class_btn notice_menu active" href="${pageContext.request.contextPath}/notice/qna_main">Q&A</a>
-			<a class="btn btn-light btn-lg class_btn notice_menu active" href="${pageContext.request.contextPath}/notice/faq">FAQ</a>
+		<div class="row" style="justify-content : center;">
+			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/notice_main" id="all">전체</a>
+			<a class="btn btn-light btn-lg class_btn" id="notice_list" href="${pageContext.request.contextPath}/notice/notice_list">공지사항</a>
+			<a class="btn btn-light btn-lg class_btn" id="event_list" href="${pageContext.request.contextPath}/notice/event_list">이벤트</a>
+			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/qna_main">Q&A</a>
+			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/faq">FAQ</a>
 		</div>
 		
 		<div class="container mt-3">
@@ -109,7 +109,42 @@
 			</tbody>
 		</table>
 		<hr>
-		<ul class="pagination" style="justify-content : center;">
+		<ul id="notice_page" class="pagination" style="justify-content : center;">
+			<c:if test="${startPageNum > 10}">
+				<li class="page-item">
+					<a class="page-link"
+						href="${pageContext.request.contextPath}/notice/notice_list?userWantPage=${startPageNum-1}&class_no='공지사항'">
+						Previous
+					</a>
+				</li>
+			</c:if>
+			<c:forEach var="page_no" begin="${startPageNum}" end="${endPageNum}">
+				<c:choose>
+					<c:when test="${page_no == userWantPage}">
+						<li class="page-item active">
+							<a class="page-link">${page_no}</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item">
+							<a class="page-link"
+								href="${pageContext.request.contextPath}/notice/notice_list?userWantPage=${page_no}&class_no='공지사항'">
+								${page_no}
+							</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${lastPageNum > endPageNum}">
+				<li class="page-item">
+					<a class="page-link"
+						href="${pageContext.request.contextPath}/notice/notice_list?userWantPage=${page_no+1}&class_no='공지사항'">
+						Next
+					</a>
+				</li>
+			</c:if>
+		</ul>
+		<ul id="all_page" class="pagination" style="justify-content : center;">
 			<c:if test="${startPageNum > 10}">
 				<li class="page-item">
 					<a class="page-link"
@@ -144,11 +179,50 @@
 				</li>
 			</c:if>
 		</ul>
+		<ul id="event_page" class="pagination" style="justify-content : center;">
+			<c:if test="${startPageNum > 10}">
+				<li class="page-item">
+					<a class="page-link"
+						href="${pageContext.request.contextPath}/notice/event_list?userWantPage=${startPageNum-1}&class_no='이벤트'">
+						Previous
+					</a>
+				</li>
+			</c:if>
+			<c:forEach var="page_no" begin="${startPageNum}" end="${endPageNum}">
+				<c:choose>
+					<c:when test="${page_no == userWantPage}">
+						<li class="page-item active">
+							<a class="page-link">${page_no}</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item">
+							<a class="page-link"
+								href="${pageContext.request.contextPath}/notice/event_list?userWantPage=${page_no}&class_no='이벤트'">
+								${page_no}
+							</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${lastPageNum > endPageNum}">
+				<li class="page-item">
+					<a class="page-link"
+						href="${pageContext.request.contextPath}/notice/event_list?userWantPage=${endPageNum+1}&class_no='이벤트'">
+						Next
+					</a>
+				</li>
+			</c:if>
+		</ul>
 		</div>
 		
 		</div>
 	</body>
 	<script type="text/javascript">
+	
+		$("#all_page").show();
+		$("#event_page").hide();
+		$("#notice_page").hide();
 		$(document).ready(function() {
 			if(${login_info.mgr_yn == 0}){
 				$("#write_area").hide();
@@ -157,6 +231,17 @@
 				$("#write_area").hide();
 			}
 			
-		});//ready
+			$("#notice_list").click(function() {
+				$("#all_page").hide();
+				$("#notice_page").show();
+				$("#event_page").hide();
+			});
+			$("#event_list").click(function() {
+				$("#all_page").hide();
+				$("#event_page").show();
+				$("#notice_page").hide();
+			});
+			
+		});
 	</script>
 </html>

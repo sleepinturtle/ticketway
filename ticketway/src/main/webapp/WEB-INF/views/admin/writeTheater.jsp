@@ -45,10 +45,10 @@
 	
 
 	<!-- 영화 등록 페이지 -->
-	<div class="container">
+	<div class="container"><br>
 		<h2>영화 등록</h2>
 
-		<span>모든 항목은 필수 입력입니다.</span><br><br>
+		<br><span>모든 항목은 필수 입력입니다.</span><br><br>
 		<div class="row text-center">
 			<div class="col-sm-12" align="center">
 			<form action="writeMovieOk" method="post" enctype="multipart/form-data">
@@ -86,17 +86,17 @@
 					<td><textarea class="form-control" rows="5" name="mov_intro"></textarea></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-sm-12">포스터</label></td>
+					<td><label class="control-label col-sm-12">썸네일</label></td>
 					<td><input type="file" class="form-control" name="mov_poster"></td>
 				</tr>
 				<tr>
-					<td><label class="control-label col-sm-12">스틸컷1</label></td>
+					<td><label class="control-label col-sm-12">공연정보</label></td>
 					<td><input type="file" class="form-control" name="mov_still1"></td>
 				</tr>
-				<tr>
-					<td><label class="control-label col-sm-12">스틸컷2</label></td>
-					<td><input type="file" class="form-control" name="mov_still2"></td>
-				</tr>
+<!-- 				<tr> -->
+<!-- 					<td><label class="control-label col-sm-12">스틸컷2</label></td> -->
+<!-- 					<td><input type="file" class="form-control" name="mov_still2"></td> -->
+<!-- 				</tr> -->
 <!-- 				<tr> -->
 <!-- 					<td><label class="control-label col-sm-12">스틸컷3</label></td> -->
 <!-- 					<td><input type="file" class="form-control" name="mov_still3"></td> -->
