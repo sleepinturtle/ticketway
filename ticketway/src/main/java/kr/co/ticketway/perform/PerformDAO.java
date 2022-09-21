@@ -30,6 +30,21 @@ public class PerformDAO {
 		return dto;
 	}
 
-	
+	public List<ReviewDTO> review(String play_no) {
+		List<ReviewDTO> dto1 = session.selectList("PerformMapper.review", play_no);
+		return dto1;
+	}
+
+	public int replyInsert(ReviewDTO dto) {
+		int successCount = 0;
+		successCount = session.insert("PerformMapper.reviewInsert", dto);
+		System.out.println(successCount);
+		return successCount;
+	}
+
+	public PerformDTO thtmap(String play_no) {
+		PerformDTO dto = session.selectOne("KakaoMapMapper.selectTht", play_no);
+		return dto;
+	}
 
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.gson.Gson;
 
-import kr.co.ticketway.util.dto.MemberDTO;
+import kr.co.ticketway.perform.PerformDTO;
 
 @Controller
 @RequestMapping(value = "/map/kakao")
@@ -26,9 +26,9 @@ public class KakaoMapController {
 	@RequestMapping(value = "/step3", method = RequestMethod.GET)
 	public String step3(Model model) {
 
-		List<MemberDTO> list = null;
-		list = service.selectAllMember();
-		model.addAttribute( "list", new Gson().toJson(list) );
+		PerformDTO dto = null;
+		dto = service.selectTht();
+		model.addAttribute( "dto", dto );
 
 		return "map/kakao/step3";//jsp file name
 

@@ -30,6 +30,24 @@ public class PerformService {
 		return dto;
 	}
 
+	public List<ReviewDTO> review(String play_no) {
+		List<ReviewDTO> dto1 = null;
+		dto1 = dao.review(play_no);
+		return dto1;
+	}
+
+	public int replyInsert(ReviewDTO dto) {
+		int successCount = 0;
+		successCount = dao.replyInsert( dto );
+		return successCount;
+	}
+	
+	public PerformDTO thtmap(String play_no) {
+		PerformDTO dto = null;
+		dto = dao.thtmap(play_no);
+		return dto;
+	}
+
 	
 
 }
