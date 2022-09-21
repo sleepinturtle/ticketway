@@ -5,11 +5,14 @@
 
 <mapper namespace="KakaoMapMapper">
 
-	<select id="selectAllMember" resultType="kr.co.ticketway.util.dto.MemberDTO">
-	select mno, mid, mpwd, tel, email, mdate
-		, service_agree, info_agree, sms_agree, email_agree
-		, post_code, addr1, addr2
-	from member
+	<select id="selectTht" resultType="kr.co.ticketway.perform.PerformDTO">
+	select ti.tht_no, ti.tht_name, ti.tht_addr, ti.lt_num, ti.la_num
+	,ps.play_no
+	from tht_info ti ,play_schedule ps
+	where ps.play_no = #{play_no}
+	and ps.tht_no = ti.tht_no
+	Group by ps.tht_no
+	having count(*)>1
 	</select>
 
 </mapper>

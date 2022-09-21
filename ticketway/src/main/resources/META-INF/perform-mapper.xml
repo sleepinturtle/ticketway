@@ -54,6 +54,22 @@
     having count(*)>1;
 	</select>
 	
+	<select id="review" parameterType="java.lang.String" resultType="kr.co.ticketway.perform.ReviewDTO">
+	select r.cmt_no, r.mno, r.play_no, r.cmt_cnts, r.rating, r.cmt_date
+	, m.mid
+	from review r, play_info pf, member m
+	where r.play_no = #{play_no}
+    and r.play_no = pf.play_no
+	and m.mno = r.mno
+	</select>
+	
+	<insert id="reviewInsert" parameterType="kr.co.ticketway.perform.ReviewDTO">
+	insert into review (mno, play_no, cmt_cnts, cmt_date)
+	values (#{mno}, #{play_no}, #{cmt_cnts}, now())
+	</insert>
+	
+	
+	
 <!-- 	<select id="detail" parameterType="java.lang.String" resultType="kr.co.ticketway.perform.PerformDTO"> -->
 <!-- 	select play_no, play_title, genre, play_desc, rated, book_cnt_total, play_thumbnail, seat_price_code from play_info -->
 <!-- 	where play_no = #{play_no} -->

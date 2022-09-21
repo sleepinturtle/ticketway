@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.ticketway.util.dto.MemberDTO;
+import kr.co.ticketway.perform.PerformDTO;
 
 @Service
 public class KakaoMapService {
@@ -13,10 +13,10 @@ public class KakaoMapService {
 	@Autowired
 	private KakaoMapDAO dao;
 
-	public List<MemberDTO> selectAllMember() {
-		List<MemberDTO> list = null;
-		list = dao.selectAllMember();
-		return list;
+	public PerformDTO selectTht() {
+		PerformDTO dto= null;
+		dto = dao.selectTht();
+		return dto;
 	}//selectAllMember
 
 }//class
