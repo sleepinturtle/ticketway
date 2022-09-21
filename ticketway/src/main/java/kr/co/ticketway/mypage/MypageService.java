@@ -1,6 +1,7 @@
 package kr.co.ticketway.mypage;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,10 +35,19 @@ public class MypageService {
 	
 	
 	public MemberDTO detail( String mno ) {
-		dao.detail( mno );
-
-		MemberDTO dto = null;
-		dto = dao.detail( mno );
+		MemberDTO dto = dao.detail( mno );
+		String[] result = dto.getEmail().split("@");
+		String[] telresult = dto.getMtel().split("-");
+		dto.setEmail1(result[0]);
+		dto.setEmail2(result[1]);
+		dto.setTel1(telresult[0]);
+		dto.setTel2(telresult[1]);
+		dto.setTel3(telresult[2]);
+		return dto;
+	}//detail
+	
+	public MemberDTO list( String mno ) {
+		MemberDTO dto = dao.list( mno );
 		return dto;
 	}//detail
 
