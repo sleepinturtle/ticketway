@@ -12,6 +12,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 		<!-- CSS파일 -->
    <link rel="stylesheet" href="${path }/resources/css/ksh.css">
+   <link rel="stylesheet" href="${path }/resources/css/bki2.css">
 	</head>
 	<body>
 	<%@ include file="/WEB-INF/views/header.jsp" %>
@@ -112,49 +113,43 @@
             </a>
         </div>
     </header>
-    <div class="container py-4 py-xl-5">
-        <div class="row mb-5" style="background: linear-gradient(120deg, #dda4cd, #afc3f5);">
-            <div class="col-md-8 col-xl-6 text-center mx-auto">
-                <h2>연극 예매 순위</h2>
-                <p class="w-lg-50">본 데이터는 TicketWay 기준입니다.</p>
-            </div>
-        </div>
-        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-            <div class="col">
-                <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
-                    <div class="card-body p-4">
-                        <h4 class="card-title">제목</h4>
-                        <p class="card-text">내용</p>
-                        <div class="d-flex">
-                            <div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
-                    <div class="card-body p-4">
-                        <h4 class="card-title">제목<br /></h4>
-                        <p class="card-text">내용<br /></p>
-                        <div class="d-flex">
-                            <div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" />
-                    <div class="card-body p-4">
-                        <h4 class="card-title">제목<br /></h4>
-                        <p class="card-text">내용<br /></p>
-                        <div class="d-flex">
-                            <div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <section class="common_section section_list_ranking">
+		<div class="common_inner">
+			<div class="section_heading">
+			<h2 class="section_title">랭킹</h2>
+				<a class="btn_hyperlink" href="#box1">전체보기</a>
+			</div>
+			<div class="ranking_filter">
+				<div class="common_tab type_capsule">
+				</div>
+			</div>
+			<div class="product_grid" style="">
+				<ul class="product_grid_list type_col5">
+				 <c:forEach var="dto" items="${list}" end="4" varStatus="status">
+				 <c:set var = "i" value="${i+1}"/>
+					<li class="product_grid_item">
+						<div class="product_grid_unit">
+							<a class="product_link" href="${path}/perform/detail?play_no=${dto.play_no}">
+								<div class="product_imgbox">
+									<span class="product_ranking">
+										
+										<span class="product_rank">${i}<span class="blind">위</span></span>
+										
+									</span>
+									<img class="product_img" alt="상품 이미지" src="${dto.play_thumbnail}">
+								</div>
+								<div class="product_info">
+									<span class="product_title">${dto.play_title}</span>
+									<div class="product_sideinfo"><span class="product_period">${dto.open_date}~${dto.close_date}</span></div>
+								</div>
+							</a>
+						</div>
+					</li>
+				</c:forEach>
+				</ul>
+			</div>
+		</div>
+	</section>
     <div class="container py-4 py-xl-5">
         <div class="row mb-5" style="background: linear-gradient(120deg, #dda4cd, #afc3f5);">
             <div class="col-md-8 col-xl-6 text-center mx-auto">

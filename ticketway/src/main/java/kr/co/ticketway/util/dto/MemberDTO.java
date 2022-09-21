@@ -21,9 +21,27 @@ public class MemberDTO {
 	private String mbday;
 	private String cert1;
 	private String cert2;
-	private String del_yn;
-	private String mgr_yn;
+	private int del_yn;
+	private int mgr_yn;
 	
+	
+	
+	public int getDel_yn() {
+		return del_yn;
+	}
+
+	public void setDel_yn(int del_yn) {
+		this.del_yn = del_yn;
+	}
+
+	public int getMgr_yn() {
+		return mgr_yn;
+	}
+
+	public void setMgr_yn(int mgr_yn) {
+		this.mgr_yn = mgr_yn;
+	}
+
 	public String getMname() {
 		return mname;
 	}
@@ -65,21 +83,7 @@ public class MemberDTO {
 		this.cert2 = cert2;
 	}
 
-	public String getDel_yn() {
-		return del_yn;
-	}
-
-	public void setDel_yn(String del_yn) {
-		this.del_yn = del_yn;
-	}
-
-	public String getMgr_yn() {
-		return mgr_yn;
-	}
-
-	public void setMgr_yn(String mgr_yn) {
-		this.mgr_yn = mgr_yn;
-	}
+	
 
 	public String getMpost() {
 		return mpost;

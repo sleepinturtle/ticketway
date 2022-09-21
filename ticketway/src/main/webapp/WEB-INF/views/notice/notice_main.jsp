@@ -70,12 +70,12 @@
 		    
 		</div>
 		
-		<div class="row" style="justify-content : center;">
-			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/notice_main" id="all">전체</a>
-			<a class="btn btn-light btn-lg class_btn" id="notice_list" href="${pageContext.request.contextPath}/notice/notice_list">공지사항</a>
-			<a class="btn btn-light btn-lg class_btn" id="event_list" href="${pageContext.request.contextPath}/notice/event_list">이벤트</a>
-			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/qna_main">Q&A</a>
-			<a class="btn btn-light btn-lg class_btn" href="${pageContext.request.contextPath}/notice/faq">FAQ</a>
+		<div class="row notice_tab" style="justify-content : center;">
+			<a class="btn btn-light btn-lg class_btn notice_menu active" href="${pageContext.request.contextPath}/notice/notice_main" id="all">전체</a>
+			<a class="btn btn-light btn-lg class_btn notice_menu active" id="notice_list" href="${pageContext.request.contextPath}/notice/notice_list">공지사항</a>
+			<a class="btn btn-light btn-lg class_btn notice_menu active" id="event_list" href="${pageContext.request.contextPath}/notice/event_list">이벤트</a>
+			<a class="btn btn-light btn-lg class_btn notice_menu active" href="${pageContext.request.contextPath}/notice/qna_main">Q&A</a>
+			<a class="btn btn-light btn-lg class_btn notice_menu active" href="${pageContext.request.contextPath}/notice/faq">FAQ</a>
 		</div>
 		
 		<div class="container mt-3">

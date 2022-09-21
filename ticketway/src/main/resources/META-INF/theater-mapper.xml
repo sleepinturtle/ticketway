@@ -12,15 +12,33 @@
       	play_info.play_no, play_info.play_title, play_info.genre, play_info.rated, play_schedule.runtime
       FROM play_info
       INNER JOIN play_schedule ON play_info.play_title=play_schedule.play_title
+      GROUP BY play_info.play_no
+      having count(*)>1
+      ORDER BY play_info.play_no desc
    
    </select>
    
-   <select id="memberList" resultType="kr.co.ticketway.theater.TheaterAdminDTO">
+   <select id="memberList" resultType="kr.co.ticketway.util.dto.MemberDTO">
       
       SELECT
-      	play_info.play_no, play_info.play_title, play_info.genre, play_info.rated, play_schedule.runtime
-      FROM play_info
-      INNER JOIN play_schedule ON play_info.play_title=play_schedule.play_title
+      	mno, mid, mname, mbday, mtel, email
+      FROM member
+   
+   </select>
+   
+   <update id="update" parameterType="kr.co.ticketway.theater.TheaterAdminDTO">
+   	
+   	UPDATE
+   		
+	update freeboard set title = #{title}, writer = #{writer}, contents = #{contents}
+	where board_no = #{board_no} and pwd = #{pwd}
+	</update>
+	
+	<select id="ticketing" resultType="kr.co.ticketway.theater.TheaterAdminDTO">
+      
+      SELECT
+      	play_info.play_title, tht_info.tht_name, play_schedule.play_date
+      FROM play_info, tht_info, play_schedule
    
    </select>
 	

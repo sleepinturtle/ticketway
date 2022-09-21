@@ -15,11 +15,5 @@ public class MemberAdminController {
 	@Autowired
 	private TheaterService service;
 
-   @RequestMapping(value = "/managerMemberList", method = RequestMethod.GET)
-   public String plist(Model model ) {
-		List<TheaterAdminDTO> list = null;
-		list = service.plist();
-		model.addAttribute("list", list);
-		return "admin/managerMemberList";//jsp file name
-	}//list
+   
 }
