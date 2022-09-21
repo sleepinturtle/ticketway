@@ -6,10 +6,7 @@
    <head>
       <title> 마이페이지  </title>
       <meta charset="utf-8"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+ 
    <style>
          * {
          margin: 0 auto;
@@ -51,6 +48,7 @@
          margin-right: 3%;
       }
       </style>
+       <%@ include file="/WEB-INF/views/header.jsp" %>
    </head>
    <body class="left-sidebar is-preload">
    <div class="container"><!-- container start -->
@@ -59,7 +57,7 @@
             <div id="header">
                   </div>
                </div>
-              <%@ include file="/WEB-INF/views/header.jsp" %>
+             
       <h1 style="font-family:Georgia;"> M Y P A G E </h1>
       <br><br>
                      <div>
@@ -69,7 +67,7 @@
                                     
                                        <div class="text-center">   
                                        <header>
-                              <h1><a href="#">회원 정보</a></h1>
+                              <h1>회원 정보</h1>
                            </header>
                            </div>
                            
@@ -77,54 +75,80 @@
                                  <table class="table table-hover">
                                        <tbody>
                                                    <tr>
-                                                      <td><h5 style="color:gray;"> 회원 번호  :  ${login_info.mno} </h5></td>   
                                                       <td> <h5 style="color:gray;">회원 아이디  : ${login_info.mid}</h5></td>   
                                                    </tr>
                                                    <tr>
-                                                      <td><h5 style="color:gray;"> 비 밀 번 호  :  ${login_info.mpwd}</h5></td>   
                                                       <td><h5 style="color:gray;"> 전 화 번 호  : ${login_info.mtel} </h5></td>   
                                                    </tr>
                                                    <tr>
                                                       <td><h5 style="color:gray;"> email : ${login_info.email}</h5></td>    
-                                                      <td> <h5 style="color:gray;"> 주소  : ${login_info.maddr}</h5></td>      
                                                    </tr>
+                                                   <tr>
+                                                      <td> <h5 style="color:gray;"> 주소  : ${login_info.maddr}</h5></td>      
+                                       			   </tr>
                                        </tbody>
                                        
                                  </table>
                                  
-                                          <a href="${pageContext.request.contextPath}/mypage/update_form?mno=${login_info.mno}">
-                                          <button class="btn btn-dark float-right btn-lg"> 회원 정보 수정  </button>
-                                          </a>
+                                         
                                           
                                           
                                        
                                  
                            </div>
                         </div>
+                        <div class="row">
+                        	 <a class="btn btn-info" href="${pageContext.request.contextPath}/mypage/update_form?mno=${login_info.mno}" style="justify-content: center;">
+                                                                                    회원 정보 수정 
+                             </a>
+                        </div>
       <!-- 회원 정보 end -->
          <!-- 신용카드 정보 start -->
          <br>
-         <h1><a href="#">신용카드 정보</a></h1>
-         <div class=" col-5" >
-            <iframe src="${pageContext.request.contextPath}/mypage/list_credit_card" title="test"
-            width="100%" height="210" frameborder=0 framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0></iframe>
-            <div class="text-right mb-2">
-               <a href="${pageContext.request.contextPath}/card_info/form">
-                  <button type="button" class="btn btn-dark">
-                     신용카드 정보 변경 바로가기
-                  </button>
-               </a>
-            </div>
+         <div class="container" >
+         <h1>신용카드 정보</h1>
+         <a class="btn btn-primary" href="${pageContext.request.contextPath}/card_info/form?mno=${login_info.mno}">
+         	신용카드 등록하기
+         </a>
+         <div class="clearfix">
+           		<c:forEach var="card_info" items="${cardlist}" varStatus="status">  
+           			<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">${card_info.card_name}</h5>
+							<p class="card-text">카드 번호 : ${card_info.card_num}</p>
+							<p class="card-text">유효 기간 (MM/YY) : ${card_info.exp_date1} / ${card_info.exp_date2}</p>
+						</div>
+					</div>
+					<button class="card_delete_btn btn btn-danger btn-sm" value="${card_info.card_no}"> X </button>
+           		</c:forEach>
+         </div>
          </div>
          <br><br>
          <!-- 신용카드 정보 end -->
         
-      <br><br>
       
-      <br><br><br><br>
-   <%@ include file="/WEB-INF/views/footer.jsp" %>
-   <br><br><br><br>
-
          </div><!-- container end -->
    </body>
+   <script type="text/javascript">
+	$(document).ready(function() {
+		$(".card_delete_btn").click(function() {
+
+			$.get(
+					"${pageContext.request.contextPath}/card_info/delete"
+					, {
+						card_no : $(this).val()
+					}
+					, function(data, status) {
+						if(data >= 1){
+							alert("신용 카드를 삭제 하였습니다.");
+							location.href="${pageContext.request.contextPath}/card_info/form";
+						} else {
+							alert("신용 카드 삭제를 실패 하였습니다.");
+						}
+					}//call back function
+			);//get
+
+		});//click
+	});//ready
+	</script>
 </html>

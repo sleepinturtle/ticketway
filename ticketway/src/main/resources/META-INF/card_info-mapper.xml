@@ -24,12 +24,11 @@
 	select cc.card_no, cc.card_name, cc.mno
 			, concat(left(cc.card_num, 5), '****-****', right(cc.card_num, 5)) card_num
 			, cc.exp_date1, cc.exp_date2
-			, cc.cvc_code, cc.card_pwd, cc.used_date, cc.reg_date
+			, cc.cvc_code, cc.card_pwd, cc.reg_date
 	from card_info cc, member m
-	where cc.mno = #{mno}
+	where cc.mno = 3
 	and cc.del_yn = 0
-	and cc.mno = m.mno
-	order by cc.used_date desc
+	and cc.mno = m.mno;
 	</select>
 
 </mapper>

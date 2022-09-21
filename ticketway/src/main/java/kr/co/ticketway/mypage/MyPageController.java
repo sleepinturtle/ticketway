@@ -39,8 +39,7 @@ public class MyPageController {
 		List<Card_infoDTO> cardlist = null;
 		cardlist = creditCardService.list( ( (MemberDTO) session.getAttribute("login_info") ).getMno() );
 		model.addAttribute("cardlist", cardlist);
-
-		return "/mypage/list_credit_card";
+		return "/card_info/form";
 	}//listCreditCard
 
 	
@@ -67,9 +66,11 @@ public class MyPageController {
 	
 	
 	@RequestMapping( value = "/list", method = RequestMethod.GET )
-	public String detail( String mno, Model model ) {
-		MemberDTO dto = null;
-		dto = service.detail( mno );
+	public String detail( String mno, Model model, HttpSession session, MemberDTO dto) {
+		MemberDTO mDto = (MemberDTO) session.getAttribute("login_info");
+		dto.setMno( mDto.getMno() );
+		
+		dto = service.list( mno );
 		model.addAttribute("detail_dto", dto);
 		return "mypage/list";//jsp file name
 	}//detail

@@ -9,13 +9,19 @@
     
     <update id="update" parameterType="kr.co.ticketway.util.dto.MemberDTO">
 	update member
-	set mid = #{mid},mname = #{mname}, mpwd = #{mpwd}, mtel = #{mtel}, email = #{email}, mpost = #{mpost}, maddr = #{maddr}, maddr1 = #{maddr1} 
+	set mpwd = #{mpwd}, mtel = #{mtel}, email = #{email}, mpost = #{mpost}, maddr = #{maddr}, maddr1 = #{maddr1} 
 	where mno = #{mno}
 	</update>
 	
 
 
 	<select id="detail" parameterType="java.lang.String" resultType="kr.co.ticketway.util.dto.MemberDTO">
+	select mno, mid, mname, mtel, email, maddr, maddr1, mpost
+	from member 
+	where mno = #{mno}
+	</select>
+	
+	<select id="list" parameterType="java.lang.String" resultType="kr.co.ticketway.util.dto.MemberDTO">
 	select mno, mid, mname, mpwd, mtel, email, maddr
 	from member 
 	where mno = #{mno}

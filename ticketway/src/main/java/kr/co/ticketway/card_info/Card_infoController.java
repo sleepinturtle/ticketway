@@ -53,7 +53,6 @@ public class Card_infoController {
 		DateFormat dateFormat = new SimpleDateFormat("YYYY");
 		String yearString = dateFormat.format(date);
 		model.addAttribute("yearString", yearString);
-
 		List<Card_infoDTO> list = null;
 		list = service.list( ( (MemberDTO) session.getAttribute("login_info") ).getMno() );
 		model.addAttribute("list", list);
