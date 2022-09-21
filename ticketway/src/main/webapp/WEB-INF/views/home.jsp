@@ -48,7 +48,7 @@
                         <a href="#" class="contactus-btn" data-toggle="modal"
                         data-target="#videoModal"
                         data-theVideo="https://www.youtube.com/embed/loFtozxZG0s">VIDEO</a>
-                     
+                     aacaaa★
                       -->
                       <a href="${path}/perform/detail?play_no=16" class="contactus-btn">상세정보</a>
 
