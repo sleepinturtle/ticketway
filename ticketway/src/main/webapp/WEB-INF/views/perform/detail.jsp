@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>${play_title }</title>
+		<title>공연 상세</title>
 		
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css">
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat&amp;display=swap"rel="stylesheet">
@@ -16,7 +16,34 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
 		<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Bowlby+One+SC&family=Bungee&family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7e4f4cc76471ea0fe9709d546ba5954b&libraries=services"></script>
 	</head>
+	
+	<style>
+	.star {
+    position: relative;
+    font-size: 2rem;
+    color: #ddd;
+  }
+  
+  .star input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .star span {
+    width: 0;
+    position: absolute; 
+    left: 0;
+    color: red;
+    overflow: hidden;
+    pointer-events: none;
+  }
+	</style>
 <body>
 		<%@ include file="/WEB-INF/views/header.jsp" %>
 		
@@ -83,7 +110,47 @@
 		</div>
 		<div class="product_detail_option">0</div>
 	</section>
+	
+		<div id="map" class="container col-5" style="width:100%;height:500px;"></div>
+	
+							<script type="text/javascript">
+					
+								//step 1 : 지도 생성
+								var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+								var options = { //지도를 생성할 때 필요한 기본 옵션
+										center: new kakao.maps.LatLng("${tht.lt_num}", "${tht.la_num}"), //지도의 중심좌표.
+									level: 3 //지도의 레벨(확대, 축소 정도)
+								};
+						
+								var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+						
+								var markerPosition  = new kakao.maps.LatLng("${tht.lt_num}", "${tht.la_num}"); 
+								
+								// 마커가 표시될 위치입니다 
+						
+								// 마커를 생성합니다
+								var marker = new kakao.maps.Marker({
+								    position: markerPosition
+								});
+						
+								// 마커가 지도 위에 표시되도록 설정합니다
+								marker.setMap(map);
+								
+								var iwContent = '<div style="padding:0px;">${tht.tht_name}</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+							    iwPosition = new kakao.maps.LatLng("${tht.lt_num}", "${tht.la_num}"); //인포윈도우 표시 위치입니다
+						
+							// 인포윈도우를 생성합니다
+							var infowindow = new kakao.maps.InfoWindow({
+							    position : iwPosition, 
+							    content : iwContent 
+							});
+							  
+							// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+							infowindow.open(map, marker)
+						</script>
 	<hr>
+	
+	
 	
 	<!-- 공연 관련 정보 -->
 	<div class="container py-5">
@@ -95,9 +162,12 @@
 	        </ul>
 	        <div id="myTab2Content" class="tab-content">
 	        	
+				      
+				  
 	        	<!-- tab1 -->
 	            <div id="home2" class="tab-pane fade px-4 py-5 show active text-center" role="tabpanel">
-	                <p><img alt="" src="${play_info.play_spec}"></p>
+	            <p><img alt="" src="${play_info.play_spec}"></p>
+	                
 	            </div>
 	            
 	            <!-- tab2 -->
@@ -105,43 +175,49 @@
 	            	<!-- 댓글입력 + 댓글 표시 -->
 	            	<section class="section_product_tabcont section_product_review" id="productReview">
 	            		<div class="product_content_heading">
-	            			<h2 class="product_content_title">관람후기<span class="text_primary text_number">17</span></h2>
+	            			<h2 class="product_content_title">관람후기<span class="text_primary text_number"> </span></h2>
 	            			<div class="product_star_rate">
-	            			<div class="product_star24">
-	            			<span class="product_star24_per" style="width: 98.8235%;"></span>
-	            			</div>
-	            			<span class="product_star_score"><span class="product_star_current">4.9</span> / 5</span>
+<!-- 	            			<div class="product_star24"> -->
+<!-- <!-- 	            			<span class="product_star24_per" style="width: 98.8235%;"></span> -->
+<!-- 	            			</div> -->
+<!-- 	            			<span class="product_star_score"><span class="product_star_current">4.9</span> / 5</span> -->
 	            			</div>
 	            		</div>
 	            		
 	            	<!-- 댓글입력 + 댓글 표시 -->
 	            		<div class="product_comment_write">
+	            		<input type="hidden" id="play_no" name="play_no" value="${play_info.play_no}">
 		            		<div class="product_comment_form ">
 		            		<!-- 댓글 쓰는 란 -->
 			            		<div class="comment_content">
-				            		<div class="comment_star_rate"><span class="blind">별점 5점 중</span>
-					            		<div class="comment_star_select ">
-						            		<input type="radio" name="star2" id="star2_1" class="star_radio" value="1">
-						            		<label for="star2_1" class="star_label"><span class="blind">1점</span></label>
-						            		<input type="radio" name="star2" id="star2_2" class="star_radio" value="2">
-						            		<label for="star2_2" class="star_label"><span class="blind">2점</span></label>
-						            		<input type="radio" name="star2" id="star2_3" class="star_radio" value="3">
-						            		<label for="star2_3" class="star_label"><span class="blind">3점</span></label>
-						            		<input type="radio" name="star2" id="star2_4" class="star_radio" value="4">
-						            		<label for="star2_4" class="star_label"><span class="blind">4점</span></label>
-						            		<input type="radio" name="star2" id="star2_5" class="star_radio" value="5">
-						            		<label for="star2_5" class="star_label"><span class="blind">5점</span></label>
-					            		</div>
-					            		<p class="comment_star_desc">별점을 선택해주세요.</p>
-				            		</div>
+<!-- 				            		<div class="comment_star_rate"><span class="blind">별점 5점 중</span> -->
+<!-- 					            		<div class="comment_star_select "> -->
+<!-- 						            		<input type="radio" name="star2" id="star2_1" class="star_radio" value="1"> -->
+<!-- 						            		<label for="star2_1" class="star_label"><span class="blind">1점</span></label> -->
+<!-- 						            		<input type="radio" name="star2" id="star2_2" class="star_radio" value="2"> -->
+<!-- 						            		<label for="star2_2" class="star_label"><span class="blind">2점</span></label> -->
+<!-- 						            		<input type="radio" name="star2" id="star2_3" class="star_radio" value="3"> -->
+<!-- 						            		<label for="star2_3" class="star_label"><span class="blind">3점</span></label> -->
+<!-- 						            		<input type="radio" name="star2" id="star2_4" class="star_radio" value="4"> -->
+<!-- 						            		<label for="star2_4" class="star_label"><span class="blind">4점</span></label> -->
+<!-- 						            		<input type="radio" name="star2" id="star2_5" class="star_radio" value="5"> -->
+<!-- 						            		<label for="star2_5" class="star_label"><span class="blind">5점</span></label> -->
+<!-- 					            		</div> -->
+<!-- 											<span class="star"> -->
+<!-- 												  ★★★★★ -->
+<!-- 												  <span>★★★★★</span> -->
+<!-- 												  <input type="range" oninput="drawStar(this)" value="10" step="1" min="0" max="10"> -->
+<!-- 											</span> -->
+<!-- 					            		<p class="comment_star_desc">별점을 선택해주세요.</p> -->
+<!-- 				            		</div> -->
 				            		<div class="comment_input_box">
 					            		<label for="comment_01" class="blind">관람후기 작성란</label>
-				            		<textarea class="comment_textarea" placeholder="관람후기를 남겨보세요!" maxlength="1000" spellcheck="false"></textarea>
+				            		<textarea id="cmt_cnts"  class="comment_textarea" placeholder="관람후기를 남겨보세요!" maxlength="1000" spellcheck="false"></textarea>
 				            		</div>
 			            		</div>
 			            	<!-- 댓글 쓰는 란/ -->
 			            	
-			            	<!-- 댓글창 footer -->
+			            	<!-- 댓글쓰기 footer -->
 			            		<div class="comment_util">
 			            			<div class="comment_util_right">
 			            				<div class="comment_length">
@@ -149,7 +225,7 @@
 			            					<span class="limit_length">/1000</span>
 			            				</div>
 			            				<div class="comment_btn_box">
-			            					<button type="button" class="common_btn btn_secondary btn_small">등록</button>
+			            					<button type="button" id="cmt_btn" class="common_btn btn_secondary btn_small float-right">등록</button>
 			            				</div>
 			            			</div>
 			            		</div>
@@ -157,19 +233,22 @@
 	            		</div>
 	            		
 	            		<!-- 등록된 댓글 -->
+	            		
 	            		<ul class="product_comment_list">
+	            		<c:forEach var="dto" items="${review_info}" varStatus="status">
 	            			<li class="product_comment_item ">
-		            			<div class="product_star14">
-		            				<span class="product_star14_per" style="width: 100%;"></span>
-		            				<span class="blind">별점 5점 중 <span>5</span>점</span>
-		            			</div>
-		            			<p class="product_comment_desc">싶을정도에요!!ㅋㅋㅋ</p>
+<!-- 		            			<div class="product_star14"> -->
+<!-- 		            				<span class="product_star14_per" style="width: 100%;"></span> -->
+<!-- 		            				<span class="blind">별점 5점 중 <span>5</span>점</span> -->
+<!-- 		            			</div> -->
+		            			<p class="product_comment_desc">${dto.cmt_cnts}</p>
 		            			<div class="product_comment_info">
-		            				<span class="comment_id">jo***@na</span>
-		            				<span class="comment_date">2022.08.28 22:18</span>
-		            				<span class="comment_purchaser">예매자</span>
+		            				<span class="comment_id">${dto.mid}</span>
+		            				<span class="comment_date">${dto.cmt_date}</span>
+<!-- 		            				<span class="comment_purchaser">예매자</span> -->
 		            			</div>
 	            			</li>
+	            		</c:forEach>
 	            		</ul>
 	            		<!-- 등록된 댓글 /-->
 	            	</section>
@@ -181,15 +260,18 @@
 	            <div id="contact2" class="tab-pane fade px-4 py-5" role="tabpanel">
 	            	<h3>공연장 정보</h3>
 	            	<hr>
-	                <p class="leade font-italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-	                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	                <p class="leade font-italic mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-	                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	            	장소 : ${play_info.tht_name}-${play_info.hall_name}
+	            	<br>
+	            	주소 : ${play_info.tht_addr}
+	            	
+	            	
 	            </div>
+	            
+	            
 	            <!-- tab3/ -->
 	        </div>
+	        </div>
 	        
-	    </div>
 	</div>
 	<!-- 공연 관련 정보 /-->
 	
@@ -307,4 +389,53 @@
 <!-- 		</section> -->
 	
 </body>
+
+<script type="text/javascript">
+
+		
+	$(document).ready(function() {
+		
+			  
+		
+		
+		 $("#map").hide();
+		
+		$("#cmt_btn").click(function() {
+// 				alert( $("#play_no").val() );
+	//			alert( $("#reply_class").val() );
+// 				alert( $("#cmt_cnts").val() );
+	//			return;
+		
+			$.post(
+					"${pageContext.request.contextPath}/perform/cmt_insert"
+					, {
+						play_no : $("#play_no").val()
+						,cmt_cnts : $("#cmt_cnts").val()
+					}
+					, function(data, status) {
+						alert(1);
+						if(data >= 1){
+							alert("댓글이 등록되었습니다.");
+							window.location.reload();
+						} else {
+							alert("잠시 후 다시 시도해 주세요.");
+						}
+					}//call back functiion
+			);//post
+		});//click
+		
+		$("#contact2-tab").click(function() {
+			$("#map").show();
+		});//click
+		
+		$("#profile2-tab").click(function() {
+			$("#map").hide();
+		});//click
+		
+		$("#home2-tab").click(function() {
+			$("#map").hide();
+		});//click
+		
+	});//ready
+</script>
 </html>

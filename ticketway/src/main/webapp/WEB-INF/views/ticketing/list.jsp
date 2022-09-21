@@ -157,10 +157,16 @@ body {
 
 .movie-part {
     width: 284px;
+    overflow: scroll;
+    overflow-x: hidden;
+    cursor: pointer;
 }
 
 .theater-part {
     width: 264px;
+    overflow: scroll;
+    overflow-x: hidden;
+    cursor: pointer;
 }
 
 .day-part {
@@ -169,6 +175,9 @@ body {
 
 .time-part {
     width: 384px;
+    overflow: scroll;
+    overflow-x: hidden;
+    cursor: pointer;
 }
 
 .sort-wrapper {
@@ -258,11 +267,31 @@ body {
                 <div class="sort-rate sort-selected">예매율순</div>
                 <div class="sort-korean">가나다순</div>
             </div>
-            <div class="movie-list">영화 목록 가져오기 </div>
+            <div class="movie-list">
+            
+	            <c:forEach var="dto" items="${list }">  <%-- request.getAttribute("list") --%>
+					<tr>
+						<td>
+							<a>${dto.play_title }</a>
+							<hr>
+						</td>
+					</tr>
+				</c:forEach>
+            
+             </div>
         </div>
         <div class="theater-part">
             <div class="reserve-title">극장</div>
-            <div></div>
+            <div>
+            	<c:forEach var="dto" items="${list }">  <%-- request.getAttribute("list") --%>
+					<tr>
+						<td>
+							<a>${dto.tht_name }</a>
+							<hr>
+						</td>
+					</tr>
+				</c:forEach>
+            </div>
         </div>
         <div class="day-part">
             <div class="reserve-title">날짜</div>
@@ -270,7 +299,16 @@ body {
         </div>
         <div class="time-part">
             <div class="reserve-title">시간</div>
-          
+          	<div>
+          		<c:forEach var="dto" items="${list }">  <%-- request.getAttribute("list") --%>
+					<tr>
+						<td>
+							<a>${dto.play_date }</a>
+							<hr>
+						</td>
+					</tr>
+				</c:forEach>
+          	</div>
         </div>
 
         </div>

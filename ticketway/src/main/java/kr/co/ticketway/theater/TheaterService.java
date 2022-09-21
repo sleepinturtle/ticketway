@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import kr.co.ticketway.board.member.MemberBoardDTO;
 import kr.co.ticketway.theater.TheaterAdminDAO;
 import kr.co.ticketway.theater.TheaterAdminDTO;
+import kr.co.ticketway.util.dto.MemberDTO;
 
 @Service
 public class TheaterService {
@@ -19,9 +21,25 @@ public class TheaterService {
 	
 	public List<TheaterAdminDTO> plist() {
 		List<TheaterAdminDTO> list = null;
-		System.out.println("서비스1");
 		list = dao.plist();
-		System.out.println("서비스2");
+		return list;
+	}
+	
+	public List<MemberDTO> memberList() {
+		List<MemberDTO> list = null;
+		list = dao.memberList();
+		return list;
+	}
+	
+	public int update( TheaterAdminDTO dto ) {
+		int successCount = 0;
+		successCount = dao.update( dto );
+		return successCount;
+	}//update
+	
+	public List<TheaterAdminDTO> ticketing() {
+		List<TheaterAdminDTO> list = null;
+		list = dao.ticketing();
 		return list;
 	}
 	

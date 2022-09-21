@@ -73,61 +73,28 @@ TICKET WAY  관리자 회원 관리
     <th scope="col">생년월일</th>
     <th scope="col">전화번호</th>
     <th scope="col">이메일</th>
-    <th scope="col">가입일자</th>
-    <th scope="col">Actions</th>
+    <th scope="col">수정 / 삭제</th>
 </tr>
   </thead>
   <tbody>
-      <c:choose>
-         <c:when test="${empty list || fn:length(list) == 0 }">
-         </c:when>
-
-         <c:otherwise>
+      
             <c:forEach var="dto" items="${list }" varStatus="status" >  <%-- request.getAttribute("list") --%>
                <tr>
-                  <td>${status.index+1 }</td>
-                  <td>${dto.mem_id }</td>
-                  <td>${dto.mem_name }</td>
-                  <td>${dto.mem_birth }</td>
-                  <td>${dto.mem_phone }</td>
-                  <td>${dto.mem_email }</td>
-                  <td>${dto.mem_regDate }</td>
+<%--                   <td>${status.index+1 }</td> --%>
+                  <td>${dto.mno }</td>
+                  <td>${dto.mid }</td>
+                  <td>${dto.mname }</td>
+                  <td>${dto.mbday }</td>
+                  <td>${dto.mtel }</td>
+                  <td>${dto.email }</td>와
                   <form action="updateUserData">
-                  <input type="hidden" name="mem_uid" value="${dto.mem_uid }"/>
+<%--                   <input type="hidden" name="mem_uid" value="${dto.mem_uid }"/> --%>
                   <td><button  type="submit" class="btn btn-outline-secondary btn-sm">수정</button>
                   </form>
                   &nbsp;
                   <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#staticBackdrop${status.index }">삭제</button></td>
-                  
-                  
-                  
-                  <!-- Modal -->
-                  <div class="modal fade" id="staticBackdrop${status.index }" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="staticBackdropLabel">회원정보 관리</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                               회원의 정보를 삭제하시겠습니까?
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                          <form action="deleteUserDataOk">
-                          <input type="hidden" name="mem_uid" value="${dto.mem_uid }"/>
-                          <button type="submit" class="btn btn-primary">삭제하기</button>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>         
                </tr>
             </c:forEach>
-         </c:otherwise>
-      </c:choose>
   </tbody>
   
 

@@ -9,7 +9,7 @@
 	</head>
 	<body>
 	
-		<div class="container" style="justify-content: center;">
+		<div class="container" style="justify-content: center; margin-top:10%; width:500px">
 		<hr>
 		<h3> 로그인 </h3>
 		<hr>

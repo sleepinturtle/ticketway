@@ -64,7 +64,7 @@
 		<div class="row" >
 			<div class="col-sm-12">
 			<div align="right">
-			<button type="button" class="btn btn-secondary"  id = "movieBtn" onclick="location.href='${pageContext.request.contextPath }/movieAdmin/writeMovie'">공연 등록</button>
+			<button type="button" class="btn btn-secondary"  id = "movieBtn" onclick="location.href='${pageContext.request.contextPath }/theaterAdmin/write_form'">공연 등록</button>
 			</div>
 			<br>
 				<table class="table table-hover" id = "listTable" style = "width: 1111px">
@@ -91,8 +91,8 @@
 <%-- 						<td>${dto.thta_openDate }</td> --%>
 						<td>${dto.rated }</td>
 						<td>${dto.runtime }</td>
-						<td><button class="btn btn-outline-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath }/theaterAdmin/updateMovie?mov_num=${dto.play_no }'">수정</button>
-						<button class="btn btn-outline-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath }/theaterAdmin/deleteMovieOk?mov_num=${dto.play_no }'">삭제</button></td>				
+						<td><button class="btn btn-outline-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath }/theaterAdmin/update_form?play_no=${dto.play_no }'">수정</button>
+						<button class="btn btn-outline-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath }/theaterAdmin/deleteMovieOk?play_no=${dto.play_no }'">삭제</button></td>				
 					</tr>
 				</c:forEach>
 					</tbody>
