@@ -118,8 +118,8 @@
 				</table>
 			</div>
 		</div>
-		<a class="btn btn-warning ml-5" href="${pageContext.request.contextPath}/mypage/list">뒤로 가기</a>
 		<hr>
+		<a class="btn btn-warning ml-5" href="${pageContext.request.contextPath}/mypage/list">뒤로 가기</a>
 
 	<script type="text/javascript">
 	$(document).ready(function() {
