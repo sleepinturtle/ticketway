@@ -5,19 +5,17 @@
 	<head>
 		<meta charset="UTF-8">
 		<title> 신 용 카 드 추 가 </title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+		
 		<style type="text/css">
 		.write_label {
 			font-size : 0.7em;
 			color : red;
 		}
 		</style>
+		<%@ include file="/WEB-INF/views/header.jsp" %>
 	</head>
 	<body>
-	<%@ include file="/WEB-INF/views/header.jsp" %>
+	
 		<hr>
 		<h3> 신 용 카 드 추 가 </h3>
 		<hr>
@@ -121,7 +119,7 @@
 			</div>
 		</div>
 		<hr>
-	<%@ include file="/WEB-INF/views/footer.jsp" %>
+		<a class="btn btn-warning ml-5" href="${pageContext.request.contextPath}/mypage/list">뒤로 가기</a>
 
 	<script type="text/javascript">
 	$(document).ready(function() {

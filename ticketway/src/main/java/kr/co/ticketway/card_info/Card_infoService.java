@@ -23,10 +23,16 @@ public class Card_infoService {
 		return successCount;
 	}//write
 
-	public List<Card_infoDTO> list( String mno ) {
+	public List<Card_infoDTO> list(String mno) {
 		List<Card_infoDTO> list = null;
-		list = dao.list( mno );
+		list = dao.list(mno);
 		return list;
+	}//list
+	
+	public List<Card_infoDTO> cardlist(String mno) {
+		List<Card_infoDTO> cardlist = null;
+		cardlist = dao.cardlist(mno);
+		return cardlist;
 	}//list
 
 }//class

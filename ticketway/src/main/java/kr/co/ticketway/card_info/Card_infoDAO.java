@@ -24,10 +24,16 @@ public class Card_infoDAO {
 		return successCount;
 	}//insert
 
-	public List<Card_infoDTO> list( String mno ) {
+	public List<Card_infoDTO> list(String mno) {
 		List<Card_infoDTO> list = null;
 		list = sqlSession.selectList("Card_infoMapper.list", mno);
 		return list;
+	}//list
+	
+	public List<Card_infoDTO> cardlist(String mno) {
+		List<Card_infoDTO> cardlist = null;
+		cardlist = sqlSession.selectList("Card_infoMapper.cardlist", mno);
+		return cardlist;
 	}//list
 
 }//class
