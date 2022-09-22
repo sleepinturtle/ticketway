@@ -287,7 +287,7 @@ body {
             	<c:forEach var="dto" items="${list }">  <%-- request.getAttribute("list") --%>
 					<tr>
 						<td>
-							<a>${dto.tht_name }</a>
+							<a href="#">${dto.tht_name }</a>
 							<hr>
 						</td>
 					</tr>

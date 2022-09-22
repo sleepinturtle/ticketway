@@ -413,7 +413,6 @@
 						,cmt_cnts : $("#cmt_cnts").val()
 					}
 					, function(data, status) {
-						alert(1);
 						if(data >= 1){
 							alert("댓글이 등록되었습니다.");
 							window.location.reload();

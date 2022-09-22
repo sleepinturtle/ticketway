@@ -40,4 +40,10 @@ public class TheaterAdminDAO {
 		return list;
 	}
 	
+	public int write( TheaterAdminDTO dto) {
+		int successCount = 0;
+		successCount = session.insert("TheaterMapper.write", dto);
+		return successCount;
+	}//write
+	
 }

@@ -41,5 +41,10 @@
       FROM play_info, tht_info, play_schedule
    
    </select>
+   
+   <insert id="write" parameterType="kr.co.ticketway.theater.TheaterAdminDTO">
+	INSERT INTO play_info ( play_title, genre, rated )
+	values ( #{play_title}, #{genre}, #{rated} )
+	</insert>
 	
 </mapper>
