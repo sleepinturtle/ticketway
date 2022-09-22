@@ -60,20 +60,25 @@
 							
 						</div>
 					</li>
-					<c:choose>
+					
+					
+
+				</ul>
+				<div class="float-right" style="margin-left: 2000px;">
+				<c:choose>
 						<c:when test="${login_info != null && login_info.mid != null}">
 						${login_info.mid}
 							<div class="btn-group">
-								<a href="${pageContext.request.contextPath}/mypage/list">
+								<a class="btn btn-primary" href="${pageContext.request.contextPath}/mypage/list">
 									<button type="button" class="btn btn-link btn-sm">마이페이지</button>
 								</a>
-								<a href="${pageContext.request.contextPath}/">
+								<a class="btn btn-primary" href="${pageContext.request.contextPath}/">
 									<button type="button" class="btn btn-link btn-sm">예매 내역</button>
 								</a>
-								<a href="${pageContext.request.contextPath}/message/list">
+								<a class="btn btn-primary" href="${pageContext.request.contextPath}/message/list">
 									<button type="button" class="btn btn-link btn-sm">고객센터</button>
 								</a>
-								<a href="${pageContext.request.contextPath}/logout">
+								<a class="btn btn-primary" href="${pageContext.request.contextPath}/logout">
 									<button type="button" class="btn btn-link btn-sm">LOGOUT</button>
 								</a>
 					
@@ -81,18 +86,16 @@
 						</c:when>
 						<c:otherwise>
 							<div class="btn-group">
-								<a href="${pageContext.request.contextPath}/login_form">
-									<button type="button" class="btn btn-link btn-sm">LOGIN</button>
+								<a class="btn btn-primary" href="${pageContext.request.contextPath}/login_form">
+									LOGIN
 								</a>
-								<a href="${pageContext.request.contextPath}/join/form">
-									<button type="button" class="btn btn-link btn-sm">JOIN</button>
+								<a class="btn btn-primary" href="${pageContext.request.contextPath}/join/form">
+									JOIN
 								</a>
 							</div>
 						</c:otherwise>
 					</c:choose>
-
-				</ul>
-					
+				</div>	
 			
 			
 			</nav>

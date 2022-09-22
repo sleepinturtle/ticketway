@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PurchaseMapper">
+
+	<select id="page" parameterType="kr.co.ticketway.util.dto.MemberDTO" resultType="kr.co.ticketway.purchase.PurchaseDTO">
+		select book_num, play_no,tht_no, hall_name, total_price, ticket_cnt, play_date, book_date, card_no, seat_code
+		from booking
+		where mno = #{mno}
+	</select>
+
+</mapper>

@@ -12,7 +12,7 @@
 	where genre = '연극'
 	and pi.play_no = ps.play_no
      GROUP BY pi.play_no
-    having count(*)>1
+    having count(*)>=1
     order by book_cnt_total desc;
 	</select>
 	
@@ -23,7 +23,7 @@
 	where genre = '뮤지컬'
 	and pi.play_no = ps.play_no
      GROUP BY pi.play_no
-    having count(*)>1
+    having count(*)>=1
     order by book_cnt_total desc;
 	</select>
 	
@@ -51,7 +51,7 @@
 	and h.tht_no = ti.tht_no
 	and h.hall_no = ps.hall_no
     GROUP BY pf.play_no
-    having count(*)>1;
+    having count(*)>=1;
 	</select>
 	
 	<select id="review" parameterType="java.lang.String" resultType="kr.co.ticketway.perform.ReviewDTO">
