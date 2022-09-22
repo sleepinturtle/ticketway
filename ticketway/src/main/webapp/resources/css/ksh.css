@@ -296,7 +296,7 @@
 /*슬라이드 사진*/
  #header .carousel-item {
     width: 100%;
-    height: 100vh;
+    height: 85vh;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

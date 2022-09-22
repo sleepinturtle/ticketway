@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.ticketway.card_info.Card_infoDTO;
 import kr.co.ticketway.card_info.Card_infoService;
+import kr.co.ticketway.perform.ReviewDTO;
 import kr.co.ticketway.util.dto.MemberDTO;
 
 @Controller
@@ -33,15 +34,14 @@ public class MyPageController {
 	@Autowired
 	private Card_infoService creditCardService;
 
-	@RequestMapping(value = "/list_credit_card", method = RequestMethod.GET)
-	public String listCreditCard( Model model, HttpSession session ) {
-
-		List<Card_infoDTO> cardlist = null;
-		cardlist = creditCardService.list( ( (MemberDTO) session.getAttribute("login_info") ).getMno() );
-		model.addAttribute("cardlist", cardlist);
-
-		return "/mypage/list_credit_card";
-	}//listCreditCard
+//	@RequestMapping(value = "/list_credit_card", method = RequestMethod.GET)
+//	public String listCreditCard ( Model model, HttpSession session, String mno ) {
+//
+//		List<Card_infoDTO> cardlist = null;
+//		cardlist = creditCardService.list(mno);
+//		model.addAttribute("cardlist", cardlist);
+//		return "/mypage/list";
+//	}//listCreditCard
 
 	
 
@@ -67,10 +67,14 @@ public class MyPageController {
 	
 	
 	@RequestMapping( value = "/list", method = RequestMethod.GET )
-	public String detail( String mno, Model model ) {
-		MemberDTO dto = null;
-		dto = service.detail( mno );
+	public String detail(  Model model, HttpSession session, MemberDTO dto) {
+		MemberDTO mDto = (MemberDTO) session.getAttribute("login_info");
+		dto.setMno( mDto.getMno() );
+		List<Card_infoDTO> cardlist = null;
+		dto = service.list( dto.getMno() );
+		cardlist = creditCardService.cardlist(dto.getMno());
 		model.addAttribute("detail_dto", dto);
+		model.addAttribute("cardlist",cardlist);
 		return "mypage/list";//jsp file name
 	}//detail
 	

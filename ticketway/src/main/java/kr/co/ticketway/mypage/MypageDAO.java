@@ -21,8 +21,12 @@ public class MypageDAO {
 	
 	
 	public MemberDTO detail( String mno ) {
-		MemberDTO dto = null;
-		dto = sqlSession.selectOne("MypageMapper.detail", mno);
+		MemberDTO dto = sqlSession.selectOne("MypageMapper.detail", mno);
+		return dto;
+	}//detail
+	
+	public MemberDTO list( String mno ) {
+		MemberDTO dto = sqlSession.selectOne("MypageMapper.list", mno);
 		return dto;
 	}//detail
 	

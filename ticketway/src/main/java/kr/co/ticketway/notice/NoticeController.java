@@ -75,7 +75,7 @@ public class NoticeController {
 			list = service.noticesearchList( dto );
 			model.addAttribute("list", list);
 			model.addAttribute("search_dto", dto);
-		return "/notice/notice_main";
+			return "notice/notice_list";
 	}
 	
 	@RequestMapping(value = "/event_list", method = RequestMethod.GET)
@@ -117,7 +117,7 @@ public class NoticeController {
 		list = service.eventsearchList( dto );
 		model.addAttribute("list", list);
 		model.addAttribute("search_dto", dto);
-		return "/notice/notice_main";
+		return "notice/event_list";
 	}
 	
 	

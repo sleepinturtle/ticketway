@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>새소식</title>
+		<title>이벤트</title>
 		<%@ include file="/WEB-INF/views/header.jsp" %>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/yth.css" type="text/css">
 	</head>
@@ -110,11 +110,11 @@
 		</table>
 		<hr>
 		
-		<ul id="all_page" class="pagination" style="justify-content : center;">
+		<ul id="event_page" class="pagination" style="justify-content : center;">
 			<c:if test="${startPageNum > 10}">
 				<li class="page-item">
 					<a class="page-link"
-						href="${pageContext.request.contextPath}/notice/notice_main?userWantPage=${startPageNum-1}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
+						href="${pageContext.request.contextPath}/notice/event_list?userWantPage=${startPageNum-1}">
 						Previous
 					</a>
 				</li>
@@ -129,7 +129,7 @@
 					<c:otherwise>
 						<li class="page-item">
 							<a class="page-link"
-								href="${pageContext.request.contextPath}/notice/notice_main?userWantPage=${page_no}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
+								href="${pageContext.request.contextPath}/notice/event_list?userWantPage=${page_no}">
 								${page_no}
 							</a>
 						</li>
@@ -139,20 +139,19 @@
 			<c:if test="${lastPageNum > endPageNum}">
 				<li class="page-item">
 					<a class="page-link"
-						href="${pageContext.request.contextPath}/notice/notice_main?userWantPage=${endPageNum+1}&searchOption=${search_dto.searchOption}&searchWord=${search_dto.searchWord}">
+						href="${pageContext.request.contextPath}/notice/event_list?userWantPage=${endPageNum+1}">
 						Next
 					</a>
 				</li>
 			</c:if>
 		</ul>
-		
 		</div>
 		
 		</div>
 	</body>
 	<script type="text/javascript">
 	
-	
+		
 		$(document).ready(function() {
 			if(${login_info.mgr_yn == 0}){
 				$("#write_area").hide();
@@ -160,6 +159,7 @@
 			if(${login_info.mno == null}){
 				$("#write_area").hide();
 			}
+			
 		
 			
 		});

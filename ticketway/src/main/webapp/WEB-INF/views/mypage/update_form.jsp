@@ -7,43 +7,12 @@
       <meta charset="UTF-8">
       <title> 회원 가입 </title>
      <meta charset="utf-8"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+     <%@ include file="/WEB-INF/views/header.jsp" %>
     <style>
            #service_agree_label, #info_agree_label, #mpwd_label, #rempwd_label, #tel1_label, #email1_label {
          color : red;
       }
-         * {
-         margin: 0 auto;
-         padding: 0;
-      }
-      h1 { 
-      text-align : center; 
-      }
-      th {
-         text-align: center;
-          width:100px;
-      }
-      td {
-         text-align: center;
-         width:500px;
-      }
-      #btn_paging{
-      color : white;
-      background-color:silver; 
-      border-color : white;
-      }
-      #bar_search {
-      width:500px;
-      height:70px;
-      font-size:15px;
-      }
-      #btn_search {
-      width:110px;
-      height:38px;
-      }
+      
       </style>
       <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
       <script type="text/javascript">
@@ -60,69 +29,75 @@
          });//click
       });//ready
       </script>
+       
    </head>
    <body>
-   <%@ include file="/WEB-INF/views/header.jsp" %>
+  
       <body class="left-sidebar is-preload">
+   
    <div class="container"><!-- container start -->
+  
       <div id="page-wrapper">
          <!-- Header -->
             <div id="header">
-                  </div>
+             <h1 style="font-family:Georgia;"> 회 원 정 보 수 정  </h1>
+            </div>
                </div>
           
-      <h1 style="font-family:Georgia;"> 회 원 정 보 수 정  </h1>
+      
       <br><br><br>
       <table class="table table-hover">
          <tbody>
-         <td> 회 원 아이디  : ${login_info.mid} </td>
+         <tr>
+	         <td> 회 원 아이디  : ${login_info.mid} </td>
+         </tr>
            
            <tr>
-					<th> 이 름   ${detail_dto.mname}</th>
+					<th> 이 름  </th>
 					<td>
 						<div class="input-group">
-							<input type="text" id="mname" name="mname" maxlength="20" class="form-control">
+							<input type="text" id="mname" name="mname" maxlength="20" class="form-control" value=" ${detail_dto.mname}">
 						</div>
 						<label for="mname" id="mname_label"></label>
 					</td>
 				</tr>
 				
             <tr>
-               <th> 비 밀 번 호 : ${detail_dto.mpwd} </th>
+               <th> 비 밀 번 호 </th>
                <td>
-                  <input type="password" id="mpwd" name="mpwd" maxlength="20" class="form-control" >
+                  <input type="password" id="mpwd" name="mpwd" maxlength="20" class="form-control" value="${login_info.mpwd}">
                   <label for="mpwd" id="mpwd_label"></label>
                </td>
             </tr>
             <tr>
                <th> 비 밀 번 호 확 인</th>
                <td>
-                  <input type="password" id="rempwd" name="rempwd" maxlength="20" class="form-control" value=" ${detail_dto.mpwd}">
+                  <input type="password" id="rempwd" name="rempwd" maxlength="20" class="form-control">
                   <label for="rempwd" id="rempwd_label"></label>
                </td>
             </tr>
+           
             <tr>
-               <th> 전 화 번 호 : ${detail_dto.mtel}</th>
+               <th>변경할 전화번호</th>
                <td>
-                  <div class="input-group">
+                  <div class="input-group float-right">
                      <input type="text" id="tel1" name="tel1" maxlength="3" class="form-control"
-                           placeholder="010"  >
+                           value="${detail_dto.tel1}">
                      <input type="text" id="tel2" name="tel2" maxlength="4" class="form-control"
-                           placeholder="1234" >
+                           value="${detail_dto.tel2}">
                      <input type="text" id="tel3" name="tel3" maxlength="4" class="form-control"
-                           placeholder="5678">
+                           value="${detail_dto.tel3}">
                   </div>
                   <label for="tel1" id="tel1_label"></label>
                </td>
             </tr>
             <tr>
-               <th> 이 메 일 :  ${detail_dto.email}</th>
+               <th>이 메 일 </th>
                <td>
                   <div class="input-group">
-                     <input type="text" id="email1" name="email1" maxlength="25" class="form-control">
+                     <input type="text" id="email1" name="email1" maxlength="25" class="form-control" value="${detail_dto.email1}">
                      <span class="input-group-text">@</span>
-                     <input type="text" id="email2" name="email2" maxlength="25" class="form-control"
-                           placeholder="naver.com" >
+                     <input type="text" id="email2" name="email2" maxlength="25" class="form-control" value="${detail_dto.email2}">
                   </div>
                   <label for="email1" id="email1_label"></label>
                </td>
@@ -133,27 +108,31 @@
 						<div class="input-group">
 							<span class="input-group-text"> 우 편 번 호 </span>
 							<input type="text" id="mpost" name="mpost" readonly="readonly"
-									class="form-control">
+									class="form-control" value="${detail_dto.mpost}">
 							<button id="addr_btn" class="btn btn-primary"> 주 소 검 색 </button>
 						</div>
 						<div class="input-group">
 							<span class="input-group-text"> 주 소 </span>
 							<input type="text" id="maddr" name="maddr" readonly="readonly"
-									class="form-control">
+									class="form-control" value="${detail_dto.maddr}">
 						</div>
 						<div class="input-group">
 							<span class="input-group-text"> 상 세 주 소 </span>
-							<input type="text" id="maddr1" name="maddr1" class="form-control">
+							<input type="text" id="maddr1" name="maddr1" class="form-control" value="${detail_dto.maddr1}"> 
 						</div>
 					</td>
 				</tr>
          
          </tbody>
       </table>
+	      <div class="clearfix" style="justify-content: center;">
+	         <button id="join_btn" class="btn btn-dark float-right"> 회 원 정 보 수 정 </button>
+	      	<a href="${pageContext.request.contextPath}/mypage/list" class="btn btn-warning">
+	      		뒤로 가기
+	      	</a>
+	      </div>
       </div>
-      <div class="clearfix">
-         <button id="join_btn" class="btn btn-dark float-right"> 회 원 정 보 수 정 </button>
-      </div>
+      
       <br><br><br>
   <script type="text/javascript">
    let checkedID = "";
@@ -164,18 +143,6 @@
 
    $(document).ready(function() {
       $("#join_btn").click(function() {
-         
-
-         if( checkedID == "" || checkedID != $("#mid").val() ){
-	            $("#mid_label").text("아이디 중복 체크를 해 주세요.");
-	            $("#mid_label").css("color", "red");
-	            return;
-         } else { $("#mid_label").text(""); }
-         
-         if(    $("#mname").val() == null ){//허용되지 않은 글자는 null.
-				$("#mname_label").text("영문 소문자, 숫자, 특수 문자만 허용 됩니다.");
-				return;
-			} else { $("#mname_label").text(""); }
 
 
          if(    $("#mpwd").val().match(onlyPwd) == null ){//허용되지 않은 글자는 null.
@@ -212,8 +179,6 @@
                "${pageContext.request.contextPath}/mypage/update"
               ,  {
                      mno : ${detail_dto.mno} 
-                   , mid : $("#mid").val()
-                   , mname : $("#mname").val()
                   , mpwd : $("#mpwd").val()
                   , tel1 : $("#tel1").val()
                   , tel2 : $("#tel2").val()
