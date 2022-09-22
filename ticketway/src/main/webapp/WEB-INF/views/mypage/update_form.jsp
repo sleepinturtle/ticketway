@@ -7,39 +7,12 @@
       <meta charset="UTF-8">
       <title> 회원 가입 </title>
      <meta charset="utf-8"/>
+     <%@ include file="/WEB-INF/views/header.jsp" %>
     <style>
            #service_agree_label, #info_agree_label, #mpwd_label, #rempwd_label, #tel1_label, #email1_label {
          color : red;
       }
-         * {
-         margin: 0 auto;
-         padding: 0;
-      }
-      h1 { 
-      text-align : center; 
-      }
-      th {
-         text-align: center;
-          width:100px;
-      }
-      td {
-         text-align: center;
-         width:500px;
-      }
-      #btn_paging{
-      color : white;
-      background-color:silver; 
-      border-color : white;
-      }
-      #bar_search {
-      width:500px;
-      height:70px;
-      font-size:15px;
-      }
-      #btn_search {
-      width:110px;
-      height:38px;
-      }
+      
       </style>
       <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
       <script type="text/javascript">
@@ -56,19 +29,22 @@
          });//click
       });//ready
       </script>
-       <%@ include file="/WEB-INF/views/header.jsp" %>
+       
    </head>
    <body>
   
       <body class="left-sidebar is-preload">
+   
    <div class="container"><!-- container start -->
+  
       <div id="page-wrapper">
          <!-- Header -->
             <div id="header">
-                  </div>
+             <h1 style="font-family:Georgia;"> 회 원 정 보 수 정  </h1>
+            </div>
                </div>
           
-      <h1 style="font-family:Georgia;"> 회 원 정 보 수 정  </h1>
+      
       <br><br><br>
       <table class="table table-hover">
          <tbody>
