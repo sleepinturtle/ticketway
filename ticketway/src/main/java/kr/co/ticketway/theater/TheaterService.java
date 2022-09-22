@@ -43,4 +43,10 @@ public class TheaterService {
 		return list;
 	}
 	
+	public int write( TheaterAdminDTO dto ) {
+		int successCount = 0;
+		successCount = dao.write( dto );
+		return successCount;
+	}//write
+	
 }

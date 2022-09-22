@@ -86,7 +86,7 @@ TICKET WAY  관리자 회원 관리
                   <td>${dto.mname }</td>
                   <td>${dto.mbday }</td>
                   <td>${dto.mtel }</td>
-                  <td>${dto.email }</td>와
+                  <td>${dto.email }</td>
                   <form action="updateUserData">
 <%--                   <input type="hidden" name="mem_uid" value="${dto.mem_uid }"/> --%>
                   <td><button  type="submit" class="btn btn-outline-secondary btn-sm">수정</button>

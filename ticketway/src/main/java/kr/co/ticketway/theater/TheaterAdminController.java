@@ -51,12 +51,12 @@ public class TheaterAdminController {
 	}//list
 	
    @RequestMapping( value = "/write", method = RequestMethod.POST )
-	public void write( MemberBoardDTO dto, HttpSession session, PrintWriter out ) {
-		MemberDTO mDto = (MemberDTO) session.getAttribute("login_info");
-		dto.setMno( mDto.getMno() );
+	public void write( TheaterAdminDTO dto, HttpSession session, PrintWriter out ) {
+	   TheaterAdminDTO mDto = (TheaterAdminDTO) session.getAttribute("login_info");
+		dto.setPlay_no( mDto.getPlay_no() );
 
 		int successCount = 0;
-//		successCount = service.write( dto );
+		successCount = service.write( dto );
 		out.print(successCount);
 		out.close();
 	}//write
@@ -67,9 +67,9 @@ public class TheaterAdminController {
 	}//writeForm
    
    @RequestMapping( value = "/update", method = RequestMethod.POST )
-	public void update( MemberBoardDTO dto, HttpSession session, PrintWriter out ) {
-		MemberDTO mDto = (MemberDTO) session.getAttribute("login_info");
-		dto.setMno( mDto.getMno() );
+	public void update( TheaterAdminDTO dto, HttpSession session, PrintWriter out ) {
+	   TheaterAdminDTO mDto = (TheaterAdminDTO) session.getAttribute("login_info");
+		dto.setPlay_no( mDto.getPlay_no() );
 
 		int successCount = 0;
 //		successCount = service.update( dto );
@@ -79,9 +79,20 @@ public class TheaterAdminController {
 
 	@RequestMapping( value = "/update_form", method = RequestMethod.GET )
 	public String updateForm( String board_no, Model model ) {
-		MemberBoardDTO dto = null;
+		TheaterAdminDTO dto = null;
 //		dto = service.detail(board_no);
 		model.addAttribute("detail_dto", dto);
 		return "admin/updateTheater";//jsp file name
 	}//updateForm
+	
+	@RequestMapping( value = "/delete", method = RequestMethod.GET )
+	public void delete( TheaterAdminDTO dto, HttpSession session, PrintWriter out ) {
+		TheaterAdminDTO mDto = (TheaterAdminDTO) session.getAttribute("login_info");
+		dto.setPlay_no( mDto.getPlay_no() );
+
+		int successCount = 0;
+		successCount = service.delete( dto );
+		out.print(successCount);
+		out.close();
+	}//delete
 }

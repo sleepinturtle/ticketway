@@ -51,7 +51,7 @@
 		<br><span>모든 항목은 필수 입력입니다.</span><br><br>
 		<div class="row text-center">
 			<div class="col-sm-12" align="center">
-			<form action="writeMovieOk" method="post" enctype="multipart/form-data">
+			<form action="write" method="post" enctype="multipart/form-data">
 			<table class="table col-sm-12">
 				<tr>
 					<td><label class="control-label col-sm-12">제목</label></td>
