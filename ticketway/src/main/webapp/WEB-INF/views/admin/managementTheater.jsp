@@ -64,11 +64,11 @@
 		<div class="row" >
 			<div class="col-sm-12">
 			<div align="right">
-			<button type="button" class="btn btn-secondary"  id = "movieBtn" onclick="location.href='${pageContext.request.contextPath }/theaterAdmin/write_form'">공연 등록</button>
+			<button type="button" class="btn btn-secondary"  id = "movieBtn" onclick="location.href='${pageContext.request.contextPath }/theaterAdmin/write_theater'">공연 등록</button>
 			</div>
 			<br>
 				<table class="table table-hover" id = "listTable" style = "width: 1111px">
-					<thead class="thead-dark">
+					<thead class="thead-light">
 						<tr>
 							<th scope="col">공연번호</th>
 							<th scope="col">공연제목</th>
@@ -91,8 +91,8 @@
 <%-- 						<td>${dto.thta_openDate }</td> --%>
 						<td>${dto.rated }</td>
 						<td>${dto.runtime }</td>
-						<td><button class="btn btn-outline-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath }/theaterAdmin/update_form?play_no=${dto.play_no }'">수정</button>
-						<button class="btn btn-outline-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath }/theaterAdmin/deleteMovieOk?play_no=${dto.play_no }'">삭제</button></td>				
+						<td><button class="btn btn-outline-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath }/theaterAdmin/update_theater?play_no=${dto.play_no }'">수정</button>
+						<button id="btn_delete" class="btn btn-danger btn-sm">삭제</button></td>				
 					</tr>
 				</c:forEach>
 					</tbody>
@@ -101,6 +101,31 @@
 		</div>
 
 	</div>
+	
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#btn_delete").click(function() {
+
+			$.get(
+					"${pageContext.request.contextPath}/theaterAdmin/delete"
+					, {
+						play_no : ${dto.play_no}
+					}
+					, function(data, status) {
+						if( data >= 1 ){
+							alert("공연이 삭제 되었습니다.");
+							location.href="${pageContext.request.contextPath}/theaterAdmin/managementTheater";
+						} else if( data <= 0 ) {
+							alert("공연 삭제를 실패 하였습니다.");
+						} else {
+							alert("잠시 후 다시 시도해 주세요.");
+						}
+					}//call back function
+			);//get
+
+		});//click
+	});//ready
+	</script>
 
 
 

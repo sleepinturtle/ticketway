@@ -60,39 +60,42 @@
 							
 						</div>
 					</li>
-					<c:choose>
+					
+					
+
+				</ul>
+				<div class="float-right" style="margin-left: 1700px; position: relative;">
+				<c:choose>
 						<c:when test="${login_info != null && login_info.mid != null}">
-						${login_info.mid}
+						<h4>${login_info.mid}</h4>
 							<div class="btn-group">
-								<a href="${pageContext.request.contextPath}/mypage/list">
-									<button type="button" class="btn btn-link btn-sm">마이페이지</button>
+								<a href="${pageContext.request.contextPath}/mypage/list" class="btn btn-secondary">
+									마이페이지
 								</a>
-								<a href="${pageContext.request.contextPath}/">
-									<button type="button" class="btn btn-link btn-sm">예매 내역</button>
+								<a href="${pageContext.request.contextPath}/purchase/page" class="btn btn-primary">
+									예매 내역
 								</a>
-								<a href="${pageContext.request.contextPath}/message/list">
-									<button type="button" class="btn btn-link btn-sm">고객센터</button>
+								<a href="${pageContext.request.contextPath}/message/list" class="btn btn-info">
+									고객센터
 								</a>
-								<a href="${pageContext.request.contextPath}/logout">
-									<button type="button" class="btn btn-link btn-sm">LOGOUT</button>
+								<a href="${pageContext.request.contextPath}/logout" class="btn btn-danger">
+									LOGOUT
 								</a>
 					
 							</div>
 						</c:when>
 						<c:otherwise>
 							<div class="btn-group">
-								<a href="${pageContext.request.contextPath}/login_form">
-									<button type="button" class="btn btn-link btn-sm">LOGIN</button>
+								<a class="btn btn-primary" href="${pageContext.request.contextPath}/login_form">
+									LOGIN
 								</a>
-								<a href="${pageContext.request.contextPath}/join/form">
-									<button type="button" class="btn btn-link btn-sm">JOIN</button>
+								<a class="btn btn-primary" href="${pageContext.request.contextPath}/join/form">
+									JOIN
 								</a>
 							</div>
 						</c:otherwise>
 					</c:choose>
-
-				</ul>
-					
+				</div>	
 			
 			
 			</nav>

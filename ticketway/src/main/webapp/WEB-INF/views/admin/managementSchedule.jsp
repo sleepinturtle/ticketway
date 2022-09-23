@@ -8,7 +8,7 @@
 %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
     
-    <!-- 관리자 회원관리 페이지 -->
+    <!-- 관리자 관람 일정 관리 페이지 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +46,7 @@
 <div class = "container-fluid" >
 <hr>
 <div class = "container">
-관리자 회원 관리
+관리자 관람 일정 관리
 </div>
 <hr>
 </div>
@@ -56,7 +56,7 @@
 <div class = "container">
 		<div class="row" id = "list">
 			<div class="col-sm-12">
-				<h2>회원 리스트</h2>
+				<h2>관람 일정 리스트</h2>
 				<br>
 			</div>
 		</div>
@@ -67,12 +67,15 @@
  <thead class="thead-light">
   <tr class="header">
 
+     <th scope="col">스케줄 번호</th>
      <th scope="col">번호</th>
-     <th scope="col">아이디</th>
-    <th scope="col">이름</th>
-    <th scope="col">생년월일</th>
-    <th scope="col">전화번호</th>
-    <th scope="col">이메일</th>
+     <th scope="col">공연 제목</th>
+    <th scope="col">러닝타임</th>
+    <th scope="col">날짜</th>
+    <th scope="col">시간</th>
+    <th scope="col">극장 번호</th>
+    <th scope="col">홀 번호</th>
+    <th scope="col">좌석</th>
     <th scope="col">수정 / 삭제</th>
 </tr>
   </thead>
