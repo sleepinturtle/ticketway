@@ -46,7 +46,7 @@
 
 	<!-- 영화 등록 페이지 -->
 	<div class="container"><br>
-		<h2>영화 등록</h2>
+		<h2>공연 정보 등록</h2>
 
 		<br><span>모든 항목은 필수 입력입니다.</span><br><br>
 		<div class="row text-center">
@@ -57,14 +57,6 @@
 					<td><label class="control-label col-sm-12">제목</label></td>
 					<td><input type="text" class="form-control col-sm-12" id="fname" name="mov_title"></td>
 				</tr>
-<!-- 				<tr> -->
-<!-- 					<td><label class="control-label col-sm-12">감독</label></td> -->
-<!-- 					<td><input type="text" class="form-control" id="lname" name="mov_director"></td> -->
-<!-- 				</tr> -->
-<!-- 				<tr> -->
-<!-- 					<td><label class="control-label col-sm-12">배우</label></td> -->
-<!-- 					<td><input type="text" class="form-control" id="email" name="mov_actors"></td> -->
-<!-- 				</tr> -->
 				<tr>
 					<td><label class="control-label col-sm-12">장르</label></td>
 					<td><input type="text" class="form-control" name="mov_genre" id="comment"></td>
@@ -73,10 +65,6 @@
 					<td><label class="control-label col-sm-12">러닝타임</label></td>
 					<td><input type="number" class="form-control" name="mov_runtime" placeholder="숫자만 입력해 주세요"></td>
 				</tr>
-<!-- 				<tr> -->
-<!-- 					<td><label class="control-label col-sm-12">개봉일</label></td> -->
-<!-- 					<td><input type="date" class="form-control" name="mov_openDate"></td> -->
-<!-- 				</tr> -->
 				<tr>
 					<td><label class="control-label col-sm-12">심의등급</label></td>
 					<td><input class="form-control" name="mov_grade"></td>
@@ -93,14 +81,6 @@
 					<td><label class="control-label col-sm-12">공연정보</label></td>
 					<td><input type="file" class="form-control" name="mov_still1"></td>
 				</tr>
-<!-- 				<tr> -->
-<!-- 					<td><label class="control-label col-sm-12">스틸컷2</label></td> -->
-<!-- 					<td><input type="file" class="form-control" name="mov_still2"></td> -->
-<!-- 				</tr> -->
-<!-- 				<tr> -->
-<!-- 					<td><label class="control-label col-sm-12">스틸컷3</label></td> -->
-<!-- 					<td><input type="file" class="form-control" name="mov_still3"></td> -->
-<!-- 				</tr> -->
 			</table>
 			<button type="submit" class="btn btn-outline-info">Submit</button>
 		</form>

@@ -19,18 +19,18 @@
 }
 
 .navbar .nav-link {
-    color: black;
+    color: white;
     
 }
 
 .navbar .nav-link:hover,
 .navbar .nav-link:focus {
-    color: #000;
+    color: white;
     text-decoration: none;
 }
 
 .navbar .navbar-brand {
-    color: #000;
+    color: white;
     font-size: 30px;
 
 }

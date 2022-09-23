@@ -31,22 +31,28 @@ public class TheaterService {
 		return list;
 	}
 	
-	public int update( TheaterAdminDTO dto ) {
-		int successCount = 0;
-		successCount = dao.update( dto );
-		return successCount;
-	}//update
-	
 	public List<TheaterAdminDTO> ticketing() {
 		List<TheaterAdminDTO> list = null;
 		list = dao.ticketing();
 		return list;
 	}
-	
-	public int write( TheaterAdminDTO dto ) {
+
+	public int updateTheater( TheaterAdminDTO dto ) {
 		int successCount = 0;
-		successCount = dao.write( dto );
+		successCount = dao.updateTheater( dto );
+		return successCount;
+	}//update
+	
+	public int writeTheater( TheaterAdminDTO dto ) {
+		int successCount = 0;
+		successCount = dao.writeTheater( dto );
 		return successCount;
 	}//write
+
+	public int deleteTheater( TheaterAdminDTO dto ) {
+		int successCount = 0;
+		successCount = dao.deleteTheater( dto );
+		return successCount;
+	}//delete
 	
 }

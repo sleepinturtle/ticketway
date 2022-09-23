@@ -1,19 +1,27 @@
 package kr.co.ticketway.theater;
 
-import java.util.List;
-
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
+//import kr.co.ticketway.theater.AdminListMovie;
+//import kr.co.ticketway.theater.Common;
+////import com.goldspoon.koreabox.user.beans.AdminUserDTO;
+//import kr.co.ticketway.theater.AdminUserDelete;
+//import kr.co.ticketway.theater.AdminUserList;
+//import kr.co.ticketway.theater.AdminUserRead;
+//import kr.co.ticketway.theater.AdminUserUpdate;
+
+import kr.co.ticketway.util.dto.MemberDTO;
 
 @Controller
-@RequestMapping("theaterAdmin")
+@RequestMapping("/theaterAdmin")
 public class MemberAdminController {
-
-	@Autowired
-	private TheaterService service;
-
-   
+	
+	// MyBatis
+	private SqlSession sqlSession;
+	
+	
 }

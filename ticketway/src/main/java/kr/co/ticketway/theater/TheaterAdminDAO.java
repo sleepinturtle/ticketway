@@ -5,8 +5,6 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import kr.co.ticketway.board.member.MemberBoardDTO;
 import kr.co.ticketway.util.dto.MemberDTO;
 
 
@@ -28,22 +26,28 @@ public class TheaterAdminDAO {
 		return list;
 	}
 	
-	public int update( TheaterAdminDTO dto ) {
-		int successCount = 0;
-		successCount = session.update("TheaterMapper.update", dto);
-		return successCount;
-	}//update
-
 	public List<TheaterAdminDTO> ticketing() {
 		List<TheaterAdminDTO> list = null;
 		list = session.selectList("TheaterMapper.ticketing");
 		return list;
 	}
-	
-	public int write( TheaterAdminDTO dto) {
+
+	public int updateTheater( TheaterAdminDTO dto ) {
 		int successCount = 0;
-		successCount = session.insert("TheaterMapper.write", dto);
+		successCount = session.update("TheaterMapper.tupdate", dto);
+		return successCount;
+	}//update
+	
+	public int writeTheater( TheaterAdminDTO dto) {
+		int successCount = 0;
+		successCount = session.insert("TheaterMapper.twrite", dto);
 		return successCount;
 	}//write
+
+	public int deleteTheater( TheaterAdminDTO dto ) {
+		int successCount = 0;
+		successCount = session.delete("TheaterMapper.tdelete", dto);
+		return successCount;
+	}//delete
 	
 }

@@ -26,13 +26,6 @@
    
    </select>
    
-   <update id="update" parameterType="kr.co.ticketway.theater.TheaterAdminDTO">
-   	
-   	UPDATE
-   		
-	update freeboard set title = #{title}, writer = #{writer}, contents = #{contents}
-	where board_no = #{board_no} and pwd = #{pwd}
-	</update>
 	
 	<select id="ticketing" resultType="kr.co.ticketway.theater.TheaterAdminDTO">
       
@@ -41,10 +34,22 @@
       FROM play_info, tht_info, play_schedule
    
    </select>
+
+   <select id="tupdate" parameterType="kr.co.ticketway.theater.TheaterAdminDTO">
+<!-- 	update freeboard set title = #{title}, writer = #{writer}, contents = #{contents} -->
+<!-- 	where board_no = #{board_no} and pwd = #{pwd} -->
+		SELECT
+      		play_info.play_title, play_info.genre, play_schedule.runtime, play_info.rated, play_info.play_desc, play_info.play_thumbnail, play_info.play_spec
+      	FROM play_info, play_schedule
+	</select>
    
-   <insert id="write" parameterType="kr.co.ticketway.theater.TheaterAdminDTO">
+   <insert id="twrite" parameterType="kr.co.ticketway.theater.TheaterAdminDTO">
 	INSERT INTO play_info ( play_title, genre, rated )
 	values ( #{play_title}, #{genre}, #{rated} )
 	</insert>
+	
+	<delete id="tdelete" parameterType="kr.co.ticketway.theater.TheaterAdminDTO">
+	delete from 
+	</delete>
 	
 </mapper>

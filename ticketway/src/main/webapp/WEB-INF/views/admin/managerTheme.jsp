@@ -17,10 +17,16 @@
 
 
 <title>Insert title here</title>
+
+<style>
+#app-navbar {
+			  background: linear-gradient(120deg, #dda4cd, #afc3f5);
+			}
+</style>
 </head>
 <body>
    <header class="header">
-      <nav class="navbar navbar-expand-lg fixed-top ">
+      <nav id="app-navbar" class="navbar navbar-expand-lg fixed-top ">
          <div class="container">
             <a href="${pageContext.request.contextPath }/theaterAdmin/managementTheater" class="navbar-brand text-uppercase font-weight-bold">TICKET
                WAY</a>
@@ -39,17 +45,15 @@
                      class="nav-link text-uppercase font-weight-bold">공연 관리 <span
                         class="sr-only">(current)</span></a></li>
                   
-                  <li class="nav-item"><a href="${pageContext.request.contextPath }/show/showinfo"
-                     class="nav-link text-uppercase font-weight-bold">상영스케줄관리</a></li>
+                  <li class="nav-item"><a href="${pageContext.request.contextPath }/theaterAdmin/managementSchedule"
+                     class="nav-link text-uppercase font-weight-bold">관람 일정 관리</a></li>
                   
                   <li class="nav-item"><a href="${pageContext.request.contextPath }/theaterAdmin/managerMemberList"
                      class="nav-link text-uppercase font-weight-bold">회원관리</a></li>
                   <!-- 관리자 버튼 자리 -->
-                  <button type="button" class="btn btn-secondary btn-sm">관리자</button>
+                  <button type="button" class="btn btn-light btn-sm" onclick="location.href='${pageContext.request.contextPath}/logout'">로그아웃</button>
                   &nbsp;
-                  <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${pageContext.request.contextPath}/logout'">로그아웃</button>
-                  &nbsp;
-                  <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='${path}'">일반사용자시점 페이지</button>
+                  <button type="button" class="btn btn-light btn-sm" onclick="location.href='${path}'">메인 페이지</button>
                </ul>
             </div>
          </div>
