@@ -35,7 +35,7 @@
 			<mapping path="/history/*"/>
 			<mapping path="/memo/*"/>
 <!-- 			<mapping path="/mypage/*"/> -->
-			<mapping path="/order/*"/>
+<!-- 			<mapping path="/order/*"/> -->
 			<mapping path="/product/*"/>
 			<mapping path="/login/*"/>
 <!--  			<mapping path="/login/*"/>  -->

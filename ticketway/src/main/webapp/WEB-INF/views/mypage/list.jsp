@@ -64,14 +64,12 @@
 								<td id="td_credit_card">
 									<div class="card">
 										<div class="card-body">
+										<button class="card_delete_btn btn btn-danger btn-lg float-right" value="${dto.card_no}"> X </button>
 											<h5 class="card-title">${dto.card_name}</h5>
 											<p class="card-text">카드 번호 : ${dto.card_num}</p>
 											<p class="card-text">유효 기간 (MM/YY) : ${dto.exp_date1} / ${dto.exp_date2}</p>
 										</div>
 									</div>
-								</td>
-								<td class="text-right">
-									<button class="card_delete_btn btn btn-danger btn-sm" value="${dto.card_no}"> X </button>
 								</td>
 							</tr>
 						</c:forEach>

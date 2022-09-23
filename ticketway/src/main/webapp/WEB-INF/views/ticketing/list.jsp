@@ -256,10 +256,11 @@ body {
     color: white;
 }
     </style>
+<%@ include file="/WEB-INF/views/header.jsp" %>
 </head>
 
 <body>
-    <%@ include file="/WEB-INF/views/header.jsp" %>
+    
     <div class="reserve-container">
         <div class="movie-part">
             <div class="reserve-title">영화</div>
