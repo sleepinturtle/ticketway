@@ -67,7 +67,7 @@ public class TicketingController {
 	public void timeSelect1( TicketingDTO dto, PrintWriter out ) {
 		List<TicketingDTO> time = null;
 		System.out.println(dto.getPlay_no());
-		time = service.timeSelect1( dto);
+		time = service.timeSelect1( dto); 
 		out.print( new Gson().toJson( time ) );
 		out.close();
 		
