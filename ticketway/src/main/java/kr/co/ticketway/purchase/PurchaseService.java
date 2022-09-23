@@ -13,12 +13,37 @@ public class PurchaseService {
 	@Autowired
 	private PurchaseDAO dao;
 	
-	public List<PurchaseDTO> page(MemberDTO dto) {
+	public List<PurchaseDTO> page(PurchaseDTO dto) {
 		List<PurchaseDTO> list = null;
-		System.out.println("서1");
 		list = dao.page(dto);
-		System.out.println("서2");
 		return list;
 	}
+
+	public int payment(PurchaseDTO dto) {
+		int successCount = 0;
+		successCount = dao.payment(dto);
+		return successCount;
+	}
+
+	public int cancel(PurchaseDTO dto) {
+		int successCount = 0;
+		successCount = dao.cancel(dto);
+		return successCount;
+	}
+
+	public int paycancel(PurchaseDTO dto) {
+		int successCount = 0;
+		successCount = dao.paycancel(dto);
+		if(successCount < 1) {
+			return successCount;
+		}
+		
+		successCount = dao.cancel(dto);
+		if(successCount < 1) {
+			return successCount;
+		}
+		return successCount;
+	}
+
 
 }

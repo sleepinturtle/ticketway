@@ -2,35 +2,42 @@ package kr.co.ticketway.purchase;
 
 public class PurchaseDTO {
 
-	private int book_num;
-	private int mno;
-	private int play_no;
+	private String book_num;
+	private String mno;
+	private String play_no;
+	private String tht_no;
 	private String hall_name;
 	private String total_price;
-	private int ticket_cnt;
+	private String ticket_cnt;
 	private String play_date;
 	private String book_date;
-	private int card_no;
+	private String card_no;
 	private String seat_code;
-	
-	
-	public int getBook_num() {
+	private String card_num;
+	private String status;
+	public String getBook_num() {
 		return book_num;
 	}
-	public void setBook_num(int book_num) {
+	public void setBook_num(String book_num) {
 		this.book_num = book_num;
 	}
-	public int getMno() {
+	public String getMno() {
 		return mno;
 	}
-	public void setMno(int mno) {
+	public void setMno(String mno) {
 		this.mno = mno;
 	}
-	public int getPlay_no() {
+	public String getPlay_no() {
 		return play_no;
 	}
-	public void setPlay_no(int play_no) {
+	public void setPlay_no(String play_no) {
 		this.play_no = play_no;
+	}
+	public String getTht_no() {
+		return tht_no;
+	}
+	public void setTht_no(String tht_no) {
+		this.tht_no = tht_no;
 	}
 	public String getHall_name() {
 		return hall_name;
@@ -44,10 +51,10 @@ public class PurchaseDTO {
 	public void setTotal_price(String total_price) {
 		this.total_price = total_price;
 	}
-	public int getTicket_cnt() {
+	public String getTicket_cnt() {
 		return ticket_cnt;
 	}
-	public void setTicket_cnt(int ticket_cnt) {
+	public void setTicket_cnt(String ticket_cnt) {
 		this.ticket_cnt = ticket_cnt;
 	}
 	public String getPlay_date() {
@@ -62,10 +69,10 @@ public class PurchaseDTO {
 	public void setBook_date(String book_date) {
 		this.book_date = book_date;
 	}
-	public int getCard_no() {
+	public String getCard_no() {
 		return card_no;
 	}
-	public void setCard_no(int card_no) {
+	public void setCard_no(String card_no) {
 		this.card_no = card_no;
 	}
 	public String getSeat_code() {
@@ -74,4 +81,19 @@ public class PurchaseDTO {
 	public void setSeat_code(String seat_code) {
 		this.seat_code = seat_code;
 	}
+	public String getCard_num() {
+		return card_num;
+	}
+	public void setCard_num(String card_num) {
+		this.card_num = card_num;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
+	
 }

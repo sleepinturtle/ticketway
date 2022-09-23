@@ -55,7 +55,7 @@
          <div class="input-group-prepend">
             <h3 style="font-family:Georgia;"></h3>
          </div>
-         <input type="text" class="bar_search" id="recv_mid" name="recv_mid">
+         <input type="text" class="bar_search" id="recv_mid" name="recv_mid" value="kyle" readonly="readonly">
          <div class="input-group-append">
             <button id="make_memo_room_btn" type="button" class="btn btn-secondary"> 문 의 하 러 가 기   </button>
          </div>

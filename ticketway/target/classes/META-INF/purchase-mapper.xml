@@ -5,10 +5,27 @@
 
 <mapper namespace="PurchaseMapper">
 
-	<select id="page" parameterType="kr.co.ticketway.util.dto.MemberDTO" resultType="kr.co.ticketway.purchase.PurchaseDTO">
-		select book_num, play_no,tht_no, hall_name, total_price, ticket_cnt, play_date, book_date, card_no, seat_code
-		from booking
-		where mno = #{mno}
+	<select id="page" parameterType="kr.co.ticketway.purchase.PurchaseDTO" resultType="kr.co.ticketway.purchase.PurchaseDTO">
+		select b.book_num, b.play_no,b.tht_no, b.hall_name, b.total_price, b.ticket_cnt, b.play_date, b.book_date, b.seat_code, b.card_num, p.status
+		from booking b, payment p
+		where b.mno = #{mno}
 	</select>
+	
+	<insert id="payment" parameterType="kr.co.ticketway.purchase.PurchaseDTO">
+		insert into payment(book_num, mno, card_num, total_price, status)
+		values(#{book_num}, #{mno}, #{card_num}, #{total_price}, '1')
+	</insert>
+	
+	
+	<delete id="cancel" parameterType="kr.co.ticketway.purchase.PurchaseDTO">
+		delete from booking
+		where book_num = #{book_num}
+	</delete>
+	
+	
+	<delete id="paycancel" parameterType="kr.co.ticketway.purchase.PurchaseDTO">
+		delete from payment
+		where book_num = #{book_num}
+	</delete>
 
 </mapper>

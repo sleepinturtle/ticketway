@@ -14,12 +14,29 @@ public class PurchaseDAO {
 	@Autowired
 	private SqlSession sqlsession;
 	
-	public List<PurchaseDTO> page(MemberDTO dto) {
+	public List<PurchaseDTO> page(PurchaseDTO dto) {
 		List<PurchaseDTO> list = null;
-		System.out.println("d1");
 		list = sqlsession.selectList("PurchaseMapper.page", dto);
-		System.out.println("d2");
 		return list;
 	}
+
+	public int payment(PurchaseDTO dto) {
+		int successCount = 0;
+		successCount = sqlsession.insert("PurchaseMapper.payment", dto);
+		return successCount;
+	}
+
+	public int cancel(PurchaseDTO dto) {
+		int successCount = 0;
+		successCount = sqlsession.delete("PurchaseMapper.cancel", dto);
+		return successCount;
+	}
+
+	public int paycancel(PurchaseDTO dto) {
+		int successCount = 0;
+		successCount = sqlsession.delete("PurchaseMapper.paycancel", dto);
+		return successCount;
+	}
+
 
 }

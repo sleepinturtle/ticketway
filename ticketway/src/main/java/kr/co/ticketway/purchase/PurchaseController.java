@@ -1,5 +1,6 @@
 package kr.co.ticketway.purchase;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -23,14 +24,35 @@ public class PurchaseController {
 	
 	private final static Logger logger = LoggerFactory.getLogger(PurchaseController.class);
 	
-	@RequestMapping(value = "/page", method = RequestMethod.POST)
-	public String page(Model model, MemberDTO dto, HttpSession session) {
+	@RequestMapping(value = "/page", method = RequestMethod.GET)
+	public String page(Model model, PurchaseDTO dto, HttpSession session) {
 		dto.setMno( ( (MemberDTO) session.getAttribute("login_info") ).getMno() );
 		List<PurchaseDTO> list = null;
-		System.out.println("컨1");
 		list = service.page(dto);
 		model.addAttribute("list", list);
-		System.out.println("컨2");
 		return "/purchase/page";
+	}
+	
+	@RequestMapping(value = "/payment", method = RequestMethod.POST)
+	public void payment(Model model,PurchaseDTO dto, HttpSession session, PrintWriter out) {
+		dto.setMno(( (MemberDTO) session.getAttribute("login_info") ).getMno());
+		int successCount = 0;
+		successCount = service.payment( dto );
+		out.print(successCount);
+		out.close();
+
+	}
+	
+	
+	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
+	public void cancel(PurchaseDTO dto) {
+		int successCount = 0;
+		successCount = service.cancel(dto);
+	}
+	
+	@RequestMapping(value = "/pay_cancel", method = RequestMethod.GET)
+	public void paycancel(PurchaseDTO dto) {
+		int successCount = 0;
+		successCount = service.paycancel(dto);
 	}
 }
