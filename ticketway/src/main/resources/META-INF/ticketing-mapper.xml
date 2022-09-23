@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TicketingMapper">
+
+	
+	<select id="hallSelect" parameterType="java.lang.String" resultType="kr.co.ticketway.perform.PerformDTO">
+	select ti.tht_no, ti.tht_name
+	from tht_info ti, play_schedule ps
+	where ps.play_no = #{play_no}
+	and ps.tht_no = ti.tht_no
+	group by ps.play_no
+	having count(*)>=1 
+	
+	</select>
+
+
+	<select id="timeSelect" parameterType="java.lang.String" resultType="kr.co.ticketway.ticketing.TicketingDTO">
+	select distinct play_date, play_no
+	from play_schedule
+	where tht_no = #{tht_no}
+	</select>
+	
+	<select id="timeSelect1" parameterType="kr.co.ticketway.ticketing.TicketingDTO" resultType="kr.co.ticketway.ticketing.TicketingDTO">
+	select play_time
+	from play_schedule
+	where play_no = #{play_no}
+	and play_date = #{play_date}
+	
+	</select>
+
+
+	<select id="PerformSelect" resultType="kr.co.ticketway.perform.PerformDTO">
+	select play_no, play_title, genre, play_desc, rated, book_cnt_total, seat_price_code
+	from play_info
+	</select>
+
+</mapper>
