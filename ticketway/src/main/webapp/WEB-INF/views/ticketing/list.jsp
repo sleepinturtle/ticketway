@@ -157,16 +157,10 @@ body {
 
 .movie-part {
     width: 284px;
-    overflow: scroll;
-    overflow-x: hidden;
-    cursor: pointer;
 }
 
 .theater-part {
     width: 264px;
-    overflow: scroll;
-    overflow-x: hidden;
-    cursor: pointer;
 }
 
 .day-part {
@@ -175,9 +169,6 @@ body {
 
 .time-part {
     width: 384px;
-    overflow: scroll;
-    overflow-x: hidden;
-    cursor: pointer;
 }
 
 .sort-wrapper {
@@ -211,7 +202,7 @@ body {
     flex-direction: column;
     align-items: center;
     height: 770px;
-    overflow: scroll;
+    overflow: auto;
     overflow-x: hidden;
 }
 
@@ -261,64 +252,161 @@ body {
 <body>
     <%@ include file="/WEB-INF/views/header.jsp" %>
     <div class="reserve-container">
-        <div class="movie-part">
-            <div class="reserve-title">영화</div>
+        <div class="movie-part overflow-auto">
+            <div class="reserve-title">공연</div>
             <div class="sort-wrapper">
                 <div class="sort-rate sort-selected">예매율순</div>
                 <div class="sort-korean">가나다순</div>
             </div>
-            <div class="movie-list">
-            
-	            <c:forEach var="dto" items="${list }">  <%-- request.getAttribute("list") --%>
-					<tr>
-						<td>
-							<a>${dto.play_title }</a>
-							<hr>
-						</td>
-					</tr>
-				</c:forEach>
-            
-             </div>
+            <c:forEach var="dto" items="${list}" varStatus="status">
+	            <div class="movie-list">
+					<a value="movie" id="${dto.play_no}" style="cursor: pointer;">${dto.play_title}</a>
+					<br>
+					<hr>
+				</div>
+            </c:forEach>
         </div>
+       
         <div class="theater-part">
             <div class="reserve-title">극장</div>
-            <div>
-            	<c:forEach var="dto" items="${list }">  <%-- request.getAttribute("list") --%>
-					<tr>
-						<td>
-							<a href="#">${dto.tht_name }</a>
-							<hr>
-						</td>
-					</tr>
-				</c:forEach>
-            </div>
+           	<div class="movie-list" id="tht_area" >
+<%-- 	            <a value="tht" id="${tht.tht_no}" style="cursor: pointer;">${tht.tht_name}</a> --%>
+<!-- 	            <br> -->
+<!-- 				<hr> -->
+           	</div>
         </div>
+        
+        
         <div class="day-part">
             <div class="reserve-title">날짜</div>
-            <div class="reserve-date"></div>
+            <div class="movie-list" id="day_area">
+            
+            </div>
         </div>
+        
         <div class="time-part">
             <div class="reserve-title">시간</div>
-          	<div>
-          		<c:forEach var="dto" items="${list }">  <%-- request.getAttribute("list") --%>
-					<tr>
-						<td>
-							<a>${dto.play_date }</a>
-							<hr>
-						</td>
-					</tr>
-				</c:forEach>
-          	</div>
+          
+         	<div class="movie-list" id="time_area">
+            	
+            </div>
         </div>
-
-        </div>
+	
+     </div>
       
       
       
          <br><br><br><br>
          <a class="btn btn-primary btn-center" href="${pageContext.request.contextPath}/ticketing/ticket"> 좌 석 선 택 </a>
-        
+ 
     <script>
+
+    $(document).ready(function() {
+		$("a[value=movie]").click(function() {
+			alert( $(this).attr("id") );
+			$.get(
+				"${pageContext.request.contextPath}/ticketing/hall"
+				, {play_no : $(this).attr("id")}
+				, function(data, status){
+// 					alert(data);
+					$("#tht_area").empty();
+					$.each( data , function(idx, dto) {
+						$('#tht_area').append("<a value='tht' id='"+dto.tht_no+"' style='cursor: pointer;'>" + dto.tht_name + "</a>");
+						$('#tht_area').append("<hr>");
+
+						date(dto.tht_no);
+	
+					});//each
+				}//call back
+				, "json"
+			);//get
+		});//click
+	});//ready
+
+    </script>
+	<script type="text/javascript">
+// 		$(document).ready(function() {
+// 			$(".time_check").click(function() {
+// 				alert($(this).val());
+// 			});
+// 		});
+	</script>	
+    <script>
+
+    function date(no) {
+
+    	$("a[id="+no+"]").on("click", function() {
+			alert( 'hello' );
+			$.get(
+				"${pageContext.request.contextPath}/ticketing/date"
+				, {tht_no : no}
+				, function(data, status) {
+					alert(data);
+					$("#day_area").empty();
+					$.each(data, function(idx, dto) {
+						$('#day_area').append("<a class = 'time_check' value='"+dto.play_no+"' id='"+dto.play_date+"' style='cursor: pointer;'>" + dto.play_date+ "</a>");
+						$('#day_area').append("<hr>");
+						time(dto.play_no, dto.play_date);
+					});//each
+				}//callback
+				,"json"
+			);//get
+		});//on
+	}//tes
+	
+	
+
+    function time(no, date) {
+
+    	$("a[id="+date+"]").on("click", function() {
+//    		alert(no +" : "+ date);
+			$.get(
+				"${pageContext.request.contextPath}/ticketing/time"
+				, {
+					play_no : no
+					, play_date : date
+				}
+				, function(data, status) {
+					$("#time_area").empty();
+					$.each(data, function(idx, dto) {
+						$('#time_area').append("<a value='tht' id='' style='cursor: pointer;'>" + dto.play_time+ "</a>");
+						$('#time_area').append("<hr>");
+					});//each
+				}//callback
+				,"json"
+			);//get
+		});//on
+	}//test
+
+
+	
+	
+    </script>
+	
+    <script>
+    $(document).ready(function() {
+// 		$("a[value=tht]").click(function() {
+// 			alert( $(this).attr("id") );
+// 			$.get(
+// 				"${pageContext.request.contextPath}/ticketing/hall"
+// 				, {play_no : $(this).attr("id")}
+// 				, function(data, status){
+// // 					alert(data);
+// 					$("#tht_area").empty();
+// 					$.each( data , function(idx, dto) {
+// 						$('#tht_area').append("<a value='tht' id='"+dto.tht_no+"' style='cursor: pointer;'>" + dto.tht_name + "</a>");
+// 						+$('#tht_area').append("<hr>");
+// 					});//each
+// 				}//call back
+// 				, "json"
+// 			);//get
+// 		});//click
+	});//ready
+  
+
+    
+    
+/*
         const date = new Date();
         // console.log(date.getFullYear());
         const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
@@ -373,6 +461,7 @@ body {
                 button.classList.add("movie-date-wrapper-active");
             })
         }
+*/
     </script>
 </body>
 
