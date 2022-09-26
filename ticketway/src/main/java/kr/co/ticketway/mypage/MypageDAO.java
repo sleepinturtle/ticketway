@@ -16,7 +16,7 @@ public class MypageDAO {
 	public int update( MemberDTO dto ) {
 		int successCount = 0;
 		successCount = sqlSession.update("MypageMapper.update", dto);
-		return successCount;
+		return successCount; 
 	}//update
 	
 	
