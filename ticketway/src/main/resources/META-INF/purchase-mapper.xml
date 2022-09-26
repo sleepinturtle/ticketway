@@ -6,7 +6,7 @@
 <mapper namespace="PurchaseMapper">
 
 	<select id="page" parameterType="kr.co.ticketway.purchase.PurchaseDTO" resultType="kr.co.ticketway.purchase.PurchaseDTO">
-		select b.book_num, b.play_no,b.tht_no, b.hall_name, b.total_price, b.ticket_cnt, b.play_date, b.book_date, b.seat_code, b.card_num, p.status
+		select b.book_num, b.play_no,b.tht_no, b.hall_name, b.total_price, b.ticket_cnt, b.play_date, b.book_date, b.seat_code, p.status
 		from booking b, payment p
 		where b.mno = #{mno}
 	</select>
