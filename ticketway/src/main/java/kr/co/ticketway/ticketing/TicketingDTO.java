@@ -3,6 +3,7 @@ package kr.co.ticketway.ticketing;
 
 public class TicketingDTO {
 
+	private String mno;
 	private String sche_no;
 	private String play_no;
 	private String play_title;
@@ -44,6 +45,17 @@ public class TicketingDTO {
 				+ " : " +r_qty
 				+ " : " +c_qty;
 	}
+
+	
+	public String getMno() {
+		return mno;
+	}
+
+
+	public void setMno(String mno) {
+		this.mno = mno;
+	}
+
 
 	public String getSche_no() {
 		return sche_no;

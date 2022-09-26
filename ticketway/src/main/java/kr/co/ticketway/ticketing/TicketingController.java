@@ -3,6 +3,8 @@ package kr.co.ticketway.ticketing;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.google.gson.Gson;
 
 import kr.co.ticketway.perform.PerformDTO;
+import kr.co.ticketway.util.dto.MemberDTO;
 
 
 @Controller
@@ -26,7 +29,7 @@ public class TicketingController {
 	private TicketingService service;
 	
 	@RequestMapping(value ="/list", method = RequestMethod.GET)
-	public String list(Model model) {
+	public String list(Model model, HttpSession session) {
 		List<PerformDTO> list = null;
 		list = service.PerformSelect();
 		model.addAttribute("list", list);
@@ -35,10 +38,15 @@ public class TicketingController {
 	}//home
 	
 	@RequestMapping(value ="/ticket", method = RequestMethod.GET)
-	public String ticket(Model model) {
-		return"ticketing/ticket";
-
+	public void ticket(Model model, PrintWriter out, TicketingDTO dto, HttpSession session) {
+		dto.setMno( ( (MemberDTO) session.getAttribute("login_info") ).getMno() );
+		int successCount = 0;
+		successCount = service.ticket( dto );
+		out.print(successCount);
+		out.close();
 	}//home
+	
+	
 	
 	
 	@RequestMapping( value = "/hall", method = RequestMethod.GET )
