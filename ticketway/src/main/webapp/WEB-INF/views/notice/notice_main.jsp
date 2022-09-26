@@ -20,7 +20,7 @@
 		
 		               	 기대평을 작성하신 분들 중 3분을 추첨하여 공연 초대권을 드립니다.
 		            </p>
-		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=16"></a>
+		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=42"></a>
 		    </figure>
 		    <figure class="snip1527">
 		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트3.png" alt="pr-sample24" /></div>
@@ -31,7 +31,7 @@
 		
 		               	 연극 아트에 대한 기대평을 남겨주세요. 추첨을 통해 초대권을 드립니다.
 		            </p>
-		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=26"></a>
+		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=43"></a>
 		    </figure>
 		    <figure class="snip1527">
 		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트10.jpg" alt="pr-sample25" /></div>
@@ -42,7 +42,7 @@
 		
 		                               대구 문화소비 할인 쿠폰을 받으세요.	
 		            </p>
-		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=28"></a>
+		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=44"></a>
 		    </figure>
 		    <figure class="snip1527">
 		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트4.png" alt="pr-sample25" /></div>
@@ -53,7 +53,7 @@
 		
 		                               관람 후기를 작성하시고 상품을 받아가세요.	
 		            </p>
-		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=19"></a>
+		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=46"></a>
 		    </figure>
 		    <figure class="snip1527">
 		        <div class="image"><img src="${pageContext.request.contextPath}/resources/img/이벤트5.png" alt="pr-sample25" /></div>
@@ -64,7 +64,7 @@
 		
 		                	관람 후기를 작성하시고 상품을 받아가세요.
 		            </p>
-		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=20"></a>
+		        </figcaption><a href="${pageContext.request.contextPath}/notice/detail?news_no=47"></a>
 		    </figure>
 		    
 		    

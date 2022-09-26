@@ -9,9 +9,7 @@
 		<%@ include file="/WEB-INF/views/header.jsp" %>
 	</head>
 	<body>
-		<div id="nobook" class="container" style=" text-align:center; position: absolute; top:50%; left:50%; height:300px; width:500px; margin:-150px 0px 0px -200px;">
-			<h1>예매 내역이 없습니다.</h1>
-		</div>
+		
 		<div id="yesbook" class="container">
 				
 				<c:forEach var="list" items="${list}" varStatus="status">
@@ -84,13 +82,6 @@
 	</body>	
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$("#nobook").hide();
-			$("#yesbook").show();
-			if(${list = null}){
-				$("#nobook").show();
-				$("#yesbook").hide();
-			}
-			
 		
 			$("#pay_cancel").click(function() {
 				$.get(

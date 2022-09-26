@@ -38,8 +38,8 @@
 	</select>
 	
 	<insert id="book" parameterType="kr.co.ticketway.ticketing.TicketingDTO">
-	insert into booking (mno, play_no, tht_no, hall_name, total_price, ticket_cnt, play_date, book_date)
-	 values (3, 3, 1, "두산아트센터", "126,900", 2, now(), now())
+	insert into booking (mno, play_no, tht_no, hall_name, total_price, ticket_cnt, play_date, book_date, seat_code)
+	 values (3, 3, 1, "두산아트센터", "126,900", 2, now(), now(), "A0")
 	</insert>
 
 </mapper>
