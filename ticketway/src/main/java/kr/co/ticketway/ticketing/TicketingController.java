@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.gson.Gson;
 
+import kr.co.ticketway.card_info.Card_infoDTO;
+import kr.co.ticketway.card_info.Card_infoService;
 import kr.co.ticketway.perform.PerformDTO;
 import kr.co.ticketway.util.dto.MemberDTO;
 
@@ -26,13 +28,21 @@ public class TicketingController {
 	private static final Logger logger = LoggerFactory.getLogger(TicketingController.class);
 
 	@Autowired
+	private Card_infoService creditCardService;
+	
+	@Autowired
 	private TicketingService service;
 	
 	@RequestMapping(value ="/list", method = RequestMethod.GET)
-	public String list(Model model, HttpSession session) {
+	public String list(Model model, HttpSession session, MemberDTO dto) {
+		MemberDTO mDto = (MemberDTO) session.getAttribute("login_info");
+		dto.setMno( mDto.getMno() );
 		List<PerformDTO> list = null;
+		List<Card_infoDTO> cardlist = null;
 		list = service.PerformSelect();
+		cardlist = creditCardService.cardlist(dto.getMno());
 		model.addAttribute("list", list);
+		model.addAttribute("cardlist",cardlist);
 		return"ticketing/list";
 		
 	}//home
