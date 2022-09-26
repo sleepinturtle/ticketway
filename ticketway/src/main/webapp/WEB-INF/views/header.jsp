@@ -64,7 +64,7 @@
 					
 
 				</ul>
-				<div class="float-right" style="margin-left: 1700px; position: relative;">
+				<div class="float-right" style="position: relative; padding-left: 1600px;">
 				<c:choose>
 						<c:when test="${login_info != null && login_info.mid != null}">
 						<h4>${login_info.mid}</h4>

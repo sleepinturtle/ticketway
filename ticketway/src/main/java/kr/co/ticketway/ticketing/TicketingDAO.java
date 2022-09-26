@@ -40,4 +40,10 @@ public class TicketingDAO {
 		return list;
 	}//sidoSelect
 
+	public int ticket(TicketingDTO dto) {
+		int successCount = 0;
+		successCount = sqlSession.insert("TicketingMapper.book", dto);
+		return successCount;
+	}
+
 }//class

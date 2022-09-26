@@ -54,7 +54,7 @@
                   </div>
                            </div>
                            
-                        </div>
+             </div>
 
                         <!-- Slide 2 -->
                         <div class="carousel-item">

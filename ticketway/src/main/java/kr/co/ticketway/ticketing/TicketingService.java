@@ -37,5 +37,11 @@ public class TicketingService {
 		return list;
 	}//sidoSelect
 
+	public int ticket(TicketingDTO dto) {
+		int successCount = 0;
+		successCount = dao.ticket( dto );
+		return successCount;
+	}
+
 	
 }//class

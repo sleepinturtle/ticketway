@@ -9,9 +9,10 @@
     <title> 예 매 </title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
+    <link rel="stylesheet" href="${path }/resources/css/bki.css">
 <style>
     * {
-    font-size: 11px;
+    font-size: 14px;
 }
 
 body {
@@ -247,6 +248,19 @@ body {
     color: white;
 }
     </style>
+    
+    
+    <style>
+        .seat {
+            width: 30px;
+            height: 30px;
+        }
+        
+        .clicked {
+            background-color: red;
+            color: white;
+        }
+    </style>
 <%@ include file="/WEB-INF/views/header.jsp" %>
 </head>
 
@@ -261,12 +275,17 @@ body {
             </div>
             <c:forEach var="dto" items="${list}" varStatus="status">
 	            <div class="movie-list">
+<%-- 					<a value="movie" id="${dto.play_no}" style="cursor: pointer;">${dto.play_title}</a> --%>
+					<label for="perform_${dto.play_no}">
 					<a value="movie" id="${dto.play_no}" style="cursor: pointer;">${dto.play_title}</a>
+					<input type="checkbox" id="perform_${dto.play_no}">
+					</label>
 					<br>
 					<hr>
 				</div>
             </c:forEach>
         </div>
+        
        
         <div class="theater-part">
             <div class="reserve-title">극장</div>
@@ -293,18 +312,119 @@ body {
             </div>
         </div>
 	
-     </div>
       
       
       
          <br><br><br><br>
-         <a class="btn btn-primary btn-center" href="${pageContext.request.contextPath}/ticketing/ticket"> 좌 석 선 택 </a>
+<%--          <a class="btn btn-primary btn-center" href="${pageContext.request.contextPath}/ticketing/ticket"> 좌 석 선 택 </a> --%>
+ 
+		 	<button type="button" class="btn btn-primary float-right clearfix" data-toggle="modal" data-target="#exampleModal">
+		  	좌석 선택
+			</button>
+     </div>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title  " id="exampleModalLabel">좌석 선택</h5>
+		        <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body text-center">
+		        <div>
+			    <div class="seat-wrapper"></div>
+			    
+			    </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+		        <button type="button" class="btn btn-primary " id="select_y">선택 완료</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	<!-- 좌석 선택 스크립트 -->	
+	<script>
+    let test = [];
+    let selectedSeats = new Array();
+    let selectedSeatsMap = [];
+    const seatWrapper = document.querySelector(".seat-wrapper");
+    let clicked = "";
+    let div = "";
+
+    for (let i = 0; i < 10; i++) {
+        div = document.createElement("div");
+        seatWrapper.append(div);
+        for (let j = 0; j < 10; j++) {
+            const input = document.createElement('input');
+            input.type = "button";
+            input.name = "seats"
+            input.classList = "seat";
+            //3중포문을 사용하지 않기위해 
+            mapping(input, i, j);
+            div.append(input);
+            input.addEventListener('click', function(e) {
+                console.log(e.target.value);
+                //중복방지 함수
+                selectedSeats = selectedSeats.filter((element, index) => selectedSeats.indexOf(element) != index);
+
+                //click class가 존재할때(제거해주는 toggle)
+                if (input.classList.contains("clicked")) {
+                    input.classList.remove("clicked");
+                    clicked = document.querySelectorAll(".clicked");
+                    selectedSeats.splice(selectedSeats.indexOf(e.target.value), 1);
+                    clicked.forEach((data) => {
+                        selectedSeats.push(data.value);
+                    });
+                    //click class가 존재하지 않을때 (추가해주는 toggle)
+                } else {
+                    input.classList.add("clicked");
+                    clicked = document.querySelectorAll(".clicked");
+                    clicked.forEach((data) => {
+                        selectedSeats.push(data.value);
+                    })
+                }
+                console.log(selectedSeats);
+            })
+        }
+    }
+
+    function mapping(input, i, j) {
+        if (i === 0) {
+            input.value = "A" + j;
+        } else if (i === 1) {
+            input.value = "B" + j;
+        } else if (i === 2) {
+            input.value = "C" + j;
+        } else if (i === 3) {
+            input.value = "D" + j;
+        } else if (i === 4) {
+            input.value = "E" + j;
+        } else if (i === 5) {
+            input.value = "F" + j;
+        } else if (i === 6) {
+            input.value = "G" + j;
+	    } else if (i === 7) {
+	        input.value = "H" + j;
+		} else if (i === 8) {
+		    input.value = "I" + j;
+		} else if (i === 9) {
+		    input.value = "J" + j;
+		} else if (i === 10) {
+		    input.value = "H" + j;
+		}
+    }
+	</script>
+		 
  
     <script>
 
     $(document).ready(function() {
 		$("a[value=movie]").click(function() {
-			alert( $(this).attr("id") );
+// 			alert( $(this).attr("id") );
 			$.get(
 				"${pageContext.request.contextPath}/ticketing/hall"
 				, {play_no : $(this).attr("id")}
@@ -312,9 +432,13 @@ body {
 // 					alert(data);
 					$("#tht_area").empty();
 					$.each( data , function(idx, dto) {
-						$('#tht_area').append("<a value='tht' id='"+dto.tht_no+"' style='cursor: pointer;'>" + dto.tht_name + "</a>");
+// 						$('#tht_area').append("<a value='tht' id='"+dto.tht_no+"' style='cursor: pointer;'>" + dto.tht_name + "</a>");
+// 						$('#tht_area').append("<hr>");
+						
+						$('#tht_area').append("<input type='checkbox' id='tht_"+dto.tht_no+"'>");
+						$('#tht_area').append("<label for='tht_"+dto.tht_no+"'><a value='' id='"+dto.tht_no+"' style='cursor: pointer;'>" + dto.tht_name + "</a></label>");
 						$('#tht_area').append("<hr>");
-
+						
 						date(dto.tht_no);
 	
 					});//each
@@ -325,27 +449,25 @@ body {
 	});//ready
 
     </script>
-	<script type="text/javascript">
-// 		$(document).ready(function() {
-// 			$(".time_check").click(function() {
-// 				alert($(this).val());
-// 			});
-// 		});
-	</script>	
+	
     <script>
 
+    
     function date(no) {
 
     	$("a[id="+no+"]").on("click", function() {
-			alert( 'hello' );
+// 			alert( 'hello' );
 			$.get(
 				"${pageContext.request.contextPath}/ticketing/date"
 				, {tht_no : no}
 				, function(data, status) {
-					alert(data);
+// 					alert(data);
 					$("#day_area").empty();
 					$.each(data, function(idx, dto) {
-						$('#day_area').append("<a class = 'time_check' value='"+dto.play_no+"' id='"+dto.play_date+"' style='cursor: pointer;'>" + dto.play_date+ "</a>");
+// 						$('#day_area').append("<a class = 'time_check' value='"+dto.play_no+"' id='"+dto.play_date+"' style='cursor: pointer;'>" + dto.play_date+ "</a>");
+// 						$('#day_area').append("<hr>");
+						$('#day_area').append("<input type='checkbox' id='"+dto.play_date+"'>");
+						$('#day_area').append("<label for='"+dto.play_date+"'><a value='dto.play_no' id='"+dto.play_date+"' style='cursor: pointer;'>" + dto.play_date+"</a></label>");
 						$('#day_area').append("<hr>");
 						time(dto.play_no, dto.play_date);
 					});//each
@@ -370,8 +492,13 @@ body {
 				, function(data, status) {
 					$("#time_area").empty();
 					$.each(data, function(idx, dto) {
-						$('#time_area').append("<a value='tht' id='' style='cursor: pointer;'>" + dto.play_time+ "</a>");
+// 						$('#time_area').append("<a value='tht' id='' style='cursor: pointer;'>" + dto.play_time+ "</a>");
+// 						$('#time_area').append("<hr>");
+						
+						$('#time_area').append("<input type='checkbox' id='"+dto.play_time+"'>");
+						$('#time_area').append("<label for='"+dto.play_time+"'><a value='tht' id='' style='cursor: pointer;'>" + dto.play_time+ "</a></label>");
 						$('#time_area').append("<hr>");
+						
 					});//each
 				}//callback
 				,"json"
@@ -384,85 +511,33 @@ body {
 	
     </script>
 	
-    <script>
-    $(document).ready(function() {
-// 		$("a[value=tht]").click(function() {
-// 			alert( $(this).attr("id") );
-// 			$.get(
-// 				"${pageContext.request.contextPath}/ticketing/hall"
-// 				, {play_no : $(this).attr("id")}
-// 				, function(data, status){
-// // 					alert(data);
-// 					$("#tht_area").empty();
-// 					$.each( data , function(idx, dto) {
-// 						$('#tht_area').append("<a value='tht' id='"+dto.tht_no+"' style='cursor: pointer;'>" + dto.tht_name + "</a>");
-// 						+$('#tht_area').append("<hr>");
-// 					});//each
-// 				}//call back
-// 				, "json"
-// 			);//get
-// 		});//click
-	});//ready
-  
+    
+    <script type="text/javascript">
+	$(document).ready(function() {
+		$("#select_y").click(function() {
+			alert(123);
+			$.get(
+					"${pageContext.request.contextPath}/ticketing/ticket"
+					, {
+						
+					}
+					, function(data, status) {
+						if(data >= 1){
+							alert("예매 완료");
+							location.href="${pageContext.request.contextPath}/";
+						} else if(data <= 0){
+							alert("잠시 후 다시 시도해 주세요");
+						} else {
+							alert("잠시 후 다시 시도해 주세요.");
+						}
+					}//call back function
+			);//post
+		});
+	});
 
     
     
-/*
-        const date = new Date();
-        // console.log(date.getFullYear());
-        const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-        const reserveDate = document.querySelector(".reserve-date");
 
-      
-            const weekOfDay = ["일", "월", "화", "수", "목", "금", "토"]
-            const year = date.getFullYear();
-            const month = date.getMonth();
-            for (i = date.getDate(); i <= lastDay.getDate(); i++) {
-
-                const button = document.createElement("button");
-                const spanWeekOfDay = document.createElement("span");
-                const spanDay = document.createElement("span");
-
-                //class넣기
-                button.classList = "movie-date-wrapper"
-                spanWeekOfDay.classList = "movie-week-of-day";
-                spanDay.classList = "movie-day";
-
-                //weekOfDay[new Date(2020-03-날짜)]
-                const dayOfWeek = weekOfDay[new Date(year + "-" + month + "-" + i).getDay()];
-
-                //요일 넣기
-                if (dayOfWeek === "토") {
-                    spanWeekOfDay.classList.add("saturday");
-                    spanDay.classList.add("saturday");
-                } else if (dayOfWeek === "일") {
-                    spanWeekOfDay.classList.add("sunday");
-                    spanDay.classList.add("sunday");
-                }
-                spanWeekOfDay.innerHTML = dayOfWeek;
-                button.append(spanWeekOfDay);
-                //날짜 넣기
-                spanDay.innerHTML = i;
-                button.append(spanDay);
-                //button.append(i);
-                reserveDate.append(button);
-
-                dayClickEvent(button);
-            }
-
-        
-
-
-        function dayClickEvent(button) {
-            button.addEventListener("click", function() {
-                const movieDateWrapperActive = document.querySelectorAll(".movie-date-wrapper-active");
-                movieDateWrapperActive.forEach((list) => {
-                    list.classList.remove("movie-date-wrapper-active");
-                })
-                button.classList.add("movie-date-wrapper-active");
-            })
-        }
-*/
     </script>
 </body>
 
