@@ -319,11 +319,9 @@ body {
 <%--          <a class="btn btn-primary btn-center" href="${pageContext.request.contextPath}/ticketing/ticket"> 좌 석 선 택 </a> --%>
  
 		 	<button type="button" class="btn btn-primary float-right clearfix" data-toggle="modal" data-target="#exampleModal">
-		  	좌석 선택
+		  	좌석/카드 선택
 			</button>
-				<button type="button" class="btn btn-primary float-right clearfix" data-toggle="modal" data-target="#examplecardModal">
-		  	카드 선택
-			</button>
+			
      </div>
 		
 		<!-- Modal -->
@@ -341,27 +339,8 @@ body {
 			    <div class="seat-wrapper"></div>
 			    
 			    </div>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-		        <button type="button" class="btn btn-primary " id="select_y">선택 완료</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		
-		<!-- Modal -->
-		<div class="modal fade" id="examplecardModal" tabindex="-1" role="dialog" aria-labelledby="examplecardModalLabel" aria-hidden="true">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title  " id="examplecardModalLabel">좌석 선택</h5>
-		        <button type="button" class="close " data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body text-center">
-		       		<div style="background-color: lightgray;">
+			    <hr>
+			    <div style="background-color: lightgray;">
 	         <table class="table table-hover table-borderless">
 					<tbody>
 						<c:forEach var="dto" items="${cardlist}" varStatus="status">
@@ -369,6 +348,7 @@ body {
 								<td id="td_credit_card">
 									<div class="card">
 										<div class="card-body">
+											<input type="checkbox" value="${dto.card_num}">
 											<h5 class="card-title">${dto.card_name}</h5>
 											<p class="card-text">카드 번호 : ${dto.card_num}</p>
 											<p class="card-text">유효 기간 (MM/YY) : ${dto.exp_date1} / ${dto.exp_date2}</p>
@@ -380,14 +360,18 @@ body {
 					</tbody>
 				</table>
          	</div>
+			    
+			    
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-		        <button type="button" class="btn btn-primary " id="select_c">선택 완료</button>
+		        <button type="button" class="btn btn-primary " id="select_y">선택 완료</button>
 		      </div>
 		    </div>
 		  </div>
 		</div>
+		
+		
 		
 	
 	<!-- 좌석 선택 스크립트 -->	
@@ -559,7 +543,6 @@ body {
     <script type="text/javascript">
 	$(document).ready(function() {
 		$("#select_y").click(function() {
-			alert(123);
 			$.get(
 					"${pageContext.request.contextPath}/ticketing/ticket"
 					, {
@@ -581,27 +564,7 @@ body {
 		});
 		
 		
-		$("#select_c").click(function() {
-			alert(123);
-			$.get(
-					"${pageContext.request.contextPath}/ticketing/ticket"
-					, {
-						
-					}
-					, function(data, status) {
-						if(data >= 1){
-							alert("예매 완료");
-							location.href="${pageContext.request.contextPath}/";
-						} else if(data <= 0){
-							alert("잠시 후 다시 시도해 주세요");
-						} else {
-							alert("잠시 후 다시 시도해 주세요.");
-						}
-					}//call back function
-			);//post
-			
-			
-		});
+		
 	});
 
     
